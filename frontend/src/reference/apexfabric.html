@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ApexFabric — Physical AI Platform | ZMD</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --graphite:#1A1D21;
+  --steel:#2A2E35;
+  --charcoal:#343A44;
+  --red:#E41E26;
+  --text-hi:#F2F3F5;
+  --text-mid:#B4B9C2;
+  --text-low:#767C87;
+  --line:#3D434E;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--graphite);
+  color:var(--text-hi);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.01em;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(26,29,33,0.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:19px;letter-spacing:-0.02em;}
+.logo .mark{width:28px;height:28px;background:var(--red);border-radius:4px;position:relative;flex-shrink:0;}
+.logo .mark::before,.logo .mark::after{content:'';position:absolute;background:var(--graphite);}
+.logo .mark::before{width:12px;height:2px;top:9px;left:8px;}
+.logo .mark::after{width:2px;height:12px;top:8px;left:13px;}
+.navlinks{display:flex;gap:36px;font-size:14px;color:var(--text-mid);}
+.navlinks a:hover{color:var(--text-hi);}
+.navcta{
+  font-size:13px;font-weight:500;padding:9px 18px;border:1px solid var(--line);
+  border-radius:6px;color:var(--text-hi);
+}
+.navcta:hover{border-color:var(--red);}
+@media(max-width:820px){.navlinks{display:none;}}
+
+/* ---------- HERO ---------- */
+.hero{
+  padding:120px 0 96px;
+  position:relative;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(ellipse 900px 500px at 80% -10%, rgba(228,30,38,0.10), transparent 60%);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono';font-size:12px;letter-spacing:0.06em;
+  color:var(--red);text-transform:uppercase;margin-bottom:24px;
+}
+.eyebrow::before{content:'';width:7px;height:7px;background:var(--red);border-radius:50%;}
+.hero h1{
+  font-size:56px;line-height:1.08;max-width:820px;margin-bottom:24px;
+  color:var(--text-hi);
+}
+.hero h1 em{color:var(--red);font-style:normal;}
+.hero p.lead{
+  font-size:19px;color:var(--text-mid);max-width:640px;margin-bottom:40px;
+}
+.hero-ctas{display:flex;gap:14px;margin-bottom:64px;}
+.btn-primary{background:var(--red);color:#fff;padding:14px 26px;border-radius:6px;font-weight:500;font-size:15px;}
+.btn-primary:hover{background:#c81920;}
+.btn-secondary{border:1px solid var(--line);padding:14px 26px;border-radius:6px;font-weight:500;font-size:15px;}
+.btn-secondary:hover{border-color:var(--text-mid);}
+
+/* single-line positioning statement, boxed */
+.thesis{
+  border:1px solid var(--line);
+  border-left:3px solid var(--red);
+  background:var(--steel);
+  padding:22px 28px;
+  border-radius:0 8px 8px 0;
+  max-width:760px;
+  font-size:16px;
+  color:var(--text-mid);
+}
+.thesis strong{color:var(--text-hi);font-weight:600;}
+
+/* ---------- LAYER SPLIT (hardware vs platform) ---------- */
+.section{padding:96px 0;border-bottom:1px solid var(--line);}
+.section-head{max-width:640px;margin-bottom:56px;}
+.tag{font-family:'JetBrains Mono';font-size:12px;color:var(--text-low);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;}
+.section-head h2{font-size:34px;color:var(--text-hi);margin-bottom:14px;}
+.section-head p{color:var(--text-mid);font-size:16px;}
+
+.layers{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;}
+.layer-card{
+  background:var(--steel);border:1px solid var(--line);border-radius:12px;
+  padding:36px;display:flex;flex-direction:column;gap:18px;
+}
+.layer-card .kicker{font-family:'JetBrains Mono';font-size:12px;color:var(--red);letter-spacing:0.06em;}
+.layer-card h3{font-size:24px;color:var(--text-hi);}
+.layer-card p{color:var(--text-mid);font-size:15px;}
+.layer-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+.layer-card li{
+  font-size:14px;color:var(--text-mid);padding-left:18px;position:relative;
+}
+.layer-card li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--red);border-radius:1px;}
+.layer-card.hw{border-top:2px solid var(--charcoal);}
+.layer-card.sw{border-top:2px solid var(--red);}
+
+.layer-connector{
+  display:flex;align-items:center;justify-content:center;padding:0 26px;
+}
+.layer-connector svg{width:44px;height:44px;}
+
+@media(max-width:900px){
+  .layers{grid-template-columns:1fr;gap:20px;}
+  .layer-connector{transform:rotate(90deg);padding:6px 0;}
+}
+
+/* ---------- ARCHITECTURE DIAGRAM ---------- */
+.arch-wrap{
+  background:var(--steel);border:1px solid var(--line);border-radius:16px;
+  padding:52px 40px 44px;overflow-x:auto;
+}
+.arch-flow{display:flex;align-items:stretch;gap:0;min-width:920px;}
+.arch-node{
+  flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:0 6px;position:relative;
+}
+.arch-icon{
+  width:64px;height:64px;border-radius:14px;background:var(--charcoal);
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  border:1px solid var(--line);
+}
+.arch-node.hw .arch-icon{background:linear-gradient(135deg,var(--red),#a3141a);border:none;}
+.arch-node.sw .arch-icon{border:1.5px solid var(--red);background:rgba(228,30,38,0.08);}
+.arch-node h4{font-size:14.5px;color:var(--text-hi);margin-bottom:6px;}
+.arch-node span.arch-sub{font-family:'JetBrains Mono';font-size:11px;color:var(--text-low);text-transform:uppercase;letter-spacing:0.04em;}
+.arch-node .zmd-badge{
+  position:absolute;top:-10px;background:var(--red);color:#fff;font-family:'JetBrains Mono';
+  font-size:9.5px;font-weight:500;padding:3px 8px;border-radius:20px;letter-spacing:0.05em;
+}
+.arch-arrow{display:flex;align-items:center;padding-top:32px;flex-shrink:0;width:34px;justify-content:center;}
+.arch-arrow svg{width:26px;height:14px;}
+
+/* ---------- SOLUTIONS GRID ---------- */
+.sol-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.sol-card{
+  background:var(--steel);border:1px solid var(--line);border-radius:10px;
+  padding:26px 22px;transition:border-color .15s;
+}
+.sol-card:hover{border-color:var(--red);}
+.sol-card .num{font-family:'JetBrains Mono';font-size:11px;color:var(--text-low);margin-bottom:14px;display:block;}
+.sol-card h4{font-size:17px;color:var(--text-hi);margin-bottom:6px;}
+.sol-card p{font-size:13.5px;color:var(--text-mid);}
+@media(max-width:900px){.sol-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.sol-grid{grid-template-columns:1fr;}}
+
+.sol-footnote{
+  margin-top:28px;font-size:14px;color:var(--text-low);
+  border-top:1px solid var(--line);padding-top:24px;
+}
+.sol-footnote strong{color:var(--text-mid);}
+
+/* ---------- FOOTER CTA ---------- */
+.cta-section{
+  padding:96px 0;text-align:center;
+  background:radial-gradient(ellipse 700px 400px at 50% 0%, rgba(228,30,38,0.12), transparent 65%);
+}
+.cta-section h2{font-size:32px;margin-bottom:16px;}
+.cta-section p{color:var(--text-mid);margin-bottom:34px;}
+
+footer{border-top:1px solid var(--line);padding:40px 0;}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+footer .fcol{font-size:13px;color:var(--text-low);}
+footer .fcol a{color:var(--text-mid);}
+footer .fcol a:hover{color:var(--red);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo"><div class="mark"></div>ZMD</div>
+    <div class="navlinks">
+      <a href="#layers">Hardware &amp; Platform</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#solutions">Solutions</a>
+    </div>
+    <a href="#" class="navcta">Talk to Sales</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow mono">ApexFabric</div>
+    <h1>The Physical AI platform<br>powering <em>ZMD AI Solutions</em></h1>
+    <p class="lead">ApexFabric is the software layer that turns ZMD Edge Devices into intelligent systems — processing real-world data where it's created and turning it into decisions, in real time.</p>
+    <div class="hero-ctas">
+      <a href="#architecture" class="btn-primary">See how it works</a>
+      <a href="#solutions" class="btn-secondary">Explore solutions</a>
+    </div>
+    <div class="thesis">
+      <strong>ZMD Edge Devices</strong> are the hardware. <strong>ApexFabric</strong> is the Physical AI platform powering ZMD AI Solutions, optimized for ZMD Edge devices. Together, they run as one integrated system — not two separate products.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="layers">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Two layers, one system</div>
+      <h2>Hardware builds it. The platform runs it.</h2>
+      <p>ZMD Edge Devices and ApexFabric are designed together, but they do different jobs. Knowing the difference is the whole story.</p>
+    </div>
+
+    <div class="layers">
+      <div class="layer-card hw">
+        <div class="kicker mono">// HARDWARE</div>
+        <h3>ZMD Edge Devices</h3>
+        <p>The physical infrastructure — cameras, sensors, and servers — deployed on-site to capture and process data at the source.</p>
+        <ul>
+          <li>Dual/single-lens cameras &amp; parking sensors</li>
+          <li>2U/2S Xeon and edge servers</li>
+          <li>Custom edge devices, built in-house</li>
+          <li>Always visually identifiable as ZMD hardware</li>
+        </ul>
+      </div>
+
+      <div class="layer-connector">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#E41E26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="layer-card sw">
+        <div class="kicker mono">// PLATFORM</div>
+        <h3>ApexFabric</h3>
+        <p>The Physical AI platform powering ZMD AI Solutions, optimized for ZMD Edge devices — models, orchestration, and dashboards.</p>
+        <ul>
+          <li>Pre-trained AI models (human, fire, traffic detection)</li>
+          <li>Real-time inference &amp; orchestration</li>
+          <li>Custom dashboards &amp; analytics</li>
+          <li>Purpose-built for ZMD Edge Devices</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="architecture">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">How it flows</div>
+      <h2>From raw signal to business outcome</h2>
+      <p>One continuous path — data captured on ZMD hardware, made intelligent by ApexFabric, and turned into action.</p>
+    </div>
+
+    <div class="arch-wrap">
+      <div class="arch-flow">
+
+        <div class="arch-node">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><circle cx="12" cy="12" r="3" stroke="#B4B9C2" stroke-width="1.6"/><path d="M12 2v4M12 18v4M22 12h-4M6 12H2" stroke="#B4B9C2" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <h4>Data Sources</h4>
+          <span class="arch-sub">Cameras · Sensors · Feeds</span>
+        </div>
+
+        <div class="arch-arrow"><svg viewBox="0 0 24 14" fill="none"><path d="M1 7h20m0 0l-6-6m6 6l-6 6" stroke="#767C87" stroke-width="2" stroke-linecap="round"/></svg></div>
+
+        <div class="arch-node hw">
+          <span class="zmd-badge">ZMD HARDWARE</span>
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><rect x="3" y="7" width="18" height="12" rx="2" stroke="#fff" stroke-width="1.6"/><circle cx="9" cy="13" r="2.2" stroke="#fff" stroke-width="1.6"/><path d="M14 13h4M3 7l3-3h12l3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <h4>ZMD Edge Device</h4>
+          <span class="arch-sub">The hardware layer</span>
+        </div>
+
+        <div class="arch-arrow"><svg viewBox="0 0 24 14" fill="none"><path d="M1 7h20m0 0l-6-6m6 6l-6 6" stroke="#767C87" stroke-width="2" stroke-linecap="round"/></svg></div>
+
+        <div class="arch-node sw">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9L12 2z" stroke="#E41E26" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 11l8-4.5M12 11v9M12 11L4 6.5" stroke="#E41E26" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>ApexFabric</h4>
+          <span class="arch-sub">Physical AI platform</span>
+        </div>
+
+        <div class="arch-arrow"><svg viewBox="0 0 24 14" fill="none"><path d="M1 7h20m0 0l-6-6m6 6l-6 6" stroke="#767C87" stroke-width="2" stroke-linecap="round"/></svg></div>
+
+        <div class="arch-node">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><rect x="4" y="4" width="7" height="7" rx="1.2" stroke="#B4B9C2" stroke-width="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.2" stroke="#B4B9C2" stroke-width="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.2" stroke="#B4B9C2" stroke-width="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.2" stroke="#B4B9C2" stroke-width="1.6"/></svg>
+          </div>
+          <h4>AI Applications</h4>
+          <span class="arch-sub">Detection · Tracking · Analytics</span>
+        </div>
+
+        <div class="arch-arrow"><svg viewBox="0 0 24 14" fill="none"><path d="M1 7h20m0 0l-6-6m6 6l-6 6" stroke="#767C87" stroke-width="2" stroke-linecap="round"/></svg></div>
+
+        <div class="arch-node">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.6.5 1 1.2 1 2.05V17h6v-.25c0-.85.4-1.55 1-2.05A7 7 0 0012 2z" stroke="#B4B9C2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Insights &amp; Actions</h4>
+          <span class="arch-sub">Alerts · Automation</span>
+        </div>
+
+        <div class="arch-arrow"><svg viewBox="0 0 24 14" fill="none"><path d="M1 7h20m0 0l-6-6m6 6l-6 6" stroke="#767C87" stroke-width="2" stroke-linecap="round"/></svg></div>
+
+        <div class="arch-node">
+          <div class="arch-icon">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M3 17l6-6 4 4 8-8M21 7v6M21 7h-6" stroke="#B4B9C2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Business Outcomes</h4>
+          <span class="arch-sub">Efficiency · Safety · Growth</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="solutions" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">ZMD AI Solutions</div>
+      <h2>Eight industries, one platform underneath</h2>
+      <p>Every solution below runs on the same foundation: ZMD Edge Devices in the field, ApexFabric making sense of what they see.</p>
+    </div>
+
+    <div class="sol-grid">
+      <div class="sol-card"><span class="num mono">01</span><h4>Retail</h4><p>Footfall, queue, and shelf intelligence in-store.</p></div>
+      <div class="sol-card"><span class="num mono">02</span><h4>Healthcare</h4><p>Patient flow and facility safety monitoring.</p></div>
+      <div class="sol-card"><span class="num mono">03</span><h4>Manufacturing</h4><p>Line safety, quality, and process visibility.</p></div>
+      <div class="sol-card"><span class="num mono">04</span><h4>Smart Cities</h4><p>Traffic, infrastructure, and public safety at scale.</p></div>
+      <div class="sol-card"><span class="num mono">05</span><h4>Airports</h4><p>Passenger flow and perimeter monitoring.</p></div>
+      <div class="sol-card"><span class="num mono">06</span><h4>Agriculture</h4><p>Field and livestock monitoring in remote sites.</p></div>
+      <div class="sol-card"><span class="num mono">07</span><h4>Education</h4><p>Campus safety and access intelligence.</p></div>
+      <div class="sol-card"><span class="num mono">08</span><h4>Venues</h4><p>Crowd density and event-space analytics.</p></div>
+    </div>
+
+    <div class="sol-footnote">
+      <strong>ZMD AI Solutions</strong> are powered by the ApexFabric platform, running on ZMD Edge Devices deployed on-site — one system, purpose-built for each industry above.
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <h2>Hardware and platform, built as one.</h2>
+    <p>See how ZMD Edge Devices and ApexFabric work together for your industry.</p>
+    <a href="#" class="btn-primary">Talk to Sales</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fcol">© 2026 Zettamicro Devices (ZMD). All rights reserved.</div>
+    <div class="fcol"><a href="mailto:sales@zmd.tech">sales@zmd.tech</a> &nbsp;·&nbsp; Sy. No. 65/6, Nallurahalli Main Road, Mourya Building, near HP Petrol Pump, Whitefield, Bengaluru, Karnataka 560066 &nbsp;·&nbsp; <a href="#">zmd.co.in</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

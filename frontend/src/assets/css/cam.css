@@ -1,0 +1,5088 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.dcam-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #111827;
+  box-sizing: border-box;
+  animation: dcamPageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.dcam-page-container h1,
+.dcam-page-container h2,
+.dcam-page-container h3,
+.dcam-page-container h4,
+.dcam-page-container h5,
+.dcam-page-container h6,
+.dcam-hero-title,
+.dcam-section-title,
+.dcam-arch-block-title,
+.dcam-variant-title,
+.dcam-card-title,
+.dcam-sim-title,
+.dcam-table-title,
+.dcam-specs-title,
+.dcam-acc-title,
+.dcam-banner-title {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+@keyframes dcamPageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Smooth Section Scroll Entry & Exit Viewport Animations */
+.dcam-animated-section {
+  opacity: 0;
+  transform: translateY(36px) scale(0.98);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+  filter: blur(6px);
+}
+
+.dcam-animated-section.dcam-section-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+.dcam-animated-section.dcam-section-hidden {
+  opacity: 0;
+  transform: translateY(36px) scale(0.98);
+  filter: blur(6px);
+}
+
+/* Staggered entry for section children when section becomes visible */
+.dcam-animated-section.dcam-section-visible .dcam-section-header,
+.dcam-animated-section.dcam-section-visible .dcam-sim-header {
+  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(1) {
+  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(2) {
+  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(3) {
+  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+.dcam-animated-section.dcam-section-visible .dcam-arch-row:nth-child(4) {
+  animation: dcamSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+@keyframes dcamSectionChildFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth Hardware-Accelerated CSS Grid Accordion Collapse/Expand */
+.dcam-accordion-collapse-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+}
+
+.dcam-accordion-expanded .dcam-accordion-collapse-wrapper {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.dcam-accordion-collapse-inner {
+  overflow: hidden;
+}
+
+/* Top Camera Variants Navigation Bar */
+.dcam-variants-bar {
+  width: 100%;
+  background-color: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.dcam-variants-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 1280px;
+  width: 100%;
+  justify-content: center;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: thin;
+}
+
+.dcam-variant-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.dcam-variant-card:hover {
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+.dcam-variant-card-active {
+  border: 1.5px solid #e60000;
+  box-shadow: 0 2px 8px rgba(230, 0, 0, 0.08);
+}
+
+.dcam-variant-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.dcam-variant-dot-active {
+  background-color: #e60000;
+  box-shadow: 0 0 6px rgba(230, 0, 0, 0.4);
+}
+
+.dcam-variant-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.dcam-variant-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.dcam-variant-tag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #9ca3af;
+  margin-top: 2px;
+  text-transform: uppercase;
+}
+
+.dcam-variant-tag-active {
+  color: #6b7280;
+}
+
+/* Hero Section - Full width (direct child of main, no parent constraints) */
+.dcam-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: none;
+  transform: none !important;
+}
+
+.dcam-hero-wrapper {
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 72px 60px;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Left Column - Content sitting ON TOP of image */
+.dcam-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 620px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Tag / Category Subtitle */
+.dcam-tag-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.dcam-tag-line {
+  width: 20px;
+  height: 2px;
+  background-color: #e60000;
+  display: inline-block;
+}
+
+.dcam-tag-text {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #555555;
+}
+
+/* Main Heading */
+.dcam-hero-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  color: #0f172a;
+  margin: 0 0 28px 0;
+}
+
+.dcam-highlight {
+  color: #e60000;
+}
+
+/* Subheading & Paragraph */
+.dcam-hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+.dcam-hero-description {
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: #334155;
+  line-height: 1.65;
+  margin: 0 0 36px 0;
+}
+
+/* Action Buttons */
+.dcam-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 54px;
+  flex-wrap: wrap;
+}
+
+.dcam-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #e60000;
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(230, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+.dcam-btn-primary:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(230, 0, 0, 0.35);
+}
+
+.dcam-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: #0f172a;
+  padding: 14px 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+}
+
+.dcam-btn-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Stat metrics format */
+.dcam-hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 28px);
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+  width: 100%;
+}
+
+.dcam-hero-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dcam-hero-stat-val {
+  font-size: clamp(0.95rem, 1.5vw, 1.45rem);
+  font-weight: 800;
+  color: #e60000;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.dcam-hero-stat-lbl {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: clamp(0.52rem, 0.6vw, 0.65rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #000000;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* Full-bleed image: absolute fill from top to bottom of .dcam-hero-section */
+.dcam-visual-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Product Image Space — stacking context for crossfade */
+.dcam-image-space {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.dcam-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Smooth Crossfade — incoming image fades in with subtle scale + blur */
+.dcam-hero-img-incoming {
+  animation: dcamHeroImgIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  z-index: 2;
+}
+
+/* Smooth Crossfade — outgoing image fades out */
+.dcam-hero-img-outgoing {
+  animation: dcamHeroImgOut 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 1;
+}
+
+@keyframes dcamHeroImgIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes dcamHeroImgOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+    filter: blur(4px);
+  }
+}
+
+/* Hero Content Fade — smooth text transition with blur dissolve */
+.dcam-hero-fade {
+  animation: dcamHeroTextFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dcamHeroTextFade {
+  from {
+    opacity: 0;
+    transform: translateX(-20px) translateY(6px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Staggered entrance for hero child elements */
+.dcam-hero-fade .dcam-tag-container {
+  animation: dcamHeroChildFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+.dcam-hero-fade .dcam-hero-title {
+  animation: dcamHeroChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+.dcam-hero-fade .dcam-hero-subtitle {
+  animation: dcamHeroChildFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+.dcam-hero-fade .dcam-hero-description {
+  animation: dcamHeroChildFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+.dcam-hero-fade .dcam-hero-actions {
+  animation: dcamHeroChildFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+.dcam-hero-fade .dcam-hero-stats-grid {
+  animation: dcamHeroChildFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
+}
+
+@keyframes dcamHeroChildFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Common Section Layout */
+.dcam-section {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  box-sizing: border-box;
+}
+
+.dcam-section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 50px auto;
+}
+
+.dcam-section-badge {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #e60000;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.dcam-section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+}
+
+.dcam-section-subtitle {
+  font-size: 1.05rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Image Placeholder Box */
+.dcam-img-placeholder {
+  width: 100%;
+  height: 180px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.dcam-img-placeholder::after {
+  content: '[ Image Space Reserved ]';
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.dcam-img-placeholder-wide {
+  height: 280px;
+  margin-top: 40px;
+}
+
+/* SECTION 1: KEY FEATURES & ARCHITECTURE BLOCKS */
+.dcam-arch-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.dcam-arch-blocks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.dcam-arch-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.dcam-arch-text-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dcam-arch-block-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 0 0 20px 0;
+}
+
+.dcam-arch-block-desc {
+  font-size: 1.05rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0 0 28px 0;
+}
+
+/* Interactive Day / Night Toggle Switch */
+/* =============================================
+   RED / WHITE PILL BUTTONS (shared across all arch blocks)
+   ============================================= */
+.dcam-feat-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 28px;
+}
+
+.dcam-feat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 24px;
+  border: 2px solid #e2e8f0;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.dcam-mode-icon {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+}
+
+.dcam-mode-icon-day {
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 2px rgba(230, 0, 0, .08);
+}
+
+.dcam-mode-icon-night {
+  border-radius: 50%;
+  box-shadow: inset 4px -2px 0 currentColor;
+}
+
+.dcam-feat-btn:hover {
+  border-color: #e60000;
+  color: #e60000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(230, 0, 0, 0.12);
+}
+
+.dcam-feat-btn-active {
+  background: #e60000;
+  border-color: #e60000;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(230, 0, 0, 0.3);
+}
+
+.dcam-feat-btn-active:hover {
+  background: #cc0000;
+  border-color: #cc0000;
+  color: #ffffff;
+}
+
+/* Stat Metrics Bar */
+.dcam-arch-stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+  width: 100%;
+}
+
+.dcam-arch-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.dcam-arch-stat-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #e60000;
+  margin-bottom: 4px;
+}
+
+.dcam-arch-stat-lbl {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+/* Right Visual Canvas Column */
+.dcam-arch-visual-col {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.dcam-arch-card-canvas {
+  width: 100%;
+  height: 380px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Canvas badge (bottom label) */
+.dcam-canvas-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: rgba(15, 23, 42, 0.85);
+  padding: 6px 12px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(4px);
+}
+
+
+/* =============================================
+   BLOCK 1: DAY/NIGHT CANVAS
+   ============================================= */
+.dcam-canvas-daynight {
+  transition: background 0.8s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.dcam-dn-day {
+  background: linear-gradient(180deg, #87CEEB 0%, #dbeafe 40%, #f1f5f9 100%);
+}
+
+.dcam-dn-night {
+  background: linear-gradient(180deg, #0a0e1a 0%, #1a1f35 40%, #1e293b 100%);
+  border-color: #334155;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Sky layer */
+.dcam-dn-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  pointer-events: none;
+}
+
+.dcam-dn-sun {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 0 8px rgba(251, 191, 36, 0.2), 0 0 30px rgba(251, 191, 36, 0.4);
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dcam-dn-moon {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: -10px 4px 0 2px #e2e8f0;
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+.dcam-dn-visible {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+}
+
+/* Stars (night only) */
+.dcam-dn-stars span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffffff;
+  animation: dcam-starTwinkle 2s ease-in-out infinite alternate;
+}
+
+.dcam-dn-stars span:nth-child(2) { animation-delay: 0.4s; width: 2px; height: 2px; }
+.dcam-dn-stars span:nth-child(3) { animation-delay: 0.8s; }
+.dcam-dn-stars span:nth-child(4) { animation-delay: 1.2s; width: 2px; height: 2px; }
+.dcam-dn-stars span:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes dcam-starTwinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+/* Scene — buildings and ground */
+.dcam-dn-scene {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.dcam-dn-building {
+  border-radius: 4px 4px 0 0;
+  padding: 10px 8px;
+  transition: background-color 0.6s ease;
+}
+
+.dcam-dn-day .dcam-dn-building { background: #94a3b8; }
+.dcam-dn-night .dcam-dn-building { background: #1e293b; }
+
+.dcam-dn-b1 { width: 80px; height: 100px; }
+.dcam-dn-b2 { width: 95px; height: 130px; }
+
+.dcam-dn-win-row {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 6px;
+  justify-content: center;
+}
+
+.dcam-dn-win-row span {
+  width: 14px;
+  height: 10px;
+  border-radius: 2px;
+  transition: all 0.6s ease;
+}
+
+.dcam-dn-day .dcam-dn-win-row span {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dcam-dn-night .dcam-dn-win-row span {
+  background: #fde047;
+  box-shadow: 0 0 6px rgba(253, 224, 71, 0.5);
+}
+
+.dcam-dn-person {
+  width: 10px;
+  height: 26px;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 20px;
+  transition: background-color 0.6s ease;
+}
+
+.dcam-dn-day .dcam-dn-person { background: #334155; }
+.dcam-dn-night .dcam-dn-person { background: rgba(255, 255, 255, 0.6); }
+
+.dcam-dn-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  transition: background-color 0.6s ease;
+}
+
+.dcam-dn-day .dcam-dn-ground { background: #64748b; }
+.dcam-dn-night .dcam-dn-ground { background: #1e293b; }
+
+/* Camera mount */
+.dcam-dn-camera-mount {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+
+.dcam-dn-cam-body {
+  width: 36px;
+  height: 22px;
+  background: #475569;
+  border-radius: 4px 4px 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+.dcam-dn-night .dcam-dn-cam-body {
+  background: #334155;
+  border-color: rgba(0, 234, 255, 0.3);
+}
+
+.dcam-dn-cam-lens {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 2px solid #94a3b8;
+  transition: all 0.5s ease;
+}
+
+.dcam-dn-night .dcam-dn-cam-lens {
+  border-color: #e60000;
+  box-shadow: 0 0 8px rgba(230, 0, 0, 0.5);
+}
+
+/* IR cone beam (night only) */
+.dcam-dn-ir-cone {
+  width: 160px;
+  height: 200px;
+  background: linear-gradient(
+    180deg,
+    rgba(230, 0, 0, 0.35) 0%,
+    rgba(230, 0, 0, 0.08) 100%
+  );
+  clip-path: polygon(50% 0%, 5% 100%, 95% 100%);
+  margin-top: -4px;
+  animation: dcam-irPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes dcam-irPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Overlay label */
+.dcam-dn-overlay-label {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+  transition: all 0.5s ease;
+}
+
+.dcam-dn-day .dcam-dn-overlay-label {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.dcam-dn-night .dcam-dn-overlay-label {
+  color: #ff6b6b;
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.dcam-dn-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dcam-dot-green {
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+.dcam-dot-red {
+  background: #e60000;
+  box-shadow: 0 0 6px #e60000;
+  animation: dcam-blink 1.2s ease-in-out infinite;
+}
+
+/* Static day/night image viewer */
+.dcam-daynight-viewer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  margin: 0;
+  overflow: hidden;
+  background: #0b1220;
+  border: 1px solid #d8e0ea;
+  border-radius: 18px;
+  box-shadow: 0 20px 46px rgba(15, 23, 42, .16);
+}
+
+.dcam-daynight-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dcam-daynight-topbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 18px 42px;
+  color: #f8fafc;
+  background: linear-gradient(180deg, rgba(6, 10, 18, .78), transparent);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .62rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.dcam-daynight-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dcam-daynight-live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef2b2d;
+  box-shadow: 0 0 0 4px rgba(239, 43, 45, .18);
+}
+
+.dcam-daynight-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 56px 18px 17px;
+  color: #fff;
+  background: linear-gradient(0deg, rgba(5, 9, 16, .9), rgba(5, 9, 16, .58) 56%, transparent);
+}
+
+.dcam-daynight-caption > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dcam-daynight-caption strong {
+  font-size: .95rem;
+  line-height: 1.2;
+}
+
+.dcam-daynight-caption small {
+  max-width: 380px;
+  color: rgba(241, 245, 249, .82);
+  font-size: .68rem;
+  line-height: 1.45;
+}
+
+.dcam-daynight-caption em {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  color: #fff;
+  background: rgba(230, 0, 0, .9);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .56rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .8px;
+  white-space: nowrap;
+}
+
+.dcam-daynight-viewer-day .dcam-daynight-caption em {
+  background: rgba(15, 118, 110, .9);
+}
+
+@media (max-width: 640px) {
+  .dcam-daynight-topbar { padding: 12px 13px 34px; font-size: .54rem; }
+  .dcam-daynight-caption { align-items: flex-start; flex-direction: column; gap: 10px; padding: 46px 13px 13px; }
+  .dcam-daynight-caption strong { font-size: .82rem; }
+  .dcam-daynight-caption small { display: none; }
+  .dcam-daynight-caption em { padding: 5px 8px; font-size: .5rem; }
+}
+
+/* Static field-of-view image comparison */
+.dcam-fov-viewer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  margin: 0;
+  overflow: hidden;
+  background: #0b1220;
+  border: 1px solid #d8e0ea;
+  border-radius: 18px;
+  box-shadow: 0 20px 46px rgba(15, 23, 42, .16);
+}
+
+.dcam-fov-viewer-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dcam-fov-viewer-topbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 18px 42px;
+  color: #f8fafc;
+  background: linear-gradient(180deg, rgba(6, 10, 18, .78), transparent);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.dcam-fov-viewer-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dcam-fov-viewer-live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef2b2d;
+  box-shadow: 0 0 0 4px rgba(239, 43, 45, .18);
+}
+
+.dcam-fov-viewer-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 56px 18px 17px;
+  color: #fff;
+  background: linear-gradient(0deg, rgba(5, 9, 16, .9), rgba(5, 9, 16, .55) 56%, transparent);
+}
+
+.dcam-fov-viewer-caption > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dcam-fov-viewer-caption strong {
+  font-size: .95rem;
+  line-height: 1.2;
+}
+
+.dcam-fov-viewer-caption small {
+  max-width: 380px;
+  color: rgba(241, 245, 249, .82);
+  font-size: .68rem;
+  line-height: 1.45;
+}
+
+.dcam-fov-viewer-caption em {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  color: #fff;
+  background: rgba(230, 0, 0, .9);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .56rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .8px;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .dcam-fov-viewer-topbar { padding: 12px 13px 34px; font-size: .54rem; }
+  .dcam-fov-viewer-caption { align-items: flex-start; flex-direction: column; gap: 10px; padding: 46px 13px 13px; }
+  .dcam-fov-viewer-caption strong { font-size: .82rem; }
+  .dcam-fov-viewer-caption small { display: none; }
+  .dcam-fov-viewer-caption em { padding: 5px 8px; font-size: .5rem; }
+}
+
+
+/* =============================================
+   BLOCK 2: FOV TOP-DOWN CANVAS (REDESIGNED)
+   ============================================= */
+.dcam-canvas-fov2 {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.dcam-fov2-topview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dcam-fov2-cam {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 5;
+}
+
+.dcam-fov2-cam-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e60000;
+  box-shadow: 0 0 12px rgba(230, 0, 0, 0.6);
+  animation: dcam-camPulse 2s ease-in-out infinite;
+}
+
+@keyframes dcam-camPulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(230, 0, 0, 0.6); }
+  50% { box-shadow: 0 0 24px rgba(230, 0, 0, 0.9), 0 0 40px rgba(230, 0, 0, 0.3); }
+}
+
+.dcam-fov2-cam-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 1.5px;
+}
+
+/* Vision cone */
+.dcam-fov2-cone {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  height: 260px;
+  background: linear-gradient(
+    180deg,
+    rgba(230, 0, 0, 0.45) 0%,
+    rgba(230, 0, 0, 0.12) 60%,
+    rgba(230, 0, 0, 0.03) 100%
+  );
+  transition: clip-path 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+.dcam-fov2-angle-label {
+  position: absolute;
+  top: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.12);
+  z-index: 3;
+  transition: color 0.3s ease;
+}
+
+/* Zone markers at bottom */
+.dcam-fov2-zones {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px;
+  box-sizing: border-box;
+  z-index: 4;
+}
+
+.dcam-fov2-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.5s ease;
+}
+
+.dcam-zone-covered {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.dcam-zone-blind {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.dcam-fov2-zone-icon {
+  font-size: 0.9rem;
+  font-weight: 900;
+  transition: color 0.3s ease;
+}
+
+.dcam-zone-covered .dcam-fov2-zone-icon { color: #4ade80; }
+.dcam-zone-blind .dcam-fov2-zone-icon { color: #f87171; }
+
+.dcam-fov2-zone-text {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.dcam-zone-covered .dcam-fov2-zone-text { color: #4ade80; }
+.dcam-zone-blind .dcam-fov2-zone-text { color: #f87171; }
+
+/* Range Slider Control Row */
+.dcam-slider-control-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.dcam-fov-range-input {
+  flex-grow: 1;
+  accent-color: #e60000;
+  height: 6px;
+  border-radius: 3px;
+  background-color: #e2e8f0;
+  cursor: pointer;
+}
+
+.dcam-slider-val-badge {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #e60000;
+  min-width: 48px;
+}
+
+.dcam-feature-card-desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+/* SECTION 2: FULL TECHNICAL PROFILE (ACCORDION STRUCTURE) */
+.dcam-tech-profile-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.dcam-tech-profile-header {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.dcam-tech-header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.dcam-tech-header-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dcam-tech-profile-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 12px 0 12px 0;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.dcam-tech-profile-subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Accordion Container List */
+.dcam-tech-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dcam-tech-profile-row {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.dcam-tech-profile-row:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+}
+
+.dcam-tech-profile-row-active {
+  background-color: #ffffff !important;
+  border: 1.5px solid rgba(230, 0, 0, 0.4) !important;
+  border-left: 5px solid #e60000 !important;
+  box-shadow: 0 12px 36px rgba(230, 0, 0, 0.08) !important;
+}
+
+.dcam-tech-profile-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s ease;
+}
+
+.dcam-tech-profile-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dcam-tech-profile-icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e60000;
+  flex-shrink: 0;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.dcam-tech-profile-row:hover .dcam-tech-profile-icon-box {
+  background-color: rgba(230, 0, 0, 0.08);
+  border-color: rgba(230, 0, 0, 0.3);
+  transform: scale(1.1) rotate(-3deg);
+  color: #e60000;
+  box-shadow: 0 4px 14px rgba(230, 0, 0, 0.15);
+}
+
+.dcam-tech-profile-row-active .dcam-tech-profile-icon-box {
+  background-color: #e60000 !important;
+  border-color: #e60000 !important;
+  color: #ffffff !important;
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(230, 0, 0, 0.3) !important;
+}
+
+.dcam-tech-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.dcam-tech-profile-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.dcam-tech-profile-cat-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+  transition: color 0.25s ease;
+}
+
+.dcam-tech-profile-row:hover .dcam-tech-profile-cat-name {
+  color: #e60000;
+}
+
+.dcam-tech-profile-cat-sub {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+.dcam-tech-profile-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #64748b;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+.dcam-tech-profile-row:hover .dcam-tech-profile-toggle {
+  border-color: #e60000;
+  color: #e60000;
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 0 12px rgba(230, 0, 0, 0.2);
+}
+
+.dcam-tech-profile-row-active .dcam-tech-profile-toggle {
+  background-color: #e60000 !important;
+  border-color: #e60000 !important;
+  color: #ffffff !important;
+  transform: scale(1.1) rotate(180deg) !important;
+  box-shadow: 0 4px 14px rgba(230, 0, 0, 0.3) !important;
+}
+
+/* Expanded Specifications Grid Body */
+.dcam-tech-profile-body {
+  padding: 0 28px 28px 96px;
+  animation: dcamExpandSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dcamExpandSlide {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dcam-tech-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.dcam-tech-profile-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.dcam-tech-profile-item:hover {
+  border-color: rgba(230, 0, 0, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(230, 0, 0, 0.06);
+}
+
+.dcam-tech-item-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #e60000;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dcam-tech-item-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .dcam-tech-profile-body {
+    padding: 0 20px 20px 20px;
+  }
+}
+
+/* SECTION 3: QUALITY-AI FEATURES */
+.dcam-ai-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.dcam-ai-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #e60000;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease;
+}
+
+.dcam-ai-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.dcam-ai-tag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #e60000;
+  margin-bottom: 8px;
+}
+
+.dcam-ai-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+}
+
+.dcam-ai-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* SECTION 4: WHY ZMD */
+.dcam-why-section {
+  background-color: #ffffff;
+}
+
+.dcam-comparison-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.dcam-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.dcam-comparison-table th {
+  background-color: #f8fafc;
+  padding: 18px 24px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.dcam-comparison-table td {
+  padding: 18px 24px;
+  font-size: 0.92rem;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+  line-height: 1.5;
+}
+
+.dcam-comparison-table th.dcam-highlight-col,
+.dcam-comparison-table td.dcam-highlight-col {
+  background-color: rgba(230, 0, 0, 0.03);
+  border-left: 2px solid rgba(230, 0, 0, 0.15);
+}
+
+/* SECTION 5: DATA SHEET DOWNLOAD BLOCK */
+.dcam-datasheet-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.dcam-datasheet-card {
+  background-color: #0f172a;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 40px;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.25);
+}
+
+.dcam-datasheet-badge {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #e60000;
+}
+
+.dcam-datasheet-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 12px 0 16px 0;
+  line-height: 1.2;
+}
+
+.dcam-datasheet-desc {
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.dcam-datasheet-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.dcam-datasheet-img-space {
+  height: 220px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* SECTION 6: FAQ'S */
+.dcam-faq-section {
+  max-width: 900px;
+}
+
+.dcam-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dcam-faq-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  overflow: hidden;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dcam-faq-item:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.dcam-faq-item.dcam-faq-open {
+  background-color: #ffffff !important;
+  border: 1.5px solid rgba(230, 0, 0, 0.4) !important;
+  border-left: 5px solid #e60000 !important;
+  box-shadow: 0 12px 32px rgba(230, 0, 0, 0.08) !important;
+}
+
+.dcam-faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dcam-faq-icon {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e60000;
+}
+
+.dcam-faq-answer {
+  padding: 0 24px 20px 24px;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* SECTION 7: CONTACT US */
+.dcam-contact-section {
+  border-top: 1px solid #f1f5f9;
+}
+
+.dcam-contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.dcam-contact-info-card {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 36px;
+}
+
+.dcam-contact-info-heading {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.dcam-contact-info-sub {
+  font-size: 0.88rem;
+  color: #e60000;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.dcam-contact-detail-item {
+  margin-bottom: 20px;
+}
+
+.dcam-contact-detail-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+.dcam-contact-detail-val {
+  font-size: 0.95rem;
+  color: #334155;
+  margin: 4px 0 0 0;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.dcam-contact-info-card,
+.dcam-contact-form-card {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dcam-contact-info-card:hover,
+.dcam-contact-form-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(230, 0, 0, 0.25);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+}
+
+.dcam-contact-form-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 36px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.dcam-contact-form-heading {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 24px 0;
+}
+
+.dcam-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dcam-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dcam-form-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.dcam-form-input,
+.dcam-form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #0f172a;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.dcam-form-input:focus,
+.dcam-form-textarea:focus {
+  outline: none;
+  border-color: #e60000;
+  box-shadow: 0 0 0 3px rgba(230, 0, 0, 0.1);
+}
+
+.dcam-btn-submit {
+  align-self: flex-start;
+  margin-top: 10px;
+}
+
+.dcam-form-success {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+  padding: 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* SECTION 3: WATCH THE CAMERA THINK (LIVE SIMULATOR) */
+.dcam-ai-sim-section {
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+.dcam-sim-header {
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.dcam-sim-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 12px 0 16px 0;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.dcam-sim-subtitle {
+  font-size: 1.05rem;
+  color: #64748b;
+  max-width: 720px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Simulator Grid Wrapper */
+.dcam-sim-wrapper {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* Sidebar - Categories */
+.dcam-sim-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dcam-sim-cat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dcam-sim-cat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.dcam-sim-cat-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.dcam-sim-cat-active {
+  border: 1.5px solid #e60000 !important;
+  background-color: #fff8f8 !important;
+  box-shadow: 0 4px 16px rgba(230, 0, 0, 0.08) !important;
+}
+
+.dcam-sim-cat-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.dcam-sim-cat-active .dcam-sim-cat-icon-box {
+  background-color: #e60000;
+  color: #ffffff;
+}
+
+.dcam-sim-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.dcam-sim-cat-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dcam-sim-cat-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.dcam-sim-cat-tags {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Sub-features Card */
+.dcam-sim-sublist-card {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.dcam-sim-sublist-title {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.dcam-sim-sublist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dcam-sim-subitem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.dcam-sim-subitem:hover {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.dcam-sim-subitem-active {
+  background-color: #ffffff !important;
+  border-color: rgba(230, 0, 0, 0.3) !important;
+  color: #e60000 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.dcam-sim-subicon {
+  font-size: 1rem;
+}
+
+/* Right Viewport Monitor HUD Screen */
+.dcam-sim-viewport-container {
+  width: 100%;
+}
+
+.dcam-sim-hud-screen {
+  background-color: #0b0f19;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #1e293b;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+}
+
+.dcam-sim-hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background-color: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.dcam-sim-hud-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dcam-sim-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e60000;
+  box-shadow: 0 0 8px #e60000;
+  animation: dcamPulse 1.5s infinite;
+}
+
+@keyframes dcamPulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.dcam-sim-live-text {
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: 1px;
+}
+
+.dcam-sim-hud-meta {
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+/* Simulated Live Camera Feed Canvas */
+.dcam-sim-canvas {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  background-color: #090d16;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(30, 41, 59, 0.3) 0%, transparent 80%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated Vertical Laser Scan Line */
+.dcam-sim-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(230, 0, 0, 0.8), transparent);
+  box-shadow: 0 0 15px rgba(230, 0, 0, 0.8);
+  animation: dcamScan 4s linear infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes dcamScan {
+  0% { top: 0%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Target Zone Boxes & HUD Annotations */
+.dcam-sim-zone-box {
+  position: absolute;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.dcam-sim-zone-line {
+  top: 25%;
+  left: 15%;
+  width: 320px;
+  height: 220px;
+  border: 1.5px dashed rgba(230, 0, 0, 0.6);
+  background: rgba(230, 0, 0, 0.03);
+}
+
+.dcam-sim-zone-intrusion {
+  top: 30%;
+  left: 42%;
+  width: 130px;
+  height: 190px;
+  border: 2px solid #e60000;
+  background: rgba(230, 0, 0, 0.12);
+  box-shadow: 0 0 20px rgba(230, 0, 0, 0.25);
+  animation: dcamBboxPulse 2s infinite;
+}
+
+@keyframes dcamBboxPulse {
+  0% { border-color: #e60000; }
+  50% { border-color: #ff4d4d; }
+  100% { border-color: #e60000; }
+}
+
+.dcam-sim-target-group {
+  position: absolute;
+  top: 40%;
+  right: 12%;
+  width: 220px;
+  height: 140px;
+  border: 1.5px dashed rgba(230, 0, 0, 0.6);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dcam-sim-silhouettes {
+  display: flex;
+  gap: 14px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.dcam-sim-person-dot {
+  width: 28px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px 14px 4px 4px;
+}
+
+.dcam-sim-target-person {
+  width: 36px;
+  height: 80px;
+  background: rgba(230, 0, 0, 0.4);
+  border-radius: 18px 18px 4px 4px;
+  margin: 30px auto 0 auto;
+}
+
+/* Zone Variants */
+.dcam-sim-zone-crowd {
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  border: 2px solid #e60000;
+  background: rgba(230, 0, 0, 0.08);
+}
+
+.dcam-sim-heatmap-overlay {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(230, 0, 0, 0.3) 0%, transparent 70%);
+}
+
+.dcam-sim-silhouettes-large {
+  font-size: 2.2rem;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 40px;
+  opacity: 0.7;
+}
+
+.dcam-sim-zone-tripwire {
+  top: 45%;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  border-top: 2px dashed #e60000;
+}
+
+.dcam-sim-laser-beam {
+  width: 100%;
+  height: 4px;
+  background: #e60000;
+  box-shadow: 0 0 12px #e60000;
+  margin-top: 20px;
+}
+
+.dcam-sim-zone-reid,
+.dcam-sim-zone-face {
+  top: 25%;
+  left: 35%;
+  width: 220px;
+  height: 220px;
+  border: 2px solid #00f2fe;
+  background: rgba(0, 242, 254, 0.05);
+  border-radius: 8px;
+}
+
+.dcam-sim-reticle {
+  width: 60px;
+  height: 60px;
+  border: 2px dashed #00f2fe;
+  border-radius: 50%;
+  margin: 40px auto 0 auto;
+  animation: dcamSpin 6s linear infinite;
+}
+
+@keyframes dcamSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.dcam-sim-zone-anpr,
+.dcam-sim-zone-vehicle {
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  border: 2px solid #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.dcam-sim-plate-card {
+  background-color: #ffffff;
+  color: #0f172a;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid #000;
+  margin: 30px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.dcam-sim-plate-text {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.dcam-sim-plate-sub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.dcam-sim-vehicle-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 30px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: #00f2fe;
+  font-weight: 700;
+}
+
+.dcam-sim-zone-fall,
+.dcam-sim-zone-fire {
+  top: 20%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  border: 2px solid #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+  box-shadow: inset 0 0 30px rgba(239, 68, 68, 0.3);
+}
+
+.dcam-sim-zone-ppe {
+  top: 25%;
+  left: 30%;
+  width: 40%;
+  height: 50%;
+  border: 2px solid #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.dcam-sim-zone-count {
+  top: 30%;
+  left: 25%;
+  width: 50%;
+  height: 40%;
+  border: 2px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+}
+
+.dcam-sim-count-counter {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #3b82f6;
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Badges inside HUD */
+.dcam-sim-badge {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.dcam-badge-red-sm {
+  background-color: rgba(230, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.dcam-badge-alert {
+  background-color: #e60000;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(230, 0, 0, 0.6);
+}
+
+.dcam-badge-cyan {
+  background-color: #00f2fe;
+  color: #0f172a;
+}
+
+.dcam-badge-green {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+/* HUD Footer Bar */
+.dcam-sim-hud-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background-color: #0f172a;
+  border-top: 1px solid #1e293b;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: #64748b;
+  letter-spacing: 1px;
+}
+
+/* Bottom Tag Cloud of all 14 engines */
+.dcam-sim-tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 40px;
+  justify-content: center;
+}
+
+.dcam-sim-pill {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dcam-sim-pill:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.dcam-sim-pill-active {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+}
+
+/* High-Contrast Live Scene & Vector Elements */
+.dcam-sim-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.dcam-sim-bg-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.dcam-sim-bg-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Zone & Target pulse animations */
+.dcam-pulse-zone {
+  animation: dcamZonePulse 2.5s infinite ease-in-out;
+}
+
+@keyframes dcamZonePulse {
+  0%, 100% { border-color: #ef4444; background: rgba(239, 68, 68, 0.08); box-shadow: 0 0 10px rgba(239, 68, 68, 0.15); }
+  50% { border-color: #ff0000; background: rgba(239, 68, 68, 0.18); box-shadow: 0 0 25px rgba(239, 68, 68, 0.4); }
+}
+
+.dcam-anim-target-box {
+  animation: dcamTargetBoxGlow 1.8s infinite alternate ease-in-out;
+  overflow: hidden;
+}
+
+@keyframes dcamTargetBoxGlow {
+  0% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.3); border-color: #ef4444; }
+  100% { box-shadow: 0 0 35px rgba(239, 68, 68, 0.7); border-color: #ff2222; }
+}
+
+.dcam-target-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ef4444, transparent);
+  animation: dcamScanLine 2s linear infinite;
+  z-index: 4;
+}
+
+@keyframes dcamScanLine {
+  0% { top: 0%; opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { top: 100%; opacity: 0.2; }
+}
+
+/* Minimal Intrusion Detection Overlays for Crystal-Clear Image Visibility */
+.dcam-hud-zone-minimal {
+  position: absolute;
+  border: 1px dashed rgba(239, 68, 68, 0.75);
+  background: transparent;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 6px;
+  pointer-events: none;
+  transition: transform 0.45s ease-out, border-color 0.3s ease;
+}
+
+.dcam-hud-tag-minimal {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  background: rgba(239, 68, 68, 0.9);
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.8px;
+}
+
+.dcam-hud-target-box-minimal {
+  position: absolute;
+  border: 1.5px solid #ef4444;
+  background: transparent;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.25);
+  pointer-events: none;
+  overflow: hidden;
+  animation: dcamTargetPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes dcamTargetPulse {
+  0%, 100% { transform: translate3d(var(--dcam-track-x, 0px), var(--dcam-track-y, 0px), 0); box-shadow: 0 0 8px rgba(239, 68, 68, 0.2); }
+  50% { transform: translate3d(calc(var(--dcam-track-x, 0px) + 1px), calc(var(--dcam-track-y, 0px) - 1px), 0); box-shadow: 0 0 18px rgba(239, 68, 68, 0.55); }
+}
+
+.dcam-hud-target-box-minimal.dcam-box-cyan-min {
+  border-color: #00f2fe;
+  animation: dcamCyanPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes dcamCyanPulse {
+  0%, 100% { transform: translate3d(var(--dcam-track-x, 0px), var(--dcam-track-y, 0px), 0); box-shadow: 0 0 8px rgba(0, 242, 254, 0.2); }
+  50% { transform: translate3d(calc(var(--dcam-track-x, 0px) + 1px), calc(var(--dcam-track-y, 0px) - 1px), 0); box-shadow: 0 0 18px rgba(0, 242, 254, 0.6); }
+}
+
+.dcam-hud-target-box-minimal.dcam-box-green-min {
+  border-color: #10b981;
+  animation: dcamGreenPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes dcamGreenPulse {
+  0%, 100% { transform: translate3d(var(--dcam-track-x, 0px), var(--dcam-track-y, 0px), 0); box-shadow: 0 0 8px rgba(16, 185, 129, 0.2); }
+  50% { transform: translate3d(calc(var(--dcam-track-x, 0px) + 1px), calc(var(--dcam-track-y, 0px) - 1px), 0); box-shadow: 0 0 18px rgba(16, 185, 129, 0.6); }
+}
+
+/* Colored Laser Scan Lines */
+.dcam-target-scan-line.dcam-scan-cyan {
+  background: linear-gradient(90deg, transparent, #00f2fe, transparent);
+}
+
+.dcam-target-scan-line.dcam-scan-green {
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+}
+
+/* Corner Reticle Brackets for Target Boxes */
+.dcam-hud-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: inherit;
+  border-style: solid;
+  pointer-events: none;
+}
+.dcam-corner-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.dcam-corner-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.dcam-corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.dcam-corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+.dcam-hud-minimal-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: #ef4444;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+.dcam-hud-minimal-coords {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.dcam-hud-minimal-label.dcam-lbl-green {
+  background: #10b981;
+  color: #ffffff;
+}
+
+.dcam-hud-minimal-label.dcam-lbl-cyan {
+  background: #00f2fe;
+  color: #0f172a;
+}
+
+/* Skeleton overlay on Intruder */
+.dcam-hud-skeleton-svg {
+  width: 100%;
+  height: 60%;
+  margin: 6px 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8));
+}
+
+.dcam-hud-target-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+}
+
+.dcam-hud-target-subtag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #ff0000;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* Red Strobe Warning Light Pulse over wall fixture */
+.dcam-alarm-strobe-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.7) 0%, rgba(230, 0, 0, 0.25) 50%, transparent 70%);
+  animation: dcamStrobePulse 0.8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes dcamStrobePulse {
+  0% { opacity: 0.3; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 40px rgba(255, 0, 0, 0.85); }
+}
+
+/* Camera FOV ray */
+.dcam-cam-fov-ray {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.dcam-fov-tag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #00f2fe;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  padding: 2px 6px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+.dcam-hud-zone {
+  position: absolute;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.dcam-zone-red {
+  border: 1.5px dashed #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.dcam-hud-tag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+.dcam-tag-red {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.dcam-hud-target-box {
+  position: absolute;
+  border-radius: 6px;
+  box-sizing: border-box;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.dcam-box-red {
+  border: 2px solid #ef4444;
+  background: rgba(239, 68, 68, 0.12);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.dcam-box-green {
+  border: 2px solid #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.dcam-box-cyan {
+  border: 2px solid #00f2fe;
+  background: rgba(0, 242, 254, 0.12);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.dcam-hud-target-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 3px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dcam-lbl-green {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+}
+
+.dcam-lbl-cyan {
+  background-color: #00f2fe !important;
+  color: #0f172a !important;
+}
+
+.dcam-lbl-red {
+  background-color: #ef4444 !important;
+  color: #ffffff !important;
+}
+
+.dcam-hud-target-coords {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.62rem;
+  color: #00f2fe;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.dcam-hud-human-svg,
+.dcam-hud-car-svg,
+.dcam-hud-face-mesh-svg {
+  width: 100%;
+  height: 100%;
+  max-height: 160px;
+}
+
+.dcam-hud-tripwire-line {
+  position: absolute;
+  top: 45%;
+  left: 5%;
+  width: 90%;
+  height: 3px;
+  background-color: #ef4444;
+  box-shadow: 0 0 14px #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dcam-hud-crowd-heatmap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, transparent 70%);
+}
+
+.dcam-hud-crowd-people {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.dcam-hud-person-icon {
+  position: absolute;
+}
+
+.dcam-hud-people-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dcam-hud-person-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid #10b981;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.dcam-hud-person-tag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.55rem;
+  color: #10b981;
+  font-weight: 700;
+}
+
+.dcam-hud-attr-list {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: #f8fafc;
+  line-height: 1.8;
+  text-align: left;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.dcam-hud-ppe-checks {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.dcam-ppe-item {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 3px 6px;
+  border-radius: 2px;
+}
+
+.dcam-ppe-ok {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.dcam-hud-fire-anim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 10px;
+}
+
+/* Responsive Grid for Simulator */
+@media (max-width: 1024px) {
+  .dcam-sim-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .dcam-sim-canvas {
+    height: 360px;
+  }
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .dcam-hero-wrapper {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .dcam-hero-content {
+    max-width: 100%;
+  }
+
+  .dcam-hero-title {
+    font-size: 3.5rem;
+  }
+
+  .dcam-datasheet-card {
+    grid-template-columns: 1fr;
+  }
+
+  .dcam-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dcam-tech-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dcam-section {
+    padding: 50px 20px;
+  }
+
+  .dcam-hero-section {
+    padding: 0;
+  }
+
+  .dcam-hero-title {
+    font-size: 2.75rem;
+  }
+
+  .dcam-section-title {
+    font-size: 1.8rem;
+  }
+
+  .dcam-datasheet-card {
+    padding: 30px 20px;
+  }
+
+  .dcam-datasheet-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* ====================================================================
+   ARCHITECTURE BLOCK 3: IP67 / IK10 DURABILITY
+   ==================================================================== */
+
+.dcam-durability-viewer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  margin: 0;
+  overflow: hidden;
+  background: #0b1220;
+  border: 1px solid #d8e0ea;
+  border-radius: 18px;
+  box-shadow: 0 20px 46px rgba(15, 23, 42, .16);
+}
+
+.dcam-durability-viewer-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.dcam-durability-viewer-topbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 18px 42px;
+  color: #f8fafc;
+  background: linear-gradient(180deg, rgba(6, 10, 18, .78), transparent);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.dcam-durability-viewer-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dcam-durability-viewer-live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef2b2d;
+  box-shadow: 0 0 0 4px rgba(239, 43, 45, .18);
+}
+
+.dcam-durability-viewer-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 56px 18px 17px;
+  color: #fff;
+  background: linear-gradient(0deg, rgba(5, 9, 16, .92), rgba(5, 9, 16, .56) 56%, transparent);
+}
+
+.dcam-durability-viewer-caption > span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dcam-durability-viewer-caption strong {
+  font-size: .95rem;
+  line-height: 1.2;
+}
+
+.dcam-durability-viewer-caption small {
+  max-width: 380px;
+  color: rgba(241, 245, 249, .82);
+  font-size: .68rem;
+  line-height: 1.45;
+}
+
+.dcam-durability-viewer-caption em {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  color: #fff;
+  background: rgba(230, 0, 0, .92);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .56rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .8px;
+  white-space: nowrap;
+}
+
+.dcam-durability-mode-icon {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border: 1.5px solid currentColor;
+}
+
+.dcam-durability-mode-icon-water { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); }
+.dcam-durability-mode-icon-impact { border-radius: 2px; transform: rotate(45deg); }
+.dcam-durability-mode-icon-temp { border-radius: 999px; }
+
+@media (max-width: 640px) {
+  .dcam-durability-viewer-topbar { padding: 12px 13px 34px; font-size: .54rem; }
+  .dcam-durability-viewer-caption { align-items: flex-start; flex-direction: column; gap: 10px; padding: 46px 13px 13px; }
+  .dcam-durability-viewer-caption strong { font-size: .82rem; }
+  .dcam-durability-viewer-caption small { display: none; }
+  .dcam-durability-viewer-caption em { padding: 5px 8px; font-size: .5rem; }
+}
+
+/* ====================================================================
+   ARCHITECTURE BLOCK 4: H.265 COMPRESSION & STORAGE
+   ==================================================================== */
+
+.dcam-canvas-storage {
+  background: linear-gradient(145deg, #0a0e1a 0%, #0d1322 50%, #111b2e 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.dcam-storage-hud-top {
+  padding: 0 0 14px;
+  border-bottom: 1px solid rgba(0, 234, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.dcam-storage-hud-top .dcam-hud-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+/* Bandwidth comparison bars */
+.dcam-bandwidth-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.dcam-bw-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dcam-bw-label {
+  flex: 0 0 130px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.3px;
+}
+
+.dcam-bw-bar-track {
+  flex: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dcam-bw-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dcam-bw-h264 {
+  background: linear-gradient(90deg, #ff5a5a, #ff3b3b);
+}
+
+.dcam-bw-h265 {
+  background: linear-gradient(90deg, #ff5a5a, #ff3b3b);
+}
+
+.dcam-bw-h265.dcam-bw-active {
+  background: linear-gradient(90deg, #00eaff, #00c853) !important;
+  box-shadow: 0 0 10px rgba(0, 200, 83, 0.3);
+}
+
+.dcam-bw-val {
+  flex: 0 0 65px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: right;
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+/* Storage visual — SD card */
+.dcam-storage-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.dcam-sd-card {
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+.dcam-sd-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.dcam-sd-capacity {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.dcam-sd-fill {
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #00eaff, #7c4dff);
+  box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dcam-sd-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.3px;
+}
+
+.dcam-storage-slider {
+  margin-top: 6px;
+}
+
+/* ====================================================================
+   SECTION: CAMERA MODEL LINEUP
+   ==================================================================== */
+.dcam-models-section { background: #f6f7f9; padding: 110px 40px; }
+.dcam-models-container { max-width: 1280px; margin: 0 auto; }
+.dcam-models-heading { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(440px, 1.4fr); align-items: end; gap: 48px; margin-bottom: 48px; }
+.dcam-models-heading .dcam-tag-container { margin-bottom: 8px; }
+.dcam-models-title { margin: 0; color: #0f172a; font-size: clamp(2.2rem, 4vw, 4rem); font-weight: 800; line-height: 1.03; letter-spacing: -2px; }
+.dcam-models-subtitle { max-width: 610px; margin: 20px 0 0; color: #64748b; font-size: 1rem; line-height: 1.65; }
+.dcam-models-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch; gap: 18px; }
+.dcam-model-card { position: relative; display: flex; min-width: 0; height: 100%; overflow: hidden; flex-direction: column; background: #fff; border: 1px solid #dfe5ed; border-radius: 18px; box-shadow: 0 14px 32px rgba(15, 23, 42, .06); transition: transform .3s cubic-bezier(.16, 1, .3, 1), border-color .3s ease, box-shadow .3s ease; }
+.dcam-model-card:hover, .dcam-model-card:focus-within { transform: translateY(-5px); border-color: rgba(230, 0, 0, .58); box-shadow: 0 22px 44px rgba(15, 23, 42, .11), 0 0 0 1px rgba(230, 0, 0, .04); }
+.dcam-model-image-slot { position: relative; display: flex; height: 235px; overflow: hidden; align-items: center; justify-content: center; background: #111827; border-bottom: 1px solid #1f2937; }
+.dcam-model-image-slot::before, .dcam-model-image-slot::after { position: absolute; content: ''; background: #e60000; }
+.dcam-model-image-slot::before { top: 22px; left: 22px; width: 20px; height: 2px; }
+.dcam-model-image-slot::after { right: 22px; bottom: 22px; width: 2px; height: 20px; }
+.dcam-model-image-slot-filled { background: #d1d5db; }
+.dcam-model-product-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.dcam-model-product-image-head-mount { object-position: center 52%; }
+.dcam-model-image-label, .dcam-model-image-note { z-index: 1; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .6rem; font-weight: 800; letter-spacing: 1.2px; }
+.dcam-model-image-label { color: #cbd5e1; }
+.dcam-model-image-note { position: absolute; bottom: 16px; left: 18px; color: #64748b; pointer-events: none; }
+
+/* Camera card interactive galleries */
+.dcam-model-gallery-slot {
+  position: relative;
+  display: grid;
+  grid-template-rows: 214px 64px;
+  height: 278px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #ffffff 0%, #fbfcfe 62%, #f6f8fb 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+.dcam-model-gallery-slot::before, .dcam-model-gallery-slot::after {
+  position: absolute;
+  content: '';
+  background: #e60000;
+  z-index: 1;
+}
+.dcam-model-gallery-slot::before { top: 22px; left: 22px; width: 20px; height: 2px; }
+.dcam-model-gallery-slot::after { right: 22px; top: 184px; width: 2px; height: 20px; }
+
+.dcam-model-main-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 214px;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 38px 24px 12px;
+  box-sizing: border-box;
+}
+.dcam-model-main-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  animation: dcamGalleryImageReveal .32s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+@keyframes dcamGalleryImageReveal {
+  from { opacity: 0; transform: translateX(12px) scale(.97); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.dcam-model-thumbnails-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 64px;
+  padding: 8px 14px 11px;
+  box-sizing: border-box;
+  background: rgba(248, 250, 252, .82);
+  border-top: 1px solid #edf1f5;
+  z-index: 2;
+}
+
+.dcam-thumb-btn {
+  width: 44px;
+  height: 44px;
+  padding: 4px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, opacity 0.2s ease, transform .2s ease, box-shadow .2s ease;
+  outline: none;
+}
+.dcam-thumb-btn:hover {
+  border-color: #ef4444;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+.dcam-thumb-btn-active {
+  border-color: #e60000 !important;
+  box-shadow: 0 0 0 2px rgba(230, 0, 0, .12), 0 6px 12px rgba(15, 23, 42, .08);
+}
+.dcam-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.dcam-model-compare {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #64748b;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dcam-model-compare input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dcam-model-compare i {
+  width: 17px;
+  height: 17px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #fff;
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.dcam-model-compare input:checked + i {
+  border-color: #e60000;
+  background: #e60000;
+  box-shadow: inset 0 0 0 4px #fff, 0 0 0 2px rgba(230, 0, 0, .12);
+}
+
+.dcam-model-card-content { position: relative; display: flex; min-height: 236px; flex: 1; flex-direction: column; padding: 24px 22px 22px; }
+.dcam-model-number, .dcam-model-type, .dcam-model-status { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .62rem; font-weight: 800; letter-spacing: 1px; }
+.dcam-model-number { display: block; color: #94a3b8; }
+.dcam-model-type { position: absolute; top: 24px; right: 22px; color: #e60000; text-align: right; }
+.dcam-model-name { margin: 22px 0 10px; color: #0f172a; font-size: 1.55rem; line-height: 1; letter-spacing: -.7px; }
+.dcam-model-description { margin: 0; color: #64748b; font-size: .9rem; line-height: 1.55; }
+.dcam-model-status { display: flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 16px; border-top: 1px solid #e2e8f0; color: #334155; }
+.dcam-model-status i { display: block; width: 6px; height: 6px; border-radius: 50%; background: #e60000; box-shadow: 0 0 0 4px rgba(230, 0, 0, .1); }
+
+.dcam-model-specs-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  box-sizing: border-box;
+  color: #f8fafc;
+  background:
+    radial-gradient(circle at 100% 0, rgba(230, 0, 0, .18), transparent 38%),
+    linear-gradient(145deg, #141c2c 0%, #0b1220 100%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(100% + 1px));
+  transition: transform .36s cubic-bezier(.16, 1, .3, 1), opacity .22s ease;
+}
+
+.dcam-model-card:hover .dcam-model-specs-panel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dcam-model-specs-eyebrow {
+  color: #ff4d4d;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.dcam-model-specs-title {
+  margin: 7px 0 9px;
+  color: #fff;
+  font-size: 1.08rem;
+  line-height: 1.1;
+}
+
+.dcam-model-specs-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  color: #d7deea;
+  font-size: .72rem;
+  line-height: 1.3;
+  list-style: none;
+}
+
+.dcam-model-specs-list li {
+  position: relative;
+  padding-left: 13px;
+}
+
+.dcam-model-specs-list li::before {
+  position: absolute;
+  top: .47em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ef2b2d;
+  box-shadow: 0 0 0 3px rgba(239, 43, 45, .12);
+  content: '';
+}
+
+.dcam-model-specs-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(148, 163, 184, .2);
+  color: #cbd5e1;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .57rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.dcam-model-specs-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff3131;
+  box-shadow: 0 0 10px rgba(255, 49, 49, .85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dcam-model-specs-panel { transition: none; }
+}
+
+@media (max-width: 1024px) { .dcam-models-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .dcam-models-section { padding: 70px 20px; }
+  .dcam-models-heading { grid-template-columns: 1fr; gap: 14px; margin-bottom: 34px; }
+  .dcam-models-title { letter-spacing: -1.2px; }
+  .dcam-models-grid { grid-template-columns: 1fr; }
+  .dcam-model-gallery-slot { grid-template-rows: 228px 66px; height: 294px; }
+  .dcam-model-gallery-slot::after { top: 196px; }
+  .dcam-model-main-img-wrap { height: 228px; }
+  .dcam-model-thumbnails-row { height: 66px; }
+  .dcam-model-card-content { min-height: 218px; }
+}
+
+/* ====================================================================
+   SECTION: WHY TEAMS PICK IT (DARK RED & BLACK THEME)
+   ==================================================================== */
+
+.dcam-why-dark-section {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 82% 18%, rgba(230, 0, 0, 0.11), transparent 28%), #090d16;
+  padding: 112px 40px 96px;
+  border-top: 1px solid #1a2333;
+}
+
+.dcam-why-dark-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.dcam-why-dark-title {
+  max-width: 760px;
+  font-size: clamp(2.35rem, 4vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 14px 0 10px 0;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.dcam-why-dark-subtitle {
+  font-size: 1.05rem;
+  color: #94a3b8;
+  margin: 0 0 52px 0;
+}
+
+.dcam-why-dark-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 34px;
+}
+
+.dcam-why-dark-card {
+  position: relative;
+  min-height: 148px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(22, 31, 48, 0.96), rgba(13, 20, 33, 0.96));
+  border: 1px solid rgba(71, 85, 105, 0.35);
+  border-radius: 10px;
+  padding: 25px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.dcam-why-dark-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 26px;
+  width: 32px;
+  height: 2px;
+  background: #e60000;
+}
+
+.dcam-why-dark-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(230, 0, 0, 0.6);
+  background: linear-gradient(135deg, rgba(35, 45, 63, 0.98), rgba(17, 24, 39, 0.98));
+}
+
+.dcam-why-card-num {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #e60000;
+  flex-shrink: 0;
+}
+
+.dcam-why-card-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.45;
+}
+
+.dcam-why-dark-pills-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(71, 85, 105, 0.4);
+  border-bottom: 1px solid rgba(71, 85, 105, 0.4);
+}
+
+.dcam-why-dark-pill {
+  padding: 19px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-right: 1px solid rgba(71, 85, 105, 0.4);
+  transition: background 0.3s ease;
+}
+
+.dcam-why-dark-pill:last-child { border-right: 0; }
+
+.dcam-why-dark-pill:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.dcam-why-pill-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.dcam-why-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e60000;
+  box-shadow: 0 0 10px rgba(230, 0, 0, 0.7);
+}
+
+
+/* ====================================================================
+   SECTION: CONTACT US (RED & BLACK DEPLOYMENT SPEC)
+   ==================================================================== */
+
+.dcam-contact-dark-section {
+  background: #060911;
+  padding: 100px 24px;
+  border-top: 1px solid #1e293b;
+}
+
+.dcam-contact-dark-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.dcam-contact-dark-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dcam-contact-dark-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 16px 0 18px 0;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.dcam-contact-dark-desc {
+  font-size: 1.08rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 0 36px 0;
+  max-width: 480px;
+}
+
+.dcam-contact-dark-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #e60000;
+  color: #ffffff;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px rgba(230, 0, 0, 0.35);
+}
+
+.dcam-contact-dark-cta-btn:hover {
+  background: #cc0000;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(230, 0, 0, 0.5);
+  color: #ffffff;
+}
+
+.dcam-contact-dark-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dcam-contact-dark-card {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dcam-contact-dark-card:hover {
+  border-color: rgba(230, 0, 0, 0.45);
+  background: #1a2335;
+  transform: translateX(6px);
+  box-shadow: 0 8px 28px rgba(230, 0, 0, 0.12);
+}
+
+.dcam-contact-dark-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(230, 0, 0, 0.1);
+  border: 1px solid rgba(230, 0, 0, 0.25);
+  color: #e60000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dcam-contact-dark-icon-box svg {
+  width: 22px;
+  height: 22px;
+}
+
+.dcam-contact-dark-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dcam-contact-dark-lbl {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #e60000;
+  letter-spacing: 1.5px;
+}
+
+.dcam-contact-dark-val {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.4;
+}
+
+@media (max-width: 992px) {
+  .dcam-why-dark-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dcam-why-dark-pills-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dcam-contact-dark-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dcam-why-dark-section { padding: 76px 20px; }
+  .dcam-why-dark-grid, .dcam-why-dark-pills-row { grid-template-columns: 1fr; }
+  .dcam-why-dark-pill { border-right: 0; border-bottom: 1px solid rgba(71, 85, 105, 0.4); }
+  .dcam-why-dark-pill:last-child { border-bottom: 0; }
+}
+
+/* ====================================================================
+   SECTION 7: CONTACT US (IMAGE 2 FORMAT - RED & BLACK DARK THEME)
+   ==================================================================== */
+
+.dcam-support-section {
+  width: 100%;
+  padding: 80px 40px;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  box-sizing: border-box;
+}
+
+.dcam-support-layout {
+  width: 100%;
+  max-width: 1650px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 28px;
+}
+
+.dcam-contact-v2-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  background:
+    linear-gradient(90deg, rgba(3, 7, 16, 0.08) 0%, rgba(3, 7, 16, 0.12) 48%, rgba(3, 7, 16, 0.34) 100%),
+    url('../images/cam/final_banner.webp') center center / cover no-repeat;
+  min-height: 500px;
+  padding: 56px 46px;
+  box-sizing: border-box;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+.dcam-contact-v2-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100%;
+}
+
+.dcam-contact-v2-left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 590px;
+  padding: 40px;
+  background: linear-gradient(145deg, rgba(4, 10, 20, 0.84), rgba(13, 22, 37, 0.7));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 22px;
+  box-shadow: 0 26px 68px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px) saturate(115%);
+  -webkit-backdrop-filter: blur(12px) saturate(115%);
+  box-sizing: border-box;
+}
+
+.dcam-contact-v2-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 38px;
+  width: 72px;
+  height: 3px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, #e60000, #ff5a5a);
+  box-shadow: 0 4px 14px rgba(230, 0, 0, 0.4);
+}
+
+.dcam-contact-v2-section .dcam-tag-text {
+  color: #e2e8f0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.dcam-contact-v2-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 12px 0 20px 0;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  max-width: 580px;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.76);
+}
+
+.dcam-contact-v2-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.dcam-contact-v2-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.dcam-contact-v2-icon {
+  width: 18px;
+  height: 18px;
+  color: #e60000;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.dcam-contact-v2-link {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.72);
+}
+
+.dcam-contact-v2-link:hover {
+  color: #e60000;
+}
+
+.dcam-contact-v2-text {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #d7dee9;
+  line-height: 1.45;
+  max-width: 500px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.76);
+}
+
+.dcam-support-layout .dcam-faq-section {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 38px;
+  background: linear-gradient(145deg, #090f1c 0%, #111a2b 100%);
+  border: 1px solid #22304a;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(2, 6, 23, 0.22);
+}
+
+.dcam-support-layout .dcam-faq-section .dcam-section-header {
+  max-width: none;
+  margin: 0 0 30px;
+  text-align: left;
+}
+
+.dcam-support-layout .dcam-faq-section .dcam-section-title {
+  font-size: 2.05rem;
+  color: #f8fafc;
+}
+
+.dcam-support-layout .dcam-faq-section .dcam-section-subtitle {
+  font-size: 0.92rem;
+  color: #9eacc1;
+}
+
+.dcam-support-layout .dcam-faq-accordion {
+  gap: 11px;
+}
+
+.dcam-support-layout .dcam-faq-question {
+  gap: 18px;
+  padding: 17px 18px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #f8fafc;
+}
+
+.dcam-support-layout .dcam-faq-answer {
+  padding: 0 18px 17px;
+  font-size: 0.84rem;
+  color: #bdc8d8;
+  border-top-color: #26334a;
+}
+
+.dcam-support-layout .dcam-faq-item {
+  background: rgba(17, 27, 45, 0.9);
+  border-color: #2a3850;
+}
+
+.dcam-support-layout .dcam-faq-item:hover {
+  background: #172238;
+  border-color: #40506a;
+  transform: none;
+  box-shadow: inset 3px 0 0 rgba(230, 0, 0, 0.75), 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+.dcam-support-layout .dcam-faq-item.dcam-faq-open {
+  background: #151f32 !important;
+  border: 1.5px solid rgba(230, 0, 0, 0.64) !important;
+  border-left: 5px solid #e60000 !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Distinct viewport entrances for the two final sections. */
+.dcam-contact-v2-section.dcam-animated-section {
+  opacity: 0;
+  transform: translate3d(0, 52px, 0) scale(0.985);
+  filter: blur(7px);
+  clip-path: inset(0 0 18% 0 round 24px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dcam-contact-v2-section.dcam-animated-section.dcam-section-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+  clip-path: inset(0 0 0 0 round 24px);
+}
+
+.dcam-faq-section.dcam-animated-section {
+  opacity: 0;
+  transform: translate3d(0, 46px, 0) scale(0.99);
+  filter: blur(6px);
+  transition: opacity 0.82s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.82s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.82s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dcam-faq-section.dcam-animated-section.dcam-section-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+.dcam-faq-section.dcam-section-visible .dcam-faq-item {
+  animation: dcamFaqItemEnter 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.dcam-faq-section.dcam-section-visible .dcam-faq-item:nth-child(1) { animation-delay: 0.12s; }
+.dcam-faq-section.dcam-section-visible .dcam-faq-item:nth-child(2) { animation-delay: 0.18s; }
+.dcam-faq-section.dcam-section-visible .dcam-faq-item:nth-child(3) { animation-delay: 0.24s; }
+.dcam-faq-section.dcam-section-visible .dcam-faq-item:nth-child(4) { animation-delay: 0.3s; }
+.dcam-faq-section.dcam-section-visible .dcam-faq-item:nth-child(5) { animation-delay: 0.36s; }
+
+@keyframes dcamFaqItemEnter {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dcam-contact-v2-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.dcam-v2-btn-white {
+  background: #ffffff;
+  color: #0f172a;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+}
+
+.dcam-v2-btn-white:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.dcam-v2-btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(230, 0, 0, 0.8);
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  font-family: inherit;
+  line-height: normal;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dcam-v2-btn-outline:hover {
+  background: rgba(230, 0, 0, 0.15);
+  border-color: #e60000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 0, 0, 0.25);
+  color: #ffffff;
+}
+
+/* Right side QR Code Card */
+.dcam-contact-v2-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dcam-qr-card {
+  background: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.35s ease;
+}
+
+.dcam-qr-card:hover {
+  border-color: rgba(230, 0, 0, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(230, 0, 0, 0.15);
+}
+
+.dcam-qr-box {
+  width: 76px;
+  height: 76px;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 5px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.dcam-qr-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dcam-qr-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dcam-qr-lbl {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #e60000;
+  letter-spacing: 1.5px;
+}
+
+.dcam-qr-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: -0.3px;
+  transition: color 0.2s ease;
+}
+
+.dcam-qr-val:hover {
+  color: #e60000;
+}
+
+@media (max-width: 992px) {
+  .dcam-support-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dcam-contact-v2-container {
+    min-height: 0;
+  }
+}
+
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  .dcam-support-layout .dcam-faq-section {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .dcam-support-layout .dcam-faq-section::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .dcam-support-section { padding: 48px 16px; }
+  .dcam-support-layout { gap: 20px; }
+  .dcam-contact-v2-section {
+    min-height: 520px;
+    padding: 48px 22px;
+    border-radius: 18px;
+    background-position: 64% center;
+  }
+  .dcam-contact-v2-container { justify-content: center; }
+  .dcam-contact-v2-left { padding: 30px 24px; border-radius: 16px; }
+  .dcam-contact-v2-left::before { left: 24px; width: 58px; }
+  .dcam-contact-v2-title { font-size: 2.1rem; }
+  .dcam-contact-v2-actions { align-items: stretch; width: 100%; flex-direction: column; }
+  .dcam-v2-btn-white, .dcam-v2-btn-outline { justify-content: center; text-align: center; }
+  .dcam-support-layout .dcam-faq-section { padding: 38px 20px; border-radius: 18px; }
+  .dcam-support-layout .dcam-faq-section .dcam-section-title { font-size: 1.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dcam-contact-v2-section.dcam-animated-section,
+  .dcam-faq-section.dcam-animated-section,
+  .dcam-faq-section.dcam-section-visible .dcam-faq-item {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    clip-path: none;
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   HUD OVERLAY — CROSSHAIR RETICLE (Face Recognition)
+   ═══════════════════════════════════════════════════════ */
+.dcam-hud-crosshair {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: dcamCrosshairPulse 1.8s ease-in-out infinite alternate;
+}
+.dcam-crosshair-h {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 242, 254, 0.7);
+  transform: translateY(-50%);
+}
+.dcam-crosshair-v {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 242, 254, 0.7);
+  transform: translateX(-50%);
+}
+.dcam-crosshair-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #00f2fe;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.9);
+}
+@keyframes dcamCrosshairPulse {
+  0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.85); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   HUD OVERLAY — SIDE TELEMETRY STRIP
+   ═══════════════════════════════════════════════════════ */
+.dcam-hud-side-strip {
+  position: absolute;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 6px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+.dcam-strip-right { right: 4%; }
+.dcam-strip-left { left: 4%; }
+
+.dcam-strip-item {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+.dcam-strip-highlight {
+  color: #00f2fe;
+  text-shadow: 0 0 6px rgba(0, 242, 254, 0.5);
+}
+.dcam-strip-warn {
+  color: #f59e0b;
+  text-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+  animation: dcamWarnBlink 1s ease-in-out infinite alternate;
+}
+@keyframes dcamWarnBlink {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   HUD OVERLAY — DATA PANEL (Demographics, PPE)
+   ═══════════════════════════════════════════════════════ */
+.dcam-hud-data-panel {
+  position: absolute;
+  bottom: 12%;
+  right: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+  min-width: 130px;
+}
+.dcam-hud-data-panel.dcam-panel-bottom-left {
+  right: auto;
+  left: 5%;
+}
+.dcam-panel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.dcam-panel-key {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.52rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+.dcam-panel-val {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+.dcam-panel-val.dcam-val-ok {
+  color: #10b981;
+  text-shadow: 0 0 4px rgba(16, 185, 129, 0.5);
+}
+.dcam-panel-val.dcam-val-pulse {
+  color: #ef4444;
+  animation: dcamBpmPulse 0.9s ease-in-out infinite;
+}
+@keyframes dcamBpmPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+
+/* Confidence / Score Bar */
+.dcam-panel-bar {
+  width: 60px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.dcam-panel-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.35s ease;
+}
+.dcam-panel-bar-fill.dcam-bar-green {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+.dcam-panel-bar-fill.dcam-bar-cyan {
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  box-shadow: 0 0 6px rgba(0, 242, 254, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════
+   HUD OVERLAY — GAUGE STRIP (Fall Risk, Fire/Smoke)
+   ═══════════════════════════════════════════════════════ */
+.dcam-hud-gauge-strip {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+.dcam-hud-gauge-strip.dcam-gauge-dual {
+  flex-direction: column;
+  gap: 5px;
+  align-items: stretch;
+  min-width: 180px;
+}
+.dcam-gauge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dcam-gauge-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.52rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  min-width: 48px;
+}
+.dcam-gauge-track {
+  flex: 1;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 80px;
+}
+.dcam-gauge-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+  transition: width 0.35s ease;
+}
+.dcam-gauge-fill.dcam-fill-amber {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+}
+.dcam-gauge-fill.dcam-fill-red {
+  background: linear-gradient(90deg, #ef4444, #f97316);
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+}
+.dcam-gauge-val {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.3px;
+  min-width: 28px;
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════
+   HUD OVERLAY — AMBER / WARN COLOR SCHEME (Fire & Smoke)
+   ═══════════════════════════════════════════════════════ */
+.dcam-hud-target-box-minimal.dcam-box-amber-min {
+  border-color: #f59e0b;
+  animation: dcamAmberPulse 2s ease-in-out infinite alternate;
+}
+@keyframes dcamAmberPulse {
+  0%, 100% { transform: translate3d(var(--dcam-track-x, 0px), var(--dcam-track-y, 0px), 0); box-shadow: 0 0 8px rgba(245, 158, 11, 0.2); }
+  50% { transform: translate3d(calc(var(--dcam-track-x, 0px) + 1px), calc(var(--dcam-track-y, 0px) - 1px), 0); box-shadow: 0 0 20px rgba(245, 158, 11, 0.65); }
+}
+.dcam-target-scan-line.dcam-scan-amber {
+  background: linear-gradient(90deg, transparent, #f59e0b, transparent);
+}
+
+.dcam-hud-minimal-label.dcam-lbl-amber {
+  background: #f59e0b;
+  color: #0f172a;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ENHANCED CORNER RETICLES — Larger, More Visible
+   ═══════════════════════════════════════════════════════ */
+.dcam-hud-corner {
+  width: 12px;
+  height: 12px;
+  border-color: inherit;
+  border-style: solid;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ZMD RESPONSIVE OVERRIDES: CAMERA PRODUCT PAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet Landscape / Small Laptop (1024px – 1366px) ── */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .dcam-hero-section {
+    padding: 4rem 3rem;
+  }
+
+  .dcam-hero-title {
+    font-size: clamp(3rem, 4.5vw, 4.2rem);
+  }
+
+  .dcam-arch-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .dcam-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Tablet (768px – 1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dcam-hero-section {
+    padding: 3.5rem 2rem;
+  }
+
+  .dcam-hero-title {
+    font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+  }
+
+  .dcam-arch-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .dcam-arch-row,
+  .dcam-arch-row-reverse {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .dcam-arch-text-col {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dcam-arch-block-title {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .dcam-arch-block-desc {
+    text-align: center;
+  }
+
+  .dcam-feat-btns {
+    justify-content: center;
+  }
+
+  .dcam-arch-stats-bar {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .dcam-arch-card-canvas {
+    height: 360px;
+  }
+
+  .dcam-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .dcam-variants-bar {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* ── Mobile (480px – 767px) ── */
+@media (min-width: 480px) and (max-width: 767px) {
+  .dcam-hero-section {
+    padding: 2.75rem 1.25rem;
+  }
+
+  .dcam-hero-title {
+    font-size: 2.2rem;
+  }
+
+  .dcam-hero-description {
+    font-size: 0.95rem;
+  }
+
+  .dcam-arch-grid,
+  .dcam-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dcam-arch-row,
+  .dcam-arch-row-reverse {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .dcam-arch-blocks-container {
+    gap: 50px;
+  }
+
+  .dcam-arch-text-col {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .dcam-arch-block-title {
+    font-size: 2rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .dcam-arch-block-desc {
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .dcam-tag-container {
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .dcam-feat-btns {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .dcam-feat-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .dcam-arch-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding-top: 18px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-val {
+    font-size: 1.1rem;
+  }
+
+  .dcam-arch-stat-lbl {
+    font-size: 0.58rem;
+  }
+
+  .dcam-arch-card-canvas {
+    height: 340px;
+    padding: 16px;
+  }
+
+  .dcam-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dcam-btn-primary,
+  .dcam-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Small Mobile (320px – 479px) ── */
+@media (max-width: 479px) {
+  .dcam-hero-section {
+    padding: 2rem 1rem;
+  }
+
+  .dcam-hero-title {
+    font-size: 1.85rem;
+    line-height: 1.1;
+  }
+
+  .dcam-hero-description {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .dcam-arch-grid,
+  .dcam-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .dcam-arch-row,
+  .dcam-arch-row-reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .dcam-arch-blocks-container {
+    gap: 40px;
+  }
+
+  .dcam-arch-text-col {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .dcam-arch-block-title {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .dcam-arch-block-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .dcam-tag-container {
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  .dcam-feat-btns {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .dcam-feat-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.82rem;
+  }
+
+  .dcam-arch-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding-top: 16px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-item {
+    align-items: center;
+    text-align: center;
+  }
+
+  .dcam-arch-stat-val {
+    font-size: 0.98rem;
+  }
+
+  .dcam-arch-stat-lbl {
+    font-size: 0.54rem;
+    letter-spacing: 0.4px;
+  }
+
+  .dcam-arch-card-canvas {
+    height: 320px;
+    padding: 14px;
+  }
+
+  .dcam-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .dcam-btn-primary,
+  .dcam-btn-secondary {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .dcam-variants-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Phone-specific camera hero composition */
+@media (max-width: 767px) {
+  .dcam-hero-section {
+    min-height: calc(100svh - 68px);
+    align-items: stretch;
+    padding: 0;
+    isolation: isolate;
+  }
+
+  .dcam-visual-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 0.1) 68%, rgba(15, 23, 42, 0.18) 100%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.05));
+  }
+
+  .dcam-hero-img {
+    object-position: 56% center;
+  }
+
+  .dcam-hero-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: none;
+    align-items: center;
+    padding: 2.25rem 1.15rem 1.5rem;
+    transform: translateY(30px);
+  }
+
+  .dcam-hero-content {
+    width: 100%;
+    max-width: 31rem;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .dcam-tag-container {
+    justify-content: flex-start;
+    margin: 0 0 1rem;
+  }
+
+  .dcam-tag-text {
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+  }
+
+  .dcam-hero-title {
+    max-width: 12ch;
+    margin: 0 0 1.1rem;
+    font-size: clamp(2.05rem, 9.5vw, 2.65rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  .dcam-hero-subtitle {
+    max-width: 22rem;
+    margin-bottom: 0.55rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+
+  .dcam-hero-description {
+    max-width: 23rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .dcam-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .dcam-btn-primary,
+  .dcam-btn-secondary {
+    width: 100%;
+    min-height: 47px;
+    justify-content: center;
+    padding: 0.78rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .dcam-hero-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+    margin-top: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(203, 213, 225, 0.92);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.84);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .dcam-hero-stat-item {
+    min-width: 0;
+    min-height: 84px;
+    justify-content: center;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .dcam-hero-stat-item:nth-child(odd) {
+    border-right: 1px solid rgba(203, 213, 225, 0.85);
+  }
+
+  .dcam-hero-stat-item:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(203, 213, 225, 0.85);
+  }
+
+  .dcam-hero-stat-val {
+    margin-bottom: 0.35rem;
+    font-size: clamp(1rem, 4.5vw, 1.4rem);
+  }
+
+  .dcam-hero-stat-lbl {
+    max-width: 13ch;
+    font-size: 0.57rem;
+    letter-spacing: 0.07em;
+    line-height: 1.35;
+  }
+
+  .dcam-hero-img-incoming,
+  .dcam-hero-img-outgoing,
+  .dcam-hero-fade,
+  .dcam-hero-fade .dcam-tag-container,
+  .dcam-hero-fade .dcam-hero-title,
+  .dcam-hero-fade .dcam-hero-subtitle,
+  .dcam-hero-fade .dcam-hero-description,
+  .dcam-hero-fade .dcam-hero-actions,
+  .dcam-hero-fade .dcam-hero-stats-grid {
+    animation: none;
+    filter: none;
+    transform: none;
+  }
+
+  /* Disable blur/transform reveal layers on every camera-page section. */
+  .dcam-page-container {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+
+  .dcam-animated-section,
+  .dcam-animated-section.dcam-section-visible,
+  .dcam-animated-section.dcam-section-hidden {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .dcam-animated-section.dcam-section-visible .dcam-section-header,
+  .dcam-animated-section.dcam-section-visible .dcam-sim-header,
+  .dcam-animated-section.dcam-section-visible .dcam-arch-row {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .dcam-hero-stats-grid,
+  .dcam-canvas-badge,
+  .dcam-dn-overlay-label,
+  .dcam-qr-card,
+  .dcam-hud-side-strip,
+  .dcam-hud-data-panel,
+  .dcam-hud-gauge-strip {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .dcam-hero-section {
+    min-height: calc(100svh - 62px);
+  }
+}
+
+@media (max-width: 374px) {
+  .dcam-hero-wrapper {
+    padding: 1.75rem 0.9rem 1.25rem;
+  }
+
+  .dcam-hero-title {
+    font-size: 1.9rem;
+  }
+
+  .dcam-hero-subtitle {
+    font-size: 0.98rem;
+  }
+
+  .dcam-hero-description {
+    font-size: 0.82rem;
+  }
+
+  .dcam-hero-stat-item {
+    min-height: 78px;
+    padding: 0.7rem 0.75rem;
+  }
+}

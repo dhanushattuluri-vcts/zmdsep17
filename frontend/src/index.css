@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Three core typography definitions */
+  --display: 'Space Grotesk', sans-serif;
+  --body: 'Inter', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  /* Global fallbacks */
+  --sans: var(--body);
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-y: scroll;
+  overscroll-behavior-x: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------------------------------------------
+   Typography Utility Classes
+   ------------------------------------------------------------- */
+
+/* Body & Paragraph Copy (--body -> Inter) */
+.techpg-page,
+.techpg-lede,
+.techpg-sec-lede {
+  font-family: var(--body);
+}
+
+/* Headings & Stat Numbers (--display -> Space Grotesk) */
+.techpg-display,
+.techpg-sec-title,
+.techpg-hero-meta dt,
+.techpg-cap-title,
+.techpg-step-name {
+  font-family: var(--display);
+}
+
+/* Badges, Tags & Technical Accents (--mono -> JetBrains Mono) */
+.techpg-eyebrow,
+.techpg-hero-meta dd,
+.techpg-marquee,
+.techpg-step-num {
+  font-family: var(--mono);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Keep mobile type on the browser's native text layer. Page-specific reveal
+   effects opt out below where they otherwise leave text GPU-rasterized. */
+@media (max-width: 767px) {
+  main,
+  main h1,
+  main h2,
+  main h3,
+  main h4,
+  main h5,
+  main h6,
+  main p,
+  main li,
+  main a,
+  main button,
+  main label,
+  main dt,
+  main dd {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  main * {
+    will-change: auto !important;
+  }
+}

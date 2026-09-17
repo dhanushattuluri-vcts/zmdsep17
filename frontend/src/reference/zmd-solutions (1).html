@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZMD — Physical AI solutions for every industry.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#F6F5F0;
+    --card:#FFFFFF;
+    --ink:#14171B;
+    --muted:#5B6068;
+    --faint:#8B9096;
+    --line:#DEDCD3;
+    --line-soft:#E9E7DF;
+    --accent:#1F5FBF;
+    --accent-ink:#123C7A;
+    --accent-soft:#E8EEF9;
+    --radius:2px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    font-size:16px;
+  }
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+
+  ::selection{background:var(--accent-soft);color:var(--accent-ink);}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- status dot ---------- */
+  .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--accent);
+    flex-shrink:0;
+    position:relative;
+  }
+  .dot::after{
+    content:'';
+    position:absolute;inset:-4px;
+    border-radius:50%;
+    border:1px solid var(--accent);
+    opacity:0;
+    animation:pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{opacity:.55;transform:scale(.5);}
+    80%{opacity:0;transform:scale(1.8);}
+    100%{opacity:0;transform:scale(1.8);}
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,245,240,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .navwrap{
+    max-width:1360px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:15px 32px;
+    gap:24px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;font-size:19px;letter-spacing:0.01em;
+    white-space:nowrap;
+  }
+  .brand span.tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;font-weight:400;color:var(--muted);
+    letter-spacing:0.06em;
+    border-left:1px solid var(--line);
+    padding-left:10px;
+    display:none;
+  }
+  @media(min-width:700px){ .brand span.tag{display:inline;} }
+  nav.links{
+    display:flex;gap:2px;overflow-x:auto;
+    scrollbar-width:none;
+  }
+  nav.links::-webkit-scrollbar{display:none;}
+  nav.links a{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:0.05em;
+    color:var(--muted);
+    padding:8px 11px;white-space:nowrap;
+    border-radius:var(--radius);
+    transition:color .15s, background .15s;
+  }
+  nav.links a:hover{color:var(--ink);background:var(--accent-soft);}
+
+  /* ---------- shared section shell ---------- */
+  section{
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:58px;
+  }
+  .shell{
+    max-width:1360px;margin:0 auto;
+    padding:72px 32px;
+    min-height:calc(100vh - 58px);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;letter-spacing:0.12em;color:var(--accent-ink);
+    text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .eyebrow .rule{flex:1;max-width:64px;height:1px;background:var(--line);}
+
+  /* ---------- hero ---------- */
+  #hero .shell{padding-top:52px;padding-bottom:52px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.25fr 1fr;gap:64px;align-items:end;
+  }
+  h1.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:clamp(38px,5.6vw,66px);
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    margin-bottom:24px;
+  }
+  h1.display em{font-style:normal;color:var(--accent);}
+  .hero-sub{
+    font-size:18px;color:var(--muted);max-width:52ch;margin-bottom:18px;
+  }
+  .hero-sub2{
+    font-size:15px;color:var(--faint);max-width:52ch;
+  }
+  .hero-index-label{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;
+    color:var(--faint);text-transform:uppercase;margin-bottom:8px;
+  }
+  .hero-index{
+    display:flex;flex-direction:column;
+    border-top:1px solid var(--line);
+  }
+  .hero-index a{
+    display:flex;align-items:baseline;justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px solid var(--line-soft);
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    color:var(--muted);
+    transition:color .15s,padding-left .15s;
+  }
+  .hero-index a:hover{color:var(--ink);padding-left:6px;}
+  .hero-index a .n{color:var(--faint);margin-right:10px;}
+  .hero-index a .label{flex:1;color:inherit;}
+  .hero-index a .go{opacity:0;transition:opacity .15s;color:var(--accent);}
+  .hero-index a:hover .go{opacity:1;}
+
+  /* ---------- vertical section ---------- */
+  .v-grid{
+    display:grid;grid-template-columns:0.85fr 1.3fr;gap:56px;
+    align-items:start;
+  }
+  h2.h-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:clamp(27px,3vw,36px);
+    line-height:1.1;
+    letter-spacing:-0.005em;
+    margin-bottom:16px;
+  }
+  .h-lede{
+    font-size:15.5px;color:var(--accent-ink);font-weight:500;
+    margin-bottom:16px;
+  }
+  .h-body{
+    font-size:16px;color:var(--muted);max-width:42ch;
+    margin-bottom:20px;
+  }
+  .h-expand{
+    font-size:13.5px;color:var(--ink);
+    background:var(--accent-soft);
+    border-left:2px solid var(--accent);
+    padding:10px 14px;
+    max-width:42ch;
+    margin-bottom:22px;
+  }
+  .h-expand b{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;
+    color:var(--accent-ink);text-transform:uppercase;display:block;margin-bottom:5px;
+  }
+  .h-trust{
+    display:flex;gap:8px;align-items:flex-start;
+    font-size:12.5px;color:var(--faint);max-width:42ch;
+    padding-top:16px;border-top:1px solid var(--line-soft);
+  }
+  .h-trust .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.06em;
+    color:var(--faint);text-transform:uppercase;flex-shrink:0;
+    padding-top:1px;
+  }
+
+  .metric-strip{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin-bottom:2px;
+  }
+  .metric-strip .m{
+    padding:16px 16px 16px 0;
+    border-right:1px solid var(--line-soft);
+  }
+  .metric-strip .m:last-child{border-right:none;}
+  .metric-strip .m .k{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.05em;
+    color:var(--faint);text-transform:uppercase;display:block;margin-bottom:5px;
+  }
+  .metric-strip .m .v{
+    font-size:13.5px;color:var(--ink);font-weight:500;line-height:1.35;
+  }
+
+  .caps{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:22px;
+  }
+  .cap{
+    background:var(--card);
+    padding:18px 18px 20px;
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .cap .cap-t{
+    font-size:13.5px;font-weight:600;color:var(--ink);
+    display:flex;align-items:center;gap:8px;
+  }
+  .cap .cap-t::before{
+    content:'';width:5px;height:5px;background:var(--accent);flex-shrink:0;
+  }
+  .cap .cap-d{
+    font-size:12.8px;color:var(--muted);line-height:1.5;
+  }
+
+  .v-media{display:flex;flex-direction:column;}
+
+  /* ---------- footer ---------- */
+  footer{padding:56px 32px 64px;}
+  .foot-wrap{
+    max-width:1360px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:24px;
+  }
+  .foot-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;}
+  .foot-line{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);
+    letter-spacing:0.04em;margin-top:6px;
+  }
+  .foot-right{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);
+    text-align:right;
+  }
+
+  @media (max-width:980px){
+    .hero-grid, .v-grid{grid-template-columns:1fr;gap:32px;}
+    .hero-grid{align-items:start;}
+    .caps{grid-template-columns:1fr 1fr;}
+    .shell{min-height:auto;padding:56px 20px;}
+    .navwrap{padding:12px 20px;}
+  }
+  @media (max-width:560px){
+    .caps{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navwrap">
+    <div class="brand"><span class="dot"></span>ZMD<span class="tag">PHYSICAL AI SOLUTIONS</span></div>
+    <nav class="links" id="navlinks"></nav>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="shell">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>ZMD · PHYSICAL AI SOLUTIONS<span class="rule"></span></div>
+        <h1 class="display">The work nobody has time to watch — <em>watched anyway.</em></h1>
+        <p class="hero-sub">Every industry runs on things a spreadsheet can't see: the queue building, the shelf going empty, the bed sitting vacant, the near-miss nobody reported. ZMD turns the cameras and systems already in place into a working set of eyes — one that notices, predicts, and quietly does the next right thing.</p>
+        <p class="hero-sub2">Less time watching screens. Less time chasing paperwork. More time on the work that actually needs a person. Built for the field, the floor, and the frontline — across nine industries, and counting.</p>
+      </div>
+      <div>
+        <div class="hero-index-label">Explore by industry</div>
+        <div class="hero-index" id="heroindex"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="sections"></div>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="foot-brand">ZMD</div>
+      <div class="foot-line">EDGE PERCEIVES · YOUR SERVER DECIDES · NOTHING LEAVES THE NETWORK</div>
+    </div>
+    <div class="foot-right">
+      NINE INDUSTRIES<br>ONE WAY OF WORKING<br>ZERO REBUILDS
+    </div>
+  </div>
+</footer>
+
+<script>
+const verticals = [
+  {
+    id:"agritech", code:"01", name:"AGRITECH",
+    title:"The field, and everything growing in it.",
+    lede:"One system that gives a farm eyes and a nervous system.",
+    body:"Every decision on a farm is normally made on a sample: one walk, one corner, one guess about what the soil holds. By the time stress is visible to the eye, yield is already lost. An elevated solar camera reads crop health daily, soil probes read what the eye can't, and agents turn both into irrigation triggers, spray advisories, and evidence — built for operators running many farms, not one.",
+    expand:"Starts with crop health and soil intelligence. Expands to irrigation and fertigation triggers, then growth tracking, yield estimation, and the paperwork behind insurance and credit.",
+    trust:"Farmer owns the data. Chemical actions are never taken without a human sign-off.",
+    metrics:["Yield per acre","Input cost per acre","Water per tonne","Loss events caught early","Advisory adoption"],
+    caps:[
+      {t:"Crop health & vigor", d:"Daily vigor maps from multispectral imagery; weak zones flagged with photo evidence and tracked to recovery."},
+      {t:"Pest & disease", d:"Early visual signatures caught at first spots; spray advisories drafted for the agronomist to approve."},
+      {t:"Soil & nutrition", d:"NPK, pH, moisture, EC and organic carbon from in-field probes, turned into fertigation calls per zone."},
+      {t:"Irrigation", d:"Soil moisture against crop-stage thresholds triggers the valve or pump; every litre logged per zone."},
+      {t:"Growth tracking", d:"Phenophase progression against the crop calendar; fields running behind are flagged for the harvest forecast."},
+      {t:"Yield estimation", d:"Fruit, ear, or boll counts from imagery near harvest, feeding procurement and logistics planning."}
+    ]
+  },
+  {
+    id:"airports", code:"02", name:"AIRPORTS",
+    title:"The terminal, and everything that moves through it.",
+    lede:"An airport is the most instrumented building you own. Most of it is unwatched.",
+    body:"Thousands of cameras, a dozen operational systems, and a control room that still finds out about a breaking queue when a passenger complains. Every camera and system the airport already owns is fused into one operations centre that sees every touchpoint, predicts the next two hours, and acts before the SLA breaks.",
+    expand:"Starts with the security and check-in queue. Expands to retail revenue leakage, parking enforcement, then full airside and baggage fusion with the tower and airlines.",
+    trust:"On-prem by design. No video leaves the airport, and no third-party AI APIs touch it.",
+    metrics:["On-time performance","Queue wait SLA","PAX throughput","Retail revenue / sq ft","Aircraft turnaround"],
+    caps:[
+      {t:"Terminal queues", d:"Wait measured at every touchpoint, breach predicted 15 minutes ahead, counter-opening recommended."},
+      {t:"Retail & F&B", d:"POS cross-checked against camera to flag billing gaps, rank storefronts, and trigger peak staffing."},
+      {t:"Landside & parking", d:"Kerb congestion, taxi queues, and unauthorized parking dispatched with location and auto-challan."},
+      {t:"Turnaround", d:"Every stand event timed — chocks, fuelling, catering, pushback — with delays predicted and flagged."},
+      {t:"Flight operations", d:"On-time performance, stand and gate use, and slot conflicts recomputed as the day changes."},
+      {t:"Baggage", d:"Delivery compliance per belt, damage evidence on the line, tagless bags reunited in minutes not days."}
+    ]
+  },
+  {
+    id:"cinemas", code:"03", name:"CINEMAS",
+    title:"The lobby, the screen, and the fifteen minutes between shows.",
+    lede:"The interval is scheduled demand. The cinema still gets surprised by it.",
+    body:"The ticketing system already knows every showtime, yet the popcorn queue still breaks at every interval and the hall still waits eleven minutes for housekeeping. Scheduled demand gets a scheduled response: staffing and turnaround fire on the calendar, and every rupee at the counter is reconciled against what the camera saw.",
+    expand:"Starts with interval readiness and the turnaround clock. Expands to F&B reconciliation, then lobby flow, occupancy, energy, and ad verification.",
+    trust:"Audience analytics are anonymous and aggregate. Identity data never leaves the property network.",
+    metrics:["Turnaround minutes","F&B spend per head","Queue abandonment","Shows per screen per day","Energy per show"],
+    caps:[
+      {t:"Interval readiness", d:"Concession staffing triggers fire before the doors open, and walk-aways are measured against baseline."},
+      {t:"Turnaround clock", d:"Housekeeping dispatched the moment the credits roll; the overrun is flagged live, per screen."},
+      {t:"F&B reconciliation", d:"Counter activity matched against POS transactions; unbilled serves flagged with the clip attached."},
+      {t:"Lobby & entry", d:"Density and ticket-check queues metered at peaks; the duty manager is paged before the crush."},
+      {t:"Occupancy", d:"Entry and exit counted against ticketed numbers, giving programming a real occupancy picture."},
+      {t:"Parking & exit surge", d:"Lot occupancy and post-show exit surges staged before nine screens empty at once."}
+    ]
+  },
+  {
+    id:"cities", code:"04", name:"CITIES",
+    title:"The city, and everything moving through it.",
+    lede:"The city bought ten thousand cameras. It got ten thousand recordings.",
+    body:"Almost no smart city built the loop behind the wall of screens: the junction that re-times itself before the jam, the violation that becomes a court-ready challan without a back office, the flooded underpass that pages the pump crew before the first stalled bus. It rides the camera estate and civic systems the city already owns.",
+    expand:"Starts with corridor congestion and clean enforcement. Expands to crowd events and processions, then civic operations, and citizen-facing agents on the grievance line.",
+    trust:"Identity matching runs only under the legal framework, on government infrastructure. A statutory act always has a human before it.",
+    metrics:["Junction delay","Challan sustainment rate","Incident response time","Grievance closure time","Monsoon readiness"],
+    caps:[
+      {t:"Traffic & junctions", d:"Queue length and saturation per arm predict the breakdown; signal retiming is recommended before it forms."},
+      {t:"Violations & enforcement", d:"ANPR hits assembled into a court-ready evidence pack, queued for the reviewing officer, then filed."},
+      {t:"Incidents & dispatch", d:"Accidents, breakdowns, and obstructions dispatched to the nearest crew with location and clip."},
+      {t:"Crowd events", d:"Density at processions, festivals, and transit hubs metered before crush risk builds."},
+      {t:"Waterlogging & drains", d:"Camera water-level reads and drain sensors page the pump crew before the underpass closes."},
+      {t:"Waste operations", d:"Every pickup verified, missed routes flagged same-day, contractors scored against their SLA."}
+    ]
+  },
+  {
+    id:"education", code:"05", name:"EDUCATION",
+    title:"The classroom, and the campus around it.",
+    lede:"The lecture happens once. Then it disappears.",
+    body:"A university produces thousands of hours of teaching a week and keeps almost none of it — no recording, no notes, no way for the student who missed Tuesday to catch up. Every lecture is captured, summarized, and made answerable by a course-grounded teaching-assistant agent, then the same platform runs the campus around it. Aggregate signals, no identities, ever.",
+    expand:"Starts in the classroom with lecture capture and the TA agent. Expands to smart classrooms and hybrid parity, then lab safety, and campus operations.",
+    trust:"Aggregate by default, identity stays on campus. No face scan, no roll call, no individual scoring — ever.",
+    metrics:["Faculty prep hours saved","Doubt-resolution latency","Space utilization %","Lab safety compliance","Admissions cycle time"],
+    caps:[
+      {t:"Lecture capture", d:"Every lecture recorded, transcribed, and published as searchable notes in regional languages within the hour."},
+      {t:"Course-grounded TA", d:"Doubts answered 24/7 from the actual course material; every reply is cited and logged, never a guess."},
+      {t:"Smart classrooms", d:"Occupancy auto-starts capture and drives lighting and AC; the instructor and board auto-frame for remote students."},
+      {t:"Lab skills & safety", d:"Procedure and PPE compliance in engineering, nursing, and medical labs, with breaches flagged by the clip."},
+      {t:"Campus spaces", d:"Classroom, library, and lab occupancy feed real timetabling and justify the next building with data."},
+      {t:"Dining & services", d:"Queues and food waste staggered and cut with measured plate data, pilferage flagged with evidence."}
+    ]
+  },
+  {
+    id:"hospitals", code:"06", name:"HOSPITALS",
+    title:"The hospital, and everything that moves inside it.",
+    lede:"The EMR knows the timestamps. Nobody knows the floor.",
+    body:"A hospital runs on pagers, phone calls, and someone walking the ward. The EMR records that a bed was released; it doesn't know the patient left an hour earlier, or that the ED waiting room just crossed eighty people. CCTV, RFID, and monitors the hospital already owns are fused with the HIS it already runs into one operations centre that sees the physical truth and does the paperwork.",
+    expand:"Starts with ED flow and bed turnover. Expands to OT utilization, equipment tracking on RFID, then infection control and clinical workflow agents for claims and handover.",
+    trust:"No video and no clinical data leave the hospital network. Nothing clinical is ever decided by a machine.",
+    metrics:["Bed turnover interval","ED wait + LWBS","OT utilization","Average length of stay","Claim cycle time","Equipment utilization"],
+    caps:[
+      {t:"ED & OPD flow", d:"Waiting-room count and dwell predict the surge; a fast-track or extra counter is recommended before LWBS climbs."},
+      {t:"Bed management", d:"Housekeeping dispatched the minute a bed is physically vacated, feeding a true, live bed board."},
+      {t:"Patient safety", d:"Falls, prolonged inactivity, and missed turn-protocols page rapid response with location and evidence."},
+      {t:"OT management", d:"Occupied vs scheduled, turnover between cases, and delayed starts recompute the day's list live."},
+      {t:"Equipment & assets", d:"RFID and BLE location for pumps, wheelchairs, and monitors — \u201cwhere's the nearest pump\u201d answered in seconds."},
+      {t:"Infection control", d:"Sterile-zone entries and PPE compliance scored per ward and shift, breach alerts with the clip attached."}
+    ]
+  },
+  {
+    id:"manufacturing", code:"07", name:"MANUFACTURING",
+    title:"The line, the yard, and everything between them.",
+    lede:"The MES knows what the machines did. Nobody knows what the plant did.",
+    body:"The four-minute micro-stop, the pallet blocking the aisle, the PPE that came off at the hot station, the truck idling at gate three since lunch — none of it lives in anyone's data. Plant cameras close the loop: stoppages captured with cause and clip, near-misses heat-mapped before the accident, work orders opened automatically, and the yard sequenced like the line.",
+    expand:"Starts with zone safety and stoppage capture, camera-only. Expands to yard and gate sequencing, then visual quality at stations, and CMMS work-order agents.",
+    trust:"Zone-level reporting, not worker tracking. Read-only on OT, permanently outside the certified safety chain.",
+    metrics:["Near-miss closure rate","Micro-stop minutes","First-pass yield","Dock turnaround","Maintenance ticket lead time"],
+    caps:[
+      {t:"Zone safety & PPE", d:"PPE and exclusion-zone discipline scored per zone per shift, anonymously, feeding the EHS leading-indicator board."},
+      {t:"Line stoppages", d:"Line moving or stopped per station; micro-stops the MES never logs captured with cause and clip."},
+      {t:"Forklift & pedestrian", d:"Near-miss geometry heat-mapped by conflict point, repeat patterns alerted, layout fixes justified with data."},
+      {t:"Yard & gate", d:"Truck arrivals, weighbridge queue, and dock occupancy sequenced to the bay before demurrage bills."},
+      {t:"Visual quality", d:"Defect signatures at inspection stations hold the lot and flag QA with images, logged against shift and batch."},
+      {t:"Maintenance triggers", d:"Leaks, smoke, and abnormal vibration cues open the CMMS work order with the clip attached, tracked to close."}
+    ]
+  },
+  {
+    id:"retail", code:"08", name:"RETAIL",
+    title:"The shelf, the store, and the supply behind it.",
+    lede:"The brand pays for the shelf. Nobody watches the shelf.",
+    body:"An FMCG brand spends crores on trade margins and monthly audits, and still learns about an empty shelf weeks later from a sales report. A retail chain loses one to three percent of revenue in the gap between what the camera saw and what the POS billed. A small camera on the shelf turns the stock-out into a same-hour distributor order, and the monthly audit van into a dashboard.",
+    expand:"Starts with on-shelf availability, brand-side. Expands to billing leakage in owned stores, then checkout queues and footfall, and warehouse and cold chain.",
+    trust:"Shopper analytics are anonymous and aggregate. Identity data, where it exists, never leaves the store network.",
+    metrics:["On-shelf availability %","Share of shelf","Audit cost per store","Billing leakage","Queue abandonment"],
+    caps:[
+      {t:"Shelf availability", d:"Stock level per facing and depletion rate through the day; replenishment raised before the shelf runs dry."},
+      {t:"Planogram & share of shelf", d:"Facings vs plan and competitor share scored per store, with photo evidence behind every trade-spend dispute."},
+      {t:"Billing leakage", d:"POS transactions cross-referenced with the till camera; discrepancies filed as recovery cases with the clip."},
+      {t:"Checkout queues", d:"Queue length and abandonment at tills open a counter before the walk-away, measured against baseline."},
+      {t:"Footfall & conversion", d:"Zone heatmaps and dwell by category rank layouts and promotions by measured conversion, not gut feel."},
+      {t:"Cold chain", d:"Freezer and chiller temperature and door-open time alarm the excursion before product loss."}
+    ]
+  },
+  {
+    id:"venues", code:"09", name:"VENUES + CAMPUSES",
+    title:"The campus, the crowd, and the longest day of the year.",
+    lede:"On the biggest day, the venue runs on walkie-talkies and luck.",
+    body:"A large venue is a small city with one entrance problem: everyone arrives in the same two hours. The cameras exist, the control room exists, but the gate decision is still a guard's judgment call and the crowd at the boat ride is whatever it is until someone radios it in. Density is measured continuously, crush risk is predicted before it forms, and every incident is dispatched with location and clip.",
+    expand:"Starts with crowd safety at gates and top attractions. Expands to queues and wait boards, then parking and shuttles, and F&B and ticket reconciliation.",
+    trust:"Guest analytics are anonymous and aggregate. Crowd-control actions propose; a human always commands.",
+    metrics:["Density SLA per zone","Attraction wait visibility","Incident response time","Shuttle wait","Per-cap spend"],
+    caps:[
+      {t:"Crowd safety", d:"Density at gates, plazas, and attractions meters the approach before crush risk builds; the control room sees one map."},
+      {t:"Queues & attractions", d:"Live wait per attraction feeds the guest app and rebalances ops staff to the longest lines."},
+      {t:"Parking & shuttles", d:"Lot occupancy and shuttle load stage transport to demand, opening overflow lots before the jam."},
+      {t:"Incidents & medical", d:"Falls, altercations, and heat-stress conditions dispatch the nearest responder with location, every response timed."},
+      {t:"Ticketing & entry", d:"Throughput per lane and tailgating open extra lanes ahead of the wave, flagging gate anomalies with evidence."},
+      {t:"F&B & retail outlets", d:"Queues and POS-camera reconciliation across dozens of outlets trigger staffing and flag the unbilled serve."}
+    ]
+  }
+];
+
+const navlinks = document.getElementById('navlinks');
+const heroindex = document.getElementById('heroindex');
+const sectionsRoot = document.getElementById('sections');
+
+verticals.forEach(v=>{
+  navlinks.insertAdjacentHTML('beforeend', `<a href="#${v.id}">${v.code} ${v.name}</a>`);
+  heroindex.insertAdjacentHTML('beforeend',
+    `<a href="#${v.id}"><span class="n">${v.code}</span><span class="label">${v.name}</span><span class="go">view &rarr;</span></a>`);
+
+  const metricsHtml = v.metrics.map(m=>`<div class="m"><span class="k">Design target</span><span class="v">${m}</span></div>`).join('');
+  const capsHtml = v.caps.map(c=>`<div class="cap"><div class="cap-t">${c.t}</div><div class="cap-d">${c.d}</div></div>`).join('');
+
+  sectionsRoot.insertAdjacentHTML('beforeend', `
+  <section id="${v.id}">
+    <div class="shell">
+      <div class="v-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>CH·${v.code} — ${v.name}<span class="rule"></span></div>
+          <h2 class="h-title">${v.title}</h2>
+          <p class="h-lede">${v.lede}</p>
+          <p class="h-body">${v.body}</p>
+          <div class="h-expand"><b>Where it starts, where it goes</b>${v.expand}</div>
+          <div class="h-trust"><span class="tag">Trust</span><span>${v.trust}</span></div>
+        </div>
+        <div class="v-media">
+          <div class="metric-strip">${metricsHtml}</div>
+          <div class="caps">${capsHtml}</div>
+        </div>
+      </div>
+    </div>
+  </section>`);
+});
+</script>
+
+</body>
+</html>

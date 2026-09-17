@@ -1,0 +1,65 @@
+{
+  "source": "nv-hp.zip",
+  "clips": [
+    "1.mp4",
+    "2.mp4",
+    "3.mp4",
+    "4.mp4"
+  ],
+  "sourceFps": 24,
+  "fps": 60,
+  "frameCount": 1920,
+  "width": 1920,
+  "height": 1080,
+  "durationSeconds": 32,
+  "chapters": {
+    "Physical AI": {
+      "start": 0,
+      "checkpoint": 0,
+      "reveal": [
+        0,
+        0
+      ],
+      "exit": [
+        360,
+        510
+      ]
+    },
+    "Sense": {
+      "start": 600,
+      "checkpoint": 960,
+      "reveal": [
+        690,
+        810
+      ],
+      "exit": [
+        1140,
+        1230
+      ]
+    },
+    "Compute": {
+      "start": 1230,
+      "checkpoint": 1440,
+      "reveal": [
+        1230,
+        1310
+      ],
+      "exit": [
+        1600,
+        1680
+      ]
+    },
+    "Act": {
+      "start": 1680,
+      "checkpoint": 1890,
+      "reveal": [
+        1680,
+        1760
+      ],
+      "exit": [
+        1940,
+        2000
+      ]
+    }
+  }
+}

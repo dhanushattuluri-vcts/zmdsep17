@@ -1,0 +1,3351 @@
+/* ==========================================================================
+   V-DELIBOT PRODUCT LANDING PAGE - BRAND DESIGN SYSTEM & STYLES
+   ========================================================================== */
+
+:root {
+  --delibot-red: #E10600;
+  --delibot-red-bright: #FF3B30;
+  --delibot-red-glow: rgba(225, 6, 0, 0.35);
+  --delibot-red-tint: rgba(225, 6, 0, 0.08);
+  --delibot-black: #0A0A0A;
+  --delibot-charcoal: #1C1C1E;
+  --delibot-charcoal-light: #2C2C2E;
+  --delibot-grey-mid: #8A8D91;
+  --delibot-grey-light: #F2F2F2;
+  --delibot-grey-border: #E2E8F0;
+  --delibot-white: #FFFFFF;
+  
+  --delibot-font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --delibot-font-heading: 'Space Grotesk', sans-serif;
+  --delibot-font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.delibot-page-wrapper {
+  background-color: var(--delibot-black);
+  color: var(--delibot-white);
+  font-family: var(--delibot-font-main);
+  overflow-x: clip;
+  position: relative;
+  width: 100%;
+  animation: delibotPageEnter 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delibot-page-wrapper h1,
+.delibot-page-wrapper h2,
+.delibot-page-wrapper h3,
+.delibot-page-wrapper h4,
+.delibot-page-wrapper h5,
+.delibot-page-wrapper h6,
+.delibot-section-title-dark,
+.delibot-section-title-light,
+.delibot-col-title,
+.delibot-card-title,
+.delibot-process-strip__title,
+.delibot-highlight-title,
+.delibot-table-title,
+.delibot-dashboard-title,
+.delibot-usecase-overlay-title,
+.delibot-prop-title,
+.delibot-contact-title,
+.delibot-contact-v2-title,
+.delibot-mini-title,
+.delibot-mini-overlay-title {
+  font-family: var(--delibot-font-heading);
+}
+
+@keyframes delibotPageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* ==========================================================================
+   SMOOTH SECTION SCROLL ENTRY & EXIT VIEWPORT ANIMATIONS
+   ========================================================================== */
+.delibot-animated-section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.delibot-animated-section.delibot-section-visible {
+  opacity: 1;
+}
+
+/* Inner elements exit animation when section leaves viewport */
+.delibot-animated-section.delibot-section-exit .delibot-section-header,
+.delibot-animated-section.delibot-section-exit .delibot-hero__left,
+.delibot-animated-section.delibot-section-exit .delibot-hero-chips,
+.delibot-animated-section.delibot-section-exit .delibot-comparison-grid,
+.delibot-animated-section.delibot-section-exit .delibot-radial-grid,
+.delibot-animated-section.delibot-section-exit .delibot-elevator-grid,
+.delibot-animated-section.delibot-section-exit .delibot-specs-tables-grid,
+.delibot-animated-section.delibot-section-exit .delibot-industries-grid-2x2,
+.delibot-animated-section.delibot-section-exit .delibot-faq-accordion,
+.delibot-animated-section.delibot-section-exit .delibot-contact-v2-container {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(4px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Staggered entry for section children when section becomes visible */
+.delibot-animated-section.delibot-section-visible .delibot-section-header,
+.delibot-animated-section.delibot-section-visible .delibot-hero__left {
+  animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.delibot-animated-section.delibot-section-visible .delibot-comparison-col:nth-child(1) {
+  animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.delibot-animated-section.delibot-section-visible .delibot-comparison-col:nth-child(3) {
+  animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.delibot-animated-section.delibot-section-visible .delibot-capability-card:nth-child(1) {
+  animation: delibotCapabilityCardFade 0.55s ease-out 0.12s backwards;
+}
+.delibot-animated-section.delibot-section-visible .delibot-capability-card:nth-child(2) {
+  animation: delibotCapabilityCardFade 0.55s ease-out 0.2s backwards;
+}
+.delibot-animated-section.delibot-section-visible .delibot-capability-card:nth-child(3) {
+  animation: delibotCapabilityCardFade 0.55s ease-out 0.28s backwards;
+}
+
+@keyframes delibotCapabilityCardFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.delibot-animated-section.delibot-section-visible .delibot-process-step:nth-child(1) { animation: delibotSectionChildFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+.delibot-animated-section.delibot-section-visible .delibot-process-step:nth-child(2) { animation: delibotSectionChildFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both; }
+.delibot-animated-section.delibot-section-visible .delibot-process-step:nth-child(3) { animation: delibotSectionChildFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both; }
+.delibot-animated-section.delibot-section-visible .delibot-process-step:nth-child(4) { animation: delibotSectionChildFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+.delibot-animated-section.delibot-section-visible .delibot-process-step:nth-child(5) { animation: delibotSectionChildFade 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both; }
+
+.delibot-animated-section.delibot-section-visible .delibot-spec-table-card:nth-child(1) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+.delibot-animated-section.delibot-section-visible .delibot-spec-table-card:nth-child(2) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+.delibot-animated-section.delibot-section-visible .delibot-spec-table-card:nth-child(3) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both; }
+.delibot-animated-section.delibot-section-visible .delibot-spec-table-card:nth-child(4) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both; }
+
+.delibot-animated-section.delibot-section-visible .delibot-usecase-card:nth-child(1) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both; }
+.delibot-animated-section.delibot-section-visible .delibot-usecase-card:nth-child(2) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+.delibot-animated-section.delibot-section-visible .delibot-usecase-card:nth-child(3) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both; }
+.delibot-animated-section.delibot-section-visible .delibot-usecase-card:nth-child(4) { animation: delibotSectionChildFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both; }
+
+@keyframes delibotSectionChildFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SCROLL PROGRESS BAR
+   -------------------------------------------------------------------------- */
+.delibot-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--delibot-red), var(--delibot-red-bright));
+  z-index: 10005;
+  box-shadow: 0 0 10px var(--delibot-red-glow);
+  transition: width 0.1s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   STICKY ANCHOR SUB-NAV BAR
+   -------------------------------------------------------------------------- */
+.delibot-sticky-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(225, 6, 0, 0.25);
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.delibot-sticky-nav__container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0.85rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delibot-sticky-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.delibot-sticky-nav__logo-badge {
+  background-color: var(--delibot-red);
+  color: var(--delibot-white);
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  box-shadow: 0 0 12px var(--delibot-red-glow);
+}
+
+.delibot-sticky-nav__tagline {
+  font-size: 0.78rem;
+  color: var(--delibot-grey-mid);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.delibot-sticky-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.delibot-sticky-nav__link {
+  color: #D1D5DB;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.delibot-sticky-nav__link:hover,
+.delibot-sticky-nav__link.active {
+  color: var(--delibot-white);
+}
+
+.delibot-sticky-nav__link:hover::after,
+.delibot-sticky-nav__link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--delibot-red);
+  box-shadow: 0 0 8px var(--delibot-red);
+}
+
+.delibot-btn-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--delibot-red);
+  color: var(--delibot-white);
+  padding: 14px 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--delibot-red-glow);
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.delibot-btn-red:hover {
+  background-color: var(--delibot-red-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(225, 6, 0, 0.4);
+}
+
+.delibot-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--delibot-white);
+  padding: 14px 28px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.delibot-btn-ghost:hover {
+  border-color: var(--delibot-white);
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Tag / Category Subtitle (Camera Page Style) */
+.dcam-tag-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.dcam-tag-line {
+  width: 20px;
+  height: 2px;
+  background-color: var(--delibot-red);
+  display: inline-block;
+}
+
+.dcam-tag-text {
+  font-family: var(--delibot-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--delibot-grey-mid);
+}
+
+.delibot-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--delibot-red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.delibot-hero__headline {
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: var(--delibot-white);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin: 0 0 16px 0;
+}
+
+.delibot-hero__subheadline {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--delibot-white);
+  line-height: 1.4;
+  margin: 0 0 10px 0;
+}
+
+.delibot-hero__supporting {
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: #CBD5E1;
+  line-height: 1.65;
+  max-width: 680px;
+  margin: 0 0 24px 0;
+}
+
+/* --------------------------------------------------------------------------
+   IMAGE & VIDEO PLACEHOLDER CARDS
+   -------------------------------------------------------------------------- */
+.delibot-placeholder-card {
+  width: 100%;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.delibot-placeholder-card--dark {
+  background-color: var(--delibot-charcoal);
+  border: 2px dashed rgba(225, 6, 0, 0.4);
+  color: var(--delibot-white);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.delibot-placeholder-card--dark:hover {
+  border-color: var(--delibot-red);
+  box-shadow: 0 0 25px var(--delibot-red-glow);
+}
+
+.delibot-placeholder-card--light {
+  background-color: #E2E8F0;
+  border: 2px dashed #94A3B8;
+  color: #0F172A;
+}
+
+.delibot-placeholder-card--light:hover {
+  border-color: var(--delibot-red);
+  background-color: #CBD5E1;
+}
+
+.delibot-placeholder-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 0.85rem;
+  color: var(--delibot-red);
+  opacity: 0.9;
+}
+
+.delibot-placeholder-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--delibot-red);
+  margin-bottom: 0.35rem;
+}
+
+.delibot-placeholder-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+  max-width: 90%;
+  margin: 0;
+  word-break: break-word;
+}
+
+.delibot-placeholder-card--dark .delibot-placeholder-label {
+  color: #F1F5F9;
+}
+
+.delibot-placeholder-card--light .delibot-placeholder-label {
+  color: #1E293B;
+}
+
+.delibot-placeholder-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--delibot-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--delibot-white);
+  box-shadow: 0 0 24px var(--delibot-red-glow);
+  pointer-events: none;
+}
+
+/* Red LED Indicator Glow on dark image placeholders */
+.delibot-led-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--delibot-red);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px var(--delibot-red-bright);
+  animation: ledPulse 2s infinite ease-in-out;
+}
+
+@keyframes ledPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+
+
+
+/* --------------------------------------------------------------------------
+   SECTION 1: HERO SECTION (BLACK BACKGROUND)
+   -------------------------------------------------------------------------- */
+.delibot-hero {
+  position: relative;
+  background-color: var(--delibot-black);
+  padding: 5rem 2rem 1.5rem 2rem;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   HERO HEAVY SMOOTH ENTRY ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes dlbHeroBgReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: brightness(0.7) blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1) blur(0px);
+  }
+}
+
+@keyframes dlbHeroShadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes dlbHeroTagFade {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dlbHeroTitleSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(45px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes dlbHeroSubtitleSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes dlbHeroBodySlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dlbHeroPillPop {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dlbHeroActionsSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dlbHeroChipsSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* Applying Heavy Smooth Entry Animations when Hero Section is Visible */
+.delibot-hero.delibot-section-visible .delibot-hero-video {
+  animation: dlbHeroBgReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delibot-hero.delibot-section-visible .delibot-hero-left-shade {
+  animation: dlbHeroShadeSlide 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delibot-hero.delibot-section-visible .dcam-tag-container {
+  animation: dlbHeroTagFade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+.delibot-hero.delibot-section-visible .delibot-hero__headline {
+  animation: dlbHeroTitleSlideUp 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+  opacity: 0;
+}
+
+.delibot-hero.delibot-section-visible .delibot-hero__subheadline {
+  animation: dlbHeroSubtitleSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+  opacity: 0;
+}
+
+.delibot-hero.delibot-section-visible .delibot-hero__supporting {
+  animation: dlbHeroBodySlideUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+  opacity: 0;
+}
+
+.delibot-hero.delibot-section-visible .delibot-hero__badges {
+  animation: dlbHeroPillPop 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+  opacity: 0;
+}
+
+.delibot-hero.delibot-section-visible .delibot-hero__actions {
+  animation: dlbHeroActionsSlideUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards;
+  opacity: 0;
+}
+
+.delibot-hero.delibot-section-visible .delibot-hero-chips {
+  animation: dlbHeroChipsSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
+  opacity: 0;
+}
+
+/* Hero Specific Exit Animations */
+.delibot-hero.delibot-section-exit .delibot-hero-video {
+  transform: scale(0.96);
+  opacity: 0.3;
+  filter: brightness(0.5) blur(6px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s ease,
+              filter 0.6s ease;
+}
+
+/* Full-bleed hero background video & controlled left-side gradient overlay */
+.delibot-hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.delibot-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  pointer-events: none;
+}
+
+.delibot-hero-left-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 0.94) 0%,
+    rgba(10, 10, 10, 0.82) 24%,
+    rgba(10, 10, 10, 0.55) 40%,
+    rgba(10, 10, 10, 0.18) 57%,
+    rgba(10, 10, 10, 0) 72%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.delibot-hero__container {
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  position: relative;
+  z-index: 3;
+}
+
+.delibot-hero__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 680px;
+  padding-top: 50px;
+}
+
+/* Red title period dot (.in red accent) & Red Title Highlights */
+.delibot-title-dot {
+  color: var(--delibot-red);
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.delibot-title-red {
+  color: var(--delibot-red);
+}
+
+.delibot-hero__supporting {
+  font-size: 1.15rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0;
+}
+
+.delibot-hero__badges {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.delibot-hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.delibot-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--delibot-red);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.delibot-hero__headline {
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: var(--delibot-white);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.delibot-hero__subheadline {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--delibot-grey-mid);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.delibot-hero__supporting {
+  font-size: 1.1rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+  max-width: 580px;
+  margin: 0;
+}
+
+.delibot-hero__badges {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.delibot-badge-pill {
+  background-color: var(--delibot-charcoal);
+  border: 1px solid rgba(225, 6, 0, 0.4);
+  color: var(--delibot-white);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.delibot-hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.delibot-hero__right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Feature Chips Row under Hero with Smooth Hover Animations */
+.delibot-hero-chips {
+  max-width: 1380px;
+  width: 100%;
+  margin: auto auto 0 auto;
+  background: rgba(22, 22, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 1.15rem 2.25rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 4;
+  gap: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.delibot-hero-chips:hover {
+  border-color: rgba(225, 6, 0, 0.4);
+  box-shadow: 0 14px 40px rgba(225, 6, 0, 0.2);
+}
+
+.delibot-chip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.delibot-chip-item:hover {
+  transform: translateY(-3px) scale(1.04);
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.delibot-chip-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--delibot-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--delibot-red);
+  background-color: rgba(225, 6, 0, 0.12);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.delibot-chip-item:hover .delibot-chip-icon {
+  background-color: var(--delibot-red);
+  color: #FFFFFF;
+  border-color: var(--delibot-red-bright);
+  box-shadow: 0 0 14px var(--delibot-red-glow);
+  transform: rotate(360deg);
+}
+
+.delibot-chip-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--delibot-white);
+  white-space: nowrap;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.delibot-chip-item:hover .delibot-chip-label {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.delibot-chip-divider {
+  width: 1px;
+  height: 22px;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Section 2 Card Images */
+.delibot-sec2-img-container {
+  width: 100%;
+  height: 210px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0 1.5rem 0;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.delibot-sec2-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.delibot-sec2-img-container:hover .delibot-sec2-card-img {
+  transform: scale(1.03);
+}
+
+/* Section 3 Center Card Image */
+.delibot-sec3-img-container {
+  width: 100%;
+  height: 100%;
+  min-height: 580px;
+  max-height: 640px;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.delibot-sec3-img-container.delibot-sec3-focused {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 20px 50px rgba(225, 6, 0, 0.2), 0 0 35px rgba(225, 6, 0, 0.15);
+}
+
+.delibot-sec3-center-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 24px;
+  padding: 0;
+  box-sizing: border-box;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.delibot-scroll-indicator {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--delibot-grey-mid);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.delibot-scroll-indicator svg {
+  color: var(--delibot-red);
+  animation: bounceDown 2s infinite;
+}
+
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(6px); }
+  60% { transform: translateY(3px); }
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 2: THE VERTICAL GAP (LIGHT GREY BACKGROUND #F2F2F2)
+   -------------------------------------------------------------------------- */
+.delibot-section-light {
+  background-color: var(--delibot-grey-light);
+  color: #0F172A;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.delibot-section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem auto;
+}
+
+.delibot-section-title-dark {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #0F172A;
+  margin: 0.5rem 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.delibot-section-subtext-dark {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.delibot-comparison-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  position: relative;
+  perspective: 1200px;
+}
+
+.delibot-vs-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: var(--delibot-white);
+  border: 3px solid #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #0F172A;
+  align-self: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 5;
+  transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.6s ease,
+              box-shadow 0.6s ease;
+  will-change: transform, opacity;
+}
+
+.delibot-comparison-col {
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  backface-visibility: hidden;
+}
+
+.delibot-col-traditional {
+  background-color: var(--delibot-white);
+  border: 1px solid #CBD5E1;
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.8s ease;
+  will-change: transform, opacity, filter;
+}
+
+.delibot-col-vdelibot {
+  background-color: var(--delibot-black);
+  color: var(--delibot-white);
+  border: 1px solid var(--delibot-red);
+  box-shadow: 0 12px 40px var(--delibot-red-glow);
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.85s ease;
+  will-change: transform, opacity, filter;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 2 HEAVY 3D UNSTACKING ENTRANCE & EXIT ANIMATIONS
+   -------------------------------------------------------------------------- */
+
+/* Section 2 Exit State (Tilted 3D Stack Collapse toward Center) */
+.delibot-animated-section.delibot-section-exit .delibot-col-traditional {
+  opacity: 0;
+  transform: perspective(1000px) rotateY(24deg) translateX(180px) scale(0.88);
+  filter: grayscale(0.8) blur(8px);
+}
+
+.delibot-animated-section.delibot-section-exit .delibot-col-vdelibot {
+  opacity: 0;
+  transform: perspective(1000px) rotateY(-24deg) translateX(-180px) scale(0.88);
+  filter: blur(8px);
+  box-shadow: 0 0 0 rgba(225, 6, 0, 0);
+}
+
+.delibot-animated-section.delibot-section-exit .delibot-vs-badge {
+  opacity: 0;
+  transform: scale(0) rotate(-360deg);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* Section 2 Entry State (Heavy 3D Un-stack Reveal & Red Neon Glow Lock) */
+.delibot-animated-section.delibot-section-visible .delibot-col-traditional {
+  opacity: 1;
+  transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1);
+  filter: grayscale(0) blur(0px);
+  transition-delay: 0.12s;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.delibot-animated-section.delibot-section-visible .delibot-vs-badge {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  box-shadow: 0 0 30px rgba(225, 6, 0, 0.6);
+  transition-delay: 0.35s;
+}
+
+.delibot-animated-section.delibot-section-visible .delibot-col-vdelibot {
+  opacity: 1;
+  transform: perspective(1000px) rotateY(0deg) translateX(0) scale(1);
+  filter: blur(0px);
+  box-shadow: 0 18px 55px rgba(225, 6, 0, 0.45), 0 0 25px rgba(225, 6, 0, 0.3);
+  transition-delay: 0.25s;
+}
+
+.delibot-col-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid;
+  margin-bottom: 2rem;
+}
+
+.delibot-col-traditional .delibot-col-header {
+  border-color: #E2E8F0;
+}
+
+.delibot-col-vdelibot .delibot-col-header {
+  border-color: var(--delibot-red);
+}
+
+.delibot-col-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.delibot-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.delibot-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.delibot-node {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.delibot-col-traditional .delibot-node {
+  background-color: #F1F5F9;
+  color: #64748B;
+  border: 1px solid #CBD5E1;
+}
+
+.delibot-col-vdelibot .delibot-node {
+  background-color: rgba(225, 6, 0, 0.2);
+  color: var(--delibot-red-bright);
+  border: 1px solid var(--delibot-red);
+}
+
+.delibot-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.delibot-timeline-text {
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.delibot-col-banner {
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.delibot-banner-traditional {
+  background-color: #334155;
+  color: var(--delibot-white);
+}
+
+.delibot-banner-vdelibot {
+  background-color: var(--delibot-red);
+  color: var(--delibot-white);
+  box-shadow: 0 4px 16px var(--delibot-red-glow);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 3: CAPABILITIES (WHITE BACKGROUND #FFFFFF)
+   -------------------------------------------------------------------------- */
+.delibot-section-white {
+  background-color: var(--delibot-white);
+  color: #0F172A;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.delibot-radial-grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  position: relative;
+}
+
+/* ── 90-DEGREE ORTHOGONAL TECH SPEC HUD OVERLAY ───────────────────────────── */
+.delibot-connector-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+  overflow: visible;
+}
+
+/* Crisp 90-degree orthogonal line draw-in */
+.dlb-tech-line-main {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: dlbTechDraw 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dlbTechDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Square origin anchor animation */
+.dlb-tech-origin {
+  opacity: 0;
+  animation: dlbFadeIn 0.15s ease 0.05s forwards;
+}
+
+/* Precision HUD reticle & spec tag fade-in */
+.dlb-tech-reticle {
+  opacity: 0;
+  animation: dlbFadeIn 0.25s ease 0.15s forwards;
+}
+
+@keyframes dlbFadeIn {
+  to { opacity: 1; }
+}
+
+.delibot-radial-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.delibot-capability-card {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: background-color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  cursor: pointer;
+}
+
+.delibot-capability-card:hover,
+.delibot-capability-card.delibot-card-active {
+  background-color: var(--delibot-white);
+  border-color: var(--delibot-red);
+  box-shadow: 0 12px 32px rgba(225, 6, 0, 0.18), 0 0 20px rgba(225, 6, 0, 0.1);
+  transform: none;
+}
+
+.delibot-card-icon-ring {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+}
+
+.delibot-capability-card:hover .delibot-card-icon-ring,
+.delibot-capability-card.delibot-card-active .delibot-card-icon-ring {
+  transform: scale(1.08) rotate(4deg);
+  background-color: rgba(225, 6, 0, 0.1);
+}
+
+.delibot-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.delibot-card-icon-ring {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--delibot-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--delibot-red);
+  background-color: rgba(225, 6, 0, 0.05);
+}
+
+.delibot-card-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0;
+}
+
+.delibot-card-desc {
+  font-size: 0.88rem;
+  color: #64748B;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 5-Step Process Strip */
+.delibot-process-strip {
+  max-width: 1380px;
+  width: 100%;
+  margin: 5rem auto 0 auto;
+  background-color: #F1F5F9;
+  border-radius: 24px;
+  padding: 2.75rem 2.75rem;
+  box-sizing: border-box;
+}
+
+.delibot-process-strip__title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 2.5rem;
+}
+
+.delibot-process-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.85rem;
+  align-items: flex-start;
+  position: relative;
+}
+
+.delibot-process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Collapsed non-hovered cards and expanded focused hovered card */
+.delibot-process-steps:hover .delibot-process-step:not(:hover) {
+  opacity: 0.65;
+  transform: scale(0.96);
+  filter: blur(1px);
+}
+
+.delibot-process-step:hover {
+  transform: translateY(-8px) scale(1.06);
+  z-index: 15;
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+}
+
+/* Step image container — enforces consistent 4:3 ratio across all 5 cards */
+.delibot-step-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: visible;
+  position: relative;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  border: 1.5px solid transparent;
+}
+
+.delibot-process-step:hover .delibot-step-img-wrap {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(225, 6, 0, 0.22);
+  border-color: var(--delibot-red);
+}
+
+.delibot-step-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px;
+}
+
+/* Red Arrow Badge — Mathematically Centered in the Vertical Middle of the Image */
+.delibot-step-arrow-badge {
+  position: absolute;
+  top: 50%;
+  right: -17px;
+  transform: translateY(-50%) scale(1);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(225, 6, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(225, 6, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  color: var(--delibot-red);
+  opacity: 0;
+  transition: transform 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+}
+
+.delibot-process-step:hover .delibot-step-arrow-badge {
+  transform: translateY(-50%) scale(1.2) rotate(360deg);
+  border-color: var(--delibot-red);
+  background-color: #FFFFFF;
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.4);
+}
+
+@keyframes dlbArrowPop {
+  0% { opacity: 0; transform: translateY(-50%) scale(0.3); }
+  100% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+.delibot-animated-section.delibot-section-visible .delibot-step-arrow-badge {
+  animation: dlbArrowPop 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+}
+
+/* --------------------------------------------------------------------------
+   5-STEP STACKED EXPANSION KEYFRAME ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes dlbStepExpand1 {
+  0% { opacity: 0; transform: translateX(280px) scale(0.85); filter: blur(4px); }
+  100% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+@keyframes dlbStepExpand2 {
+  0% { opacity: 0; transform: translateX(140px) scale(0.9); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes dlbStepExpand3 {
+  0% { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dlbStepExpand4 {
+  0% { opacity: 0; transform: translateX(-140px) scale(0.9); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes dlbStepExpand5 {
+  0% { opacity: 0; transform: translateX(-280px) scale(0.85); filter: blur(4px); }
+  100% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+/* Before section visible: keep steps hidden and stacked */
+.delibot-animated-section:not(.delibot-section-visible) .delibot-process-step {
+  opacity: 0;
+}
+
+/* Section 3 Exit Animations (Radial Callouts & Process Steps Exit) */
+.delibot-animated-section.delibot-section-exit .delibot-radial-col:first-child .delibot-capability-card {
+  opacity: 0;
+  transform: translateX(60px) scale(0.92);
+  filter: blur(6px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s ease,
+              filter 0.45s ease;
+}
+
+.delibot-animated-section.delibot-section-exit .delibot-radial-col:last-child .delibot-capability-card {
+  opacity: 0;
+  transform: translateX(-60px) scale(0.92);
+  filter: blur(6px);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.45s ease,
+              filter 0.45s ease;
+}
+
+.delibot-animated-section.delibot-section-exit .delibot-sec3-img-container {
+  opacity: 0.2;
+  transform: scale(0.9) translateY(20px);
+  filter: brightness(0.6) blur(8px);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease,
+              filter 0.5s ease;
+}
+
+.delibot-animated-section.delibot-section-exit .delibot-process-step {
+  opacity: 0;
+  transform: translateY(25px) scale(0.94);
+  filter: blur(4px);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease,
+              filter 0.4s ease;
+}
+
+/* On Section Entry: Expand horizontally out of stacked center */
+.delibot-animated-section.delibot-section-visible .delibot-step-1 {
+  animation: dlbStepExpand1 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+.delibot-animated-section.delibot-section-visible .delibot-step-2 {
+  animation: dlbStepExpand2 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s forwards;
+}
+.delibot-animated-section.delibot-section-visible .delibot-step-3 {
+  animation: dlbStepExpand3 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.34s forwards;
+}
+.delibot-animated-section.delibot-section-visible .delibot-step-4 {
+  animation: dlbStepExpand4 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.46s forwards;
+}
+.delibot-animated-section.delibot-section-visible .delibot-step-5 {
+  animation: dlbStepExpand5 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.58s forwards;
+}
+
+/* Step image container — enforces consistent 4:3 ratio across all 5 cards */
+.delibot-step-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease;
+}
+
+.delibot-process-step:hover .delibot-step-img-wrap {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 36px rgba(225, 6, 0, 0.14);
+}
+
+.delibot-step-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.delibot-step-num {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: var(--delibot-red);
+  letter-spacing: 0.08em;
+  margin-top: 0.75rem;
+}
+
+.delibot-step-label {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 4: NATIVE ELEVATOR INTEGRATION (BLACK BACKGROUND)
+   -------------------------------------------------------------------------- */
+.delibot-section-dark {
+  background-color: var(--delibot-black);
+  color: var(--delibot-white);
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.delibot-section-title-light {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--delibot-white);
+  margin: 0.5rem 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.delibot-section-subtext-light {
+  font-size: 1.15rem;
+  color: var(--delibot-grey-mid);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.delibot-elevator-grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.delibot-highlight-card {
+  background-color: var(--delibot-charcoal);
+  border: 1px solid var(--delibot-red);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 0 35px var(--delibot-red-glow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.delibot-highlight-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--delibot-white);
+  margin: 0;
+}
+
+.delibot-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.delibot-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #E2E8F0;
+}
+
+.delibot-check-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border-radius: 50%;
+  background-color: var(--delibot-red);
+  color: var(--delibot-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.8rem;
+  box-shadow: 0 0 10px var(--delibot-red-glow);
+}
+
+/* Section 4 Hero Image */
+.delibot-sec4-hero-wrap {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  max-height: 440px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(225, 6, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.delibot-sec4-hero-wrap:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(225, 6, 0, 0.25);
+}
+
+.delibot-sec4-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 3-Step Mini Process with Hover Detail Overlays */
+.delibot-mini-process {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 3.5rem;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.delibot-mini-card {
+  background-color: var(--delibot-charcoal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  text-align: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+}
+
+.delibot-mini-card:hover {
+  border-color: rgba(225, 6, 0, 0.5);
+  box-shadow: 0 14px 40px rgba(225, 6, 0, 0.18);
+  transform: translateY(-4px);
+}
+
+.delibot-mini-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.delibot-mini-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.94) 85%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.delibot-mini-card:hover .delibot-mini-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delibot-mini-overlay-badge {
+  font-size: 0.68rem;
+  font-weight: 900;
+  color: var(--delibot-red-bright);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+}
+
+.delibot-mini-overlay-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 0.5rem 0;
+}
+
+.delibot-mini-overlay-desc {
+  font-size: 0.82rem;
+  color: #CBD5E1;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.delibot-mini-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.delibot-mini-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.delibot-mini-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--delibot-white);
+  margin: 0;
+}
+
+.delibot-mini-hover-hint {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #94A3B8;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.delibot-mini-card:hover .delibot-mini-hover-hint {
+  color: var(--delibot-red);
+  transform: translateX(3px);
+}
+
+/* Capability Badges Strip */
+.delibot-badges-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.delibot-capability-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: var(--delibot-charcoal);
+  border: 1px solid rgba(225, 6, 0, 0.4);
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--delibot-white);
+}
+
+.delibot-badge-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--delibot-white);
+  border: 2px solid var(--delibot-red);
+  color: var(--delibot-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 5: TECHNICAL SPECIFICATIONS (LIGHT GREY BACKGROUND)
+   -------------------------------------------------------------------------- */
+.delibot-specs-tables-grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.delibot-spec-table-card {
+  background-color: var(--delibot-white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  border: 1px solid #CBD5E1;
+}
+
+.delibot-table-header {
+  background-color: #0F172A;
+  color: var(--delibot-white);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  border-bottom: 3px solid var(--delibot-red);
+}
+
+.delibot-table-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.delibot-spec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.delibot-spec-table th,
+.delibot-spec-table td {
+  padding: 0.95rem 1.75rem;
+  text-align: left;
+  font-size: 0.92rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.delibot-spec-table th {
+  background-color: #F8FAFC;
+  color: var(--delibot-red);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.delibot-spec-table tr:nth-child(even) td {
+  background-color: #F8FAFC;
+}
+
+.delibot-spec-table td.spec-param {
+  font-weight: 700;
+  color: #1E293B;
+  width: 45%;
+}
+
+.delibot-spec-table td.spec-val {
+  font-family: var(--delibot-font-mono);
+  font-weight: 700;
+  color: #0F172A;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 6: ENTERPRISE INTEGRATION (BLACK BACKGROUND)
+   -------------------------------------------------------------------------- */
+.delibot-enterprise-grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.delibot-dashboard-mockup {
+  background-color: var(--delibot-charcoal);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.delibot-dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.delibot-dashboard-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--delibot-white);
+  margin: 0;
+}
+
+.delibot-dash-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.delibot-dash-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #4ADE80;
+}
+
+.delibot-dash-status.status-active {
+  color: var(--delibot-red-bright);
+}
+
+/* 4-Card Industries Grid */
+/* 2x2 Industries Grid with Hover Overlay */
+.delibot-industries-grid-2x2 {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.delibot-usecase-card-2x2 {
+  background-color: var(--delibot-charcoal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.delibot-usecase-card-2x2:hover {
+  border-color: var(--delibot-red);
+  box-shadow: 0 16px 40px rgba(225, 6, 0, 0.22);
+  transform: translateY(-4px);
+}
+
+.delibot-usecase-img-wrap-2x2 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.delibot-usecase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.delibot-usecase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 15, 29, 0.4) 0%, rgba(10, 15, 29, 0.92) 50%, rgba(10, 15, 29, 0.98) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.delibot-usecase-card-2x2:hover .delibot-usecase-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delibot-usecase-badge {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--delibot-red-bright);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.delibot-usecase-overlay-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--delibot-white);
+  margin: 0 0 0.5rem 0;
+}
+
+.delibot-usecase-desc {
+  font-size: 0.92rem;
+  color: #D1D5DB;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.delibot-usecase-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.25rem;
+}
+
+.delibot-usecase-hover-hint {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--delibot-grey-mid);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.delibot-usecase-card-2x2:hover .delibot-usecase-hover-hint {
+  color: var(--delibot-red-bright);
+}
+
+/* Value Props Strip */
+.delibot-value-props {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1320px;
+  margin: 4rem auto 0 auto;
+}
+
+.delibot-prop-card {
+  background-color: var(--delibot-charcoal);
+  border: 1px solid rgba(225, 6, 0, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.delibot-prop-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--delibot-red);
+  color: var(--delibot-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(225, 6, 0, 0.1);
+}
+
+.delibot-prop-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--delibot-white);
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 7: CONTACT / FOOTER CTA (BLACK BACKGROUND)
+   -------------------------------------------------------------------------- */
+.delibot-contact-section {
+  background-color: var(--delibot-black);
+  border-top: 2px solid var(--delibot-red);
+  padding: 6rem 2rem 4rem 2rem;
+  color: var(--delibot-white);
+}
+
+.delibot-contact-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.delibot-contact-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: var(--delibot-white);
+  line-height: 1.1;
+  margin: 0 0 2rem 0;
+  letter-spacing: -0.02em;
+}
+
+.delibot-contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.delibot-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #E2E8F0;
+}
+
+.delibot-info-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(225, 6, 0, 0.15);
+  border: 1px solid var(--delibot-red);
+  color: var(--delibot-red-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   FAQS SECTION (MATCHES CAMERA PAGE STYLE 1:1)
+   -------------------------------------------------------------------------- */
+.delibot-faq-accordion {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.delibot-faq-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  overflow: hidden;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.delibot-faq-item:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+}
+
+.delibot-faq-item.delibot-faq-open {
+  background-color: #ffffff !important;
+  border: 1.5px solid rgba(225, 6, 0, 0.4) !important;
+  border-left: 5px solid var(--delibot-red) !important;
+  box-shadow: 0 12px 32px rgba(225, 6, 0, 0.08) !important;
+}
+
+.delibot-faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delibot-faq-icon {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--delibot-red);
+}
+
+/* Hardware-Accelerated Smooth CSS Grid Accordion Collapse */
+.delibot-accordion-collapse-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+}
+
+.delibot-accordion-expanded .delibot-accordion-collapse-wrapper {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.delibot-accordion-collapse-inner {
+  overflow: hidden;
+}
+
+.delibot-faq-answer {
+  padding: 0 24px 20px 24px;
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-top: 1px solid #f1f5f9;
+}
+
+.delibot-faq-answer p {
+  margin: 12px 0 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION 7: CONTACT / FOOTER CTA (IMAGE 2 FORMAT)
+   -------------------------------------------------------------------------- */
+.delibot-contact-v2-section {
+  background: linear-gradient(90deg, rgba(3, 7, 16, 0.95), rgba(15, 23, 42, 0.92)), #0A0F1D;
+  min-height: 480px;
+  padding: 80px 40px;
+  box-sizing: border-box;
+  border-top: 1px solid #1e293b;
+  position: relative;
+  overflow: hidden;
+}
+
+.delibot-contact-v2-section--light {
+  background: var(--delibot-grey-light);
+  border-top-color: #e2e8f0;
+}
+
+.delibot-contact-v2-section--light .delibot-contact-v2-title,
+.delibot-contact-v2-section--light .delibot-contact-v2-link {
+  color: #0f172a;
+}
+
+.delibot-contact-v2-section--light .delibot-contact-v2-text {
+  color: #475569;
+}
+
+.delibot-contact-v2-section--light .delibot-v2-btn-white {
+  background: var(--delibot-red);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(225, 6, 0, 0.2);
+}
+
+.delibot-contact-v2-section--light .delibot-v2-btn-white:hover {
+  background: #b00500;
+  box-shadow: 0 8px 24px rgba(225, 6, 0, 0.28);
+}
+
+.delibot-contact-v2-section--light .delibot-v2-btn-outline {
+  color: #0f172a;
+  border-color: var(--delibot-red);
+}
+
+.delibot-contact-v2-section--light .delibot-v2-btn-outline:hover {
+  background: var(--delibot-red-tint);
+  color: #0f172a;
+}
+
+.delibot-contact-v2-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 320px;
+}
+
+.delibot-contact-v2-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.delibot-contact-v2-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 12px 0 20px 0;
+  line-height: 1.18;
+  letter-spacing: -0.5px;
+  max-width: 580px;
+}
+
+.delibot-contact-v2-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.delibot-contact-v2-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.delibot-contact-v2-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--delibot-red);
+  flex-shrink: 0;
+}
+
+.delibot-contact-v2-link {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.delibot-contact-v2-link:hover {
+  color: var(--delibot-red);
+}
+
+.delibot-contact-v2-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+.delibot-contact-v2-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.delibot-v2-btn-white {
+  background: #ffffff;
+  color: #0f172a;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+}
+
+.delibot-v2-btn-white:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+}
+
+.delibot-v2-btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(225, 6, 0, 0.8);
+  padding: 11px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.delibot-v2-btn-outline:hover {
+  background: rgba(225, 6, 0, 0.15);
+  border-color: var(--delibot-red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.25);
+  color: #ffffff;
+}
+
+.delibot-contact-v2-right {
+  width: 100%;
+}
+
+.delibot-banner-img-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  border: 0;
+  outline: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.delibot-banner-img-wrap:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px rgba(225, 6, 0, 0.25);
+}
+
+.delibot-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   SECTION-SPECIFIC MOTION SYSTEM
+   Each section uses a distinct visual gesture to keep the page varied.
+   -------------------------------------------------------------------------- */
+
+/* Problem: a clean vertical curtain reveal above the existing 3D comparison. */
+#the-problem.delibot-section-visible .delibot-section-header {
+  animation: delibotProblemHeaderReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Capabilities: opposing card banks converge on the robot. */
+#capabilities.delibot-section-visible .delibot-section-header {
+  animation: delibotCapabilitiesHeaderSweep 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Elevator: copy rises while the product image unfolds horizontally. */
+#elevator-tech.delibot-section-visible .delibot-section-header {
+  animation: delibotElevatorHeaderTilt 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#elevator-tech.delibot-section-visible .delibot-elevator-grid > div:first-child {
+  animation: delibotElevatorCopyRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+#elevator-tech.delibot-section-visible .delibot-sec4-hero-wrap {
+  animation: delibotElevatorVisualUnfold 1s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+#elevator-tech.delibot-section-visible .delibot-mini-card {
+  animation: delibotMiniCardDeal 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+#elevator-tech.delibot-section-visible .delibot-mini-card:nth-child(1) { animation-delay: 0.25s; }
+#elevator-tech.delibot-section-visible .delibot-mini-card:nth-child(2) { animation-delay: 0.36s; }
+#elevator-tech.delibot-section-visible .delibot-mini-card:nth-child(3) { animation-delay: 0.47s; }
+
+#elevator-tech.delibot-section-visible .delibot-capability-badge {
+  animation: delibotBadgePop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+#elevator-tech.delibot-section-visible .delibot-capability-badge:nth-child(1) { animation-delay: 0.4s; }
+#elevator-tech.delibot-section-visible .delibot-capability-badge:nth-child(2) { animation-delay: 0.46s; }
+#elevator-tech.delibot-section-visible .delibot-capability-badge:nth-child(3) { animation-delay: 0.52s; }
+#elevator-tech.delibot-section-visible .delibot-capability-badge:nth-child(4) { animation-delay: 0.58s; }
+#elevator-tech.delibot-section-visible .delibot-capability-badge:nth-child(5) { animation-delay: 0.64s; }
+
+/* Industries: alternating directional reveals create a scanning rhythm. */
+#industries.delibot-section-visible .delibot-section-header {
+  animation: delibotIndustriesHeaderFocus 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#industries.delibot-section-exit .delibot-usecase-card-2x2 {
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+}
+
+#industries.delibot-section-visible .delibot-usecase-card-2x2 {
+  animation: delibotUsecaseScanReveal 0.82s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+#industries.delibot-section-visible .delibot-usecase-card-2x2:nth-child(1) { animation-delay: 0.1s; --delibot-card-shift: -28px; }
+#industries.delibot-section-visible .delibot-usecase-card-2x2:nth-child(2) { animation-delay: 0.2s; --delibot-card-shift: 28px; }
+#industries.delibot-section-visible .delibot-usecase-card-2x2:nth-child(3) { animation-delay: 0.3s; --delibot-card-shift: -28px; }
+#industries.delibot-section-visible .delibot-usecase-card-2x2:nth-child(4) { animation-delay: 0.4s; --delibot-card-shift: 28px; }
+
+/* Contact: split-screen copy and imagery meet in the center. */
+#contact.delibot-section-exit .delibot-contact-v2-left,
+#contact.delibot-section-exit .delibot-contact-v2-right {
+  opacity: 0;
+}
+
+#contact.delibot-section-visible .delibot-contact-v2-left {
+  animation: delibotContactCopyIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+#contact.delibot-section-visible .delibot-contact-v2-right {
+  animation: delibotContactVisualIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+/* FAQ: rows reveal like shutters; expansion itself remains fluid CSS grid. */
+#faqs.delibot-section-visible .delibot-section-header {
+  animation: delibotFaqHeaderFocus 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+#faqs.delibot-section-exit .delibot-faq-item {
+  opacity: 0;
+  transform: translateX(-18px);
+}
+
+#faqs.delibot-section-visible .delibot-faq-item {
+  animation: delibotFaqShutterIn 0.62s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(1) { animation-delay: 0.08s; }
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(2) { animation-delay: 0.14s; }
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(3) { animation-delay: 0.2s; }
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(4) { animation-delay: 0.26s; }
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(5) { animation-delay: 0.32s; }
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(6) { animation-delay: 0.38s; }
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(7) { animation-delay: 0.44s; }
+#faqs.delibot-section-visible .delibot-faq-item:nth-child(8) { animation-delay: 0.5s; }
+
+.delibot-faq-icon {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+
+.delibot-faq-open .delibot-faq-icon {
+  transform: rotate(180deg);
+}
+
+.delibot-faq-open .delibot-faq-answer {
+  animation: delibotFaqAnswerIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes delibotProblemHeaderReveal {
+  from { opacity: 0; transform: translateY(-18px) scaleY(0.96); }
+  to { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+
+@keyframes delibotCapabilitiesHeaderSweep {
+  from { opacity: 0; transform: translateX(-36px) scale(0.97); filter: blur(5px); }
+  to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+@keyframes delibotElevatorHeaderTilt {
+  from { opacity: 0; transform: perspective(900px) rotateX(-14deg) translateY(22px); transform-origin: top; }
+  to { opacity: 1; transform: perspective(900px) rotateX(0) translateY(0); }
+}
+
+@keyframes delibotElevatorCopyRise {
+  from { opacity: 0; transform: translateY(34px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes delibotElevatorVisualUnfold {
+  from { opacity: 0; transform: translateX(36px) scaleX(0.9); filter: blur(4px); }
+  to { opacity: 1; transform: translateX(0) scaleX(1); filter: blur(0); }
+}
+
+@keyframes delibotMiniCardDeal {
+  from { opacity: 0; transform: perspective(900px) translateY(28px) rotateY(-8deg); }
+  to { opacity: 1; transform: perspective(900px) translateY(0) rotateY(0); }
+}
+
+@keyframes delibotBadgePop {
+  from { opacity: 0; transform: scale(0.72); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes delibotIndustriesHeaderFocus {
+  from { opacity: 0; transform: scale(1.06); filter: blur(8px); letter-spacing: 0.025em; }
+  to { opacity: 1; transform: scale(1); filter: blur(0); letter-spacing: normal; }
+}
+
+@keyframes delibotUsecaseScanReveal {
+  from { opacity: 0; transform: translateX(var(--delibot-card-shift)) translateY(18px) scale(0.96); }
+  to { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+}
+
+@keyframes delibotContactCopyIn {
+  from { opacity: 0; transform: translateX(-42px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes delibotContactVisualIn {
+  from { opacity: 0; transform: translateX(34px) scale(0.97); filter: blur(5px); }
+  to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+@keyframes delibotFaqHeaderFocus {
+  from { opacity: 0; transform: scale(0.94); filter: blur(7px); }
+  to { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+@keyframes delibotFaqShutterIn {
+  from { opacity: 0; transform: translateX(-18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes delibotFaqAnswerIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .delibot-page-wrapper,
+  .delibot-page-wrapper *,
+  .delibot-page-wrapper *::before,
+  .delibot-page-wrapper *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS — COMPREHENSIVE MOBILE & TABLET
+   -------------------------------------------------------------------------- */
+
+/* ===== LARGE TABLETS / SMALL DESKTOPS (≤1200px) ===== */
+@media (max-width: 1200px) {
+  .delibot-hero__headline { font-size: 3.6rem; }
+  .delibot-hero__subheadline { font-size: 1.6rem; }
+
+  /* Stack all multi-column grids */
+  .delibot-radial-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .delibot-specs-tables-grid { grid-template-columns: 1fr; }
+  .delibot-enterprise-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .delibot-contact-v2-container { grid-template-columns: 1fr; gap: 2.5rem; }
+  .delibot-industries-grid-2x2 { grid-template-columns: 1fr 1fr; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .delibot-elevator-grid { gap: 2.5rem; }
+
+  /* Process strip */
+  .delibot-process-strip { max-width: 100%; padding: 2.5rem 2rem; }
+
+  /* Hero chips */
+  .delibot-hero-chips { padding: 1rem 1.5rem; gap: 0.5rem; }
+
+  /* Connector SVG — hide on stacked layout */
+  .delibot-connector-svg { display: none; }
+
+  /* Section titles scale down */
+  .delibot-section-title-dark { font-size: 2.4rem; }
+  .delibot-section-title-light { font-size: 2.6rem; }
+}
+
+/* ===== TABLETS (≤992px) ===== */
+@media (max-width: 992px) {
+  /* Sticky nav — hide desktop links */
+  .delibot-sticky-nav__links { display: none; }
+
+  /* Hero */
+  .delibot-hero__container { grid-template-columns: 1fr; }
+  .delibot-hero__left { padding-top: 20px; max-width: 100%; }
+  .delibot-hero__headline { font-size: 3rem; }
+  .delibot-hero__subheadline { font-size: 1.4rem; }
+  .delibot-hero-video { object-position: 62% center; }
+
+  /* Section 2 — comparison */
+  .delibot-comparison-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .delibot-vs-badge { display: none; }
+  .delibot-comparison-col { max-width: 600px; margin: 0 auto; }
+
+  /* Section 3 — capabilities radial */
+  .delibot-capability-card { max-width: 600px; margin: 0 auto; }
+
+  /* Section 3 — process strip */
+  .delibot-process-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .delibot-process-step:not(:last-child)::after { display: none; }
+  .delibot-step-arrow-badge { display: none; }
+
+  /* Disable process-step hover collapse/expand on touch devices */
+  .delibot-process-steps:hover .delibot-process-step:not(:hover) {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .delibot-process-step:hover {
+    transform: none;
+  }
+
+  /* Section 4 — elevator grid */
+  .delibot-elevator-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .delibot-highlight-card { max-width: 600px; margin: 0 auto; }
+
+  /* Section 5 — specs (already 1fr from 1200px) */
+
+  /* Section 6 — enterprise */
+  .delibot-enterprise-grid { grid-template-columns: 1fr; }
+
+  /* Industries */
+  .delibot-industries-grid { grid-template-columns: repeat(2, 1fr); }
+  .delibot-industries-grid-2x2 { grid-template-columns: 1fr 1fr; }
+
+  /* Value props / badges strip */
+  .delibot-value-props { grid-template-columns: repeat(2, 1fr); }
+  .delibot-badges-strip { gap: 1rem; }
+
+  /* Contact */
+  .delibot-contact-container { grid-template-columns: 1fr; text-align: center; }
+  .delibot-contact-info-list { align-items: center; }
+  .delibot-contact-v2-left { align-items: center; text-align: center; }
+
+  /* Section titles */
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 2.2rem; }
+
+  /* Hero chips — wrap */
+  .delibot-hero-chips {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+  }
+  .delibot-chip-divider { display: none; }
+
+  /* Mini process cards */
+  .delibot-mini-process { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== SMALL TABLETS / LARGE PHONES (≤768px) ===== */
+@media (max-width: 768px) {
+  /* Hero */
+  .delibot-hero { min-height: 80vh; padding: 4rem 1.25rem 1rem 1.25rem; }
+  .delibot-hero__headline { font-size: 2.5rem; }
+  .delibot-hero__subheadline { font-size: 1.25rem; }
+  .delibot-hero__supporting { font-size: 1rem; line-height: 1.55; }
+  .delibot-hero__left { padding-top: 10px; max-width: 100%; gap: 1rem; }
+  .delibot-hero-video { object-position: 65% center; }
+  .delibot-hero-left-shade {
+    background: linear-gradient(
+      90deg,
+      rgba(10, 10, 10, 0.94) 0%,
+      rgba(10, 10, 10, 0.82) 42%,
+      rgba(10, 10, 10, 0.46) 68%,
+      rgba(10, 10, 10, 0.12) 100%
+    );
+  }
+  .delibot-hero__badges { flex-wrap: wrap; gap: 0.5rem; }
+  .delibot-badge-pill { font-size: 0.82rem; padding: 0.4rem 0.85rem; }
+  .delibot-hero__actions { flex-direction: column; gap: 0.75rem; width: 100%; }
+  .delibot-btn-red, .delibot-btn-ghost { width: 100%; justify-content: center; text-align: center; }
+
+  /* All section padding */
+  .delibot-section-light,
+  .delibot-section-white,
+  .delibot-section-dark { padding: 4rem 1.25rem; }
+
+  /* Section header */
+  .delibot-section-header { margin: 0 auto 2.5rem auto; }
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 1.85rem; }
+  .delibot-section-subtext-dark,
+  .delibot-section-subtext-light { font-size: 0.95rem; }
+
+  /* Comparison */
+  .delibot-comparison-grid { gap: 1.5rem; }
+  .delibot-col-title { font-size: 1.2rem; }
+
+  /* Process strip */
+  .delibot-process-steps { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .delibot-process-strip { padding: 2rem 1.25rem; margin-top: 3rem; border-radius: 20px; }
+  .delibot-process-strip__title { font-size: 1.3rem; margin-bottom: 1.5rem; }
+
+  /* Mini process cards */
+  .delibot-mini-process { grid-template-columns: 1fr; gap: 1.25rem; }
+  .delibot-mini-card { max-width: 500px; margin: 0 auto; }
+
+  /* Specs tables */
+  .delibot-specs-tables-grid { gap: 1.5rem; }
+
+  /* Industries */
+  .delibot-industries-grid-2x2 { gap: 1.25rem; }
+
+  /* Value props */
+  .delibot-value-props { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* Hero chips */
+  .delibot-hero-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+  }
+  .delibot-chip-item { padding: 0.25rem 0.5rem; }
+  .delibot-chip-label { font-size: 0.78rem; }
+  .delibot-chip-icon { width: 26px; height: 26px; min-width: 26px; }
+  .delibot-chip-divider { display: none; }
+
+  /* Contact v2 */
+  .delibot-contact-v2-section { padding: 60px 20px; }
+  .delibot-contact-v2-container { gap: 2rem; }
+  .delibot-contact-v2-title { font-size: 1.6rem; }
+  .delibot-contact-v2-left { align-items: center; text-align: center; }
+  .delibot-contact-v2-actions { flex-direction: column; gap: 0.75rem; width: 100%; }
+  .delibot-v2-btn-white, .delibot-v2-btn-outline { width: 100%; justify-content: center; text-align: center; }
+
+  /* FAQ */
+  .delibot-faq-question { font-size: 0.95rem; padding: 1rem 1.25rem; }
+  .delibot-faq-accordion { gap: 12px; }
+
+  /* Enterprise */
+  .delibot-dashboard-mockup { padding: 1.5rem; }
+
+  /* Elevator */
+  .delibot-highlight-card { padding: 2rem; }
+
+  /* Badges */
+  .delibot-badges-strip { margin-top: 3rem; gap: 0.75rem; }
+  .delibot-capability-badge { font-size: 0.82rem; padding: 0.55rem 1rem; }
+}
+
+/* ===== PHONES (≤600px) ===== */
+@media (max-width: 600px) {
+  /* Hero */
+  .delibot-hero { min-height: 75vh; padding: 3.5rem 1rem 0.75rem 1rem; }
+  .delibot-hero__headline { font-size: 2rem; }
+  .delibot-hero__subheadline { font-size: 1.1rem; }
+  .delibot-hero__supporting { font-size: 0.88rem; line-height: 1.5; }
+  .delibot-hero__left { gap: 0.85rem; padding-top: 0; }
+  .delibot-hero__badges { gap: 0.5rem; }
+  .delibot-badge-pill { font-size: 0.72rem; padding: 0.35rem 0.7rem; gap: 0.35rem; }
+  .delibot-hero__actions { gap: 0.6rem; }
+  .delibot-btn-red, .delibot-btn-ghost { font-size: 0.85rem; padding: 0.65rem 1.25rem; }
+
+  /* Hero chips — stack vertical */
+  .delibot-hero-chips {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem;
+    gap: 0.35rem;
+    border-radius: 10px;
+  }
+  .delibot-chip-item {
+    justify-content: center;
+    padding: 0.4rem 0.75rem;
+  }
+  .delibot-chip-divider { display: none; }
+
+  /* All section padding */
+  .delibot-section-light,
+  .delibot-section-white,
+  .delibot-section-dark { padding: 3rem 1rem; }
+
+  /* Section header */
+  .delibot-section-header { margin: 0 auto 2rem auto; }
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 1.55rem; }
+  .delibot-section-subtext-dark,
+  .delibot-section-subtext-light { font-size: 0.88rem; }
+
+  /* Comparison */
+  .delibot-comparison-grid { gap: 1.25rem; }
+  .delibot-col-title { font-size: 1.05rem; }
+  .delibot-col-header { padding: 0.75rem 1rem; }
+  .delibot-timeline-text { font-size: 0.82rem; }
+  .delibot-node { width: 24px; height: 24px; font-size: 0.7rem; }
+  .delibot-col-banner { font-size: 0.78rem; padding: 0.75rem 1rem; }
+
+  /* Process strip */
+  .delibot-process-steps { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .delibot-process-strip { padding: 1.5rem 1rem; margin-top: 2.5rem; border-radius: 16px; }
+  .delibot-process-strip__title { font-size: 1.1rem; margin-bottom: 1.25rem; }
+  .delibot-step-num { font-size: 0.7rem; padding: 0.35rem 0.75rem; }
+  .delibot-step-label { font-size: 0.82rem; }
+
+  /* Mini process cards */
+  .delibot-mini-process { grid-template-columns: 1fr; gap: 1rem; }
+  .delibot-mini-card { padding: 1rem; }
+
+  /* Specs */
+  .delibot-specs-tables-grid { gap: 1.25rem; }
+  .delibot-spec-table th,
+  .delibot-spec-table td { padding: 0.6rem 0.85rem; font-size: 0.78rem; }
+  .delibot-table-header { padding: 0.85rem 1rem; }
+  .delibot-table-title { font-size: 0.95rem; }
+
+  /* Industries */
+  .delibot-industries-grid { grid-template-columns: 1fr; }
+  .delibot-industries-grid-2x2 { grid-template-columns: 1fr; max-width: 100%; }
+  .delibot-usecase-card-2x2 { padding: 1rem; }
+
+  /* Value props */
+  .delibot-value-props { grid-template-columns: 1fr; gap: 0.85rem; }
+  .delibot-prop-card { padding: 1.25rem; }
+
+  /* Badges */
+  .delibot-badges-strip { gap: 0.6rem; margin-top: 2.5rem; }
+  .delibot-capability-badge { font-size: 0.75rem; padding: 0.45rem 0.85rem; }
+
+  /* FAQ */
+  .delibot-faq-question { font-size: 0.88rem; padding: 0.85rem 1rem; }
+  .delibot-faq-answer { padding: 0 1rem 1rem 1rem; }
+  .delibot-faq-answer p { font-size: 0.85rem; }
+  .delibot-faq-accordion { gap: 10px; }
+
+  /* Contact */
+  .delibot-contact-v2-section { padding: 40px 16px; min-height: auto; }
+  .delibot-contact-v2-container { gap: 1.5rem; padding: 0; }
+  .delibot-contact-v2-title { font-size: 1.3rem; }
+  .delibot-contact-v2-details { gap: 1rem; }
+  .delibot-contact-v2-text { font-size: 0.82rem; }
+  .delibot-contact-v2-link { font-size: 0.88rem; }
+  .delibot-banner-img-wrap { aspect-ratio: 4 / 3; }
+
+  /* Elevator */
+  .delibot-highlight-card { padding: 1.5rem; border-radius: 16px; }
+  .delibot-highlight-card h3 { font-size: 1.3rem; }
+
+  /* Enterprise */
+  .delibot-dashboard-mockup { padding: 1.25rem; border-radius: 16px; }
+  .delibot-dashboard-title { font-size: 0.95rem; }
+  .delibot-dashboard-stat-value { font-size: 1.4rem; }
+  .delibot-dashboard-stat-label { font-size: 0.7rem; }
+
+  /* Sticky nav */
+  .delibot-sticky-nav__container { padding: 0.6rem 1rem; }
+  .delibot-sticky-nav__logo-badge { font-size: 0.9rem; padding: 0.18rem 0.45rem; }
+  .delibot-sticky-nav__tagline { font-size: 0.68rem; }
+  .delibot-sticky-nav__brand { gap: 0.6rem; }
+}
+
+/* ===== VERY SMALL PHONES (≤400px) ===== */
+@media (max-width: 400px) {
+  .delibot-hero { padding: 3rem 0.75rem 0.5rem 0.75rem; }
+  .delibot-hero__headline { font-size: 1.75rem; }
+  .delibot-hero__subheadline { font-size: 0.95rem; }
+  .delibot-hero__supporting { font-size: 0.82rem; }
+
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 1.35rem; }
+  .delibot-section-subtext-dark,
+  .delibot-section-subtext-light { font-size: 0.82rem; }
+
+  .delibot-section-light,
+  .delibot-section-white,
+  .delibot-section-dark { padding: 2.5rem 0.75rem; }
+
+  .delibot-hero-chips { padding: 0.6rem; }
+  .delibot-chip-label { font-size: 0.7rem; }
+  .delibot-chip-icon { width: 22px; height: 22px; min-width: 22px; }
+
+  .delibot-process-steps { grid-template-columns: 1fr; gap: 1rem; }
+  .delibot-process-strip { padding: 1.25rem 0.75rem; border-radius: 14px; }
+
+  .delibot-comparison-col { padding: 1rem; }
+  .delibot-col-title { font-size: 0.95rem; }
+  .delibot-timeline-text { font-size: 0.78rem; }
+
+  .delibot-contact-v2-section { padding: 30px 12px; }
+  .delibot-contact-v2-title { font-size: 1.15rem; }
+
+  .delibot-faq-question { font-size: 0.82rem; padding: 0.75rem 0.85rem; }
+
+  .delibot-sticky-nav__container { padding: 0.5rem 0.75rem; }
+  .delibot-sticky-nav__logo-badge { font-size: 0.82rem; }
+  .delibot-sticky-nav__tagline { display: none; }
+}
+
+
+/* ===== LARGE TABLETS / SMALL DESKTOPS ===== */
+@media (max-width: 1200px) {
+  .delibot-hero__headline { font-size: 3.6rem; }
+  .delibot-radial-grid { grid-template-columns: 1fr; }
+  .delibot-specs-tables-grid { grid-template-columns: 1fr; }
+  .delibot-enterprise-grid { grid-template-columns: 1fr; }
+  .delibot-contact-v2-container { grid-template-columns: 1fr; }
+  .delibot-industries-grid-2x2 { grid-template-columns: 1fr; max-width: 600px; }
+  .delibot-process-strip { max-width: 100%; }
+  .delibot-hero-chips { padding: 1rem 1.5rem; gap: 0.5rem; }
+}
+
+/* ===== TABLETS ===== */
+@media (max-width: 992px) {
+  .delibot-sticky-nav__links { display: none; }
+  .delibot-hero__container { grid-template-columns: 1fr; }
+  .delibot-hero__left { padding-top: 20px; }
+  .delibot-comparison-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .delibot-vs-badge { display: none; }
+  .delibot-elevator-grid { grid-template-columns: 1fr; }
+  .delibot-process-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .delibot-process-step:not(:last-child)::after { display: none; }
+  .delibot-step-arrow-badge { display: none; }
+  .delibot-industries-grid { grid-template-columns: repeat(2, 1fr); }
+  .delibot-contact-container { grid-template-columns: 1fr; text-align: center; }
+  .delibot-contact-info-list { align-items: center; }
+  .delibot-value-props { grid-template-columns: repeat(2, 1fr); }
+  .delibot-badges-strip { gap: 1rem; }
+  .delibot-hero-chips {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+  }
+  .delibot-chip-divider { display: none; }
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 2.2rem; }
+  .delibot-hero__headline { font-size: 3.2rem; }
+  .delibot-hero__subheadline { font-size: 1.5rem; }
+
+  /* Disable the process-step hover collapse/expand on touch devices */
+  .delibot-process-steps:hover .delibot-process-step:not(:hover) {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .delibot-process-step:hover {
+    transform: none;
+  }
+}
+
+/* ===== SMALL TABLETS / LARGE PHONES ===== */
+@media (max-width: 768px) {
+  .delibot-hero { min-height: 80vh; padding: 4rem 1.25rem 0.75rem 1.25rem; }
+  .delibot-hero__headline { font-size: 2.6rem; }
+  .delibot-hero__subheadline { font-size: 1.3rem; }
+  .delibot-hero__supporting { font-size: 1rem; }
+  .delibot-hero__left { padding-top: 10px; max-width: 100%; }
+  .delibot-hero-video { object-position: 66% center; }
+
+  .delibot-section-light,
+  .delibot-section-white,
+  .delibot-section-dark { padding: 4rem 1.25rem; }
+
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 1.9rem; }
+  .delibot-section-subtext-dark,
+  .delibot-section-subtext-light { font-size: 1rem; }
+
+  .delibot-comparison-grid { gap: 1.5rem; }
+  .delibot-process-steps { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .delibot-process-strip { padding: 2rem 1.25rem; margin-top: 3rem; }
+  .delibot-process-strip__title { font-size: 1.3rem; margin-bottom: 1.5rem; }
+
+  .delibot-mini-process { grid-template-columns: 1fr; gap: 1.25rem; }
+  .delibot-specs-tables-grid { gap: 1.5rem; }
+  .delibot-industries-grid-2x2 { gap: 1.25rem; }
+  .delibot-value-props { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .delibot-hero-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+  }
+  .delibot-chip-item { padding: 0.25rem 0.5rem; }
+  .delibot-chip-label { font-size: 0.78rem; }
+  .delibot-chip-icon { width: 26px; height: 26px; min-width: 26px; }
+  .delibot-chip-divider { display: none; }
+
+  .delibot-contact-v2-container { gap: 2rem; }
+  .delibot-contact-v2-title { font-size: 1.6rem; }
+
+  .delibot-faq-question { font-size: 0.95rem; padding: 1rem 1.25rem; }
+}
+
+/* ===== PHONES ===== */
+@media (max-width: 600px) {
+  .delibot-hero {
+    min-height: auto;
+    padding: clamp(205px, 58vw, 245px) 0 0;
+    gap: 0;
+    background: #F3F4F6;
+  }
+  .delibot-hero-bg-wrapper {
+    bottom: auto;
+    height: clamp(235px, 66vw, 275px);
+  }
+  .delibot-hero-video {
+    object-position: 68% center;
+  }
+  .delibot-hero-left-shade { display: none; }
+  .delibot-hero .dcam-tag-text {
+    color: #374151;
+  }
+  .delibot-hero__headline {
+    color: #0F172A;
+    font-size: 2rem;
+  }
+  .delibot-hero__subheadline {
+    color: #334155;
+    font-size: 1.15rem;
+  }
+  .delibot-hero__supporting {
+    color: #1E293B;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .delibot-hero__container {
+    position: relative;
+    z-index: 3;
+  }
+  .delibot-hero__left {
+    width: 100%;
+    gap: 0.85rem;
+    padding: 1.8rem 1.25rem 2rem;
+    border: 0;
+    border-radius: 28px 28px 0 0;
+    background:
+      radial-gradient(circle at 96% 4%, rgba(225, 6, 0, 0.09), transparent 34%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(248, 250, 252, 0.93));
+    box-shadow:
+      0 -16px 42px rgba(15, 23, 42, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px) saturate(1.08);
+    -webkit-backdrop-filter: blur(16px) saturate(1.08);
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+  }
+  .delibot-hero__left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1.25rem;
+    width: 72px;
+    height: 3px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(90deg, var(--delibot-red), var(--delibot-red-bright));
+    box-shadow: 0 4px 14px rgba(225, 6, 0, 0.28);
+  }
+  .delibot-hero__badges {
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .delibot-badge-pill { font-size: 0.75rem; padding: 0.35rem 0.75rem; }
+  .delibot-hero__actions { gap: 0.75rem; }
+  .delibot-btn-red, .delibot-btn-ghost { font-size: 0.85rem; padding: 0.65rem 1.25rem; }
+
+  .delibot-hero-chips {
+    display: none;
+  }
+  .delibot-chip-item {
+    min-width: 0;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0.35rem 0.4rem;
+  }
+  .delibot-chip-item:last-child { grid-column: 1 / -1; justify-self: center; }
+  .delibot-chip-divider { display: none; }
+
+  .delibot-section-light,
+  .delibot-section-white,
+  .delibot-section-dark { padding: 3rem 1rem; }
+
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 1.6rem; }
+  .delibot-section-subtext-dark,
+  .delibot-section-subtext-light { font-size: 0.92rem; }
+
+  .delibot-comparison-grid { gap: 1.25rem; }
+  .delibot-col-title { font-size: 1.1rem; }
+
+  .delibot-process-steps { grid-template-columns: 1fr; gap: 1.5rem; }
+  .delibot-process-strip { padding: 1.5rem 1rem; margin-top: 2.5rem; border-radius: 16px; }
+  .delibot-process-strip__title { font-size: 1.15rem; margin-bottom: 1.25rem; }
+  .delibot-step-num { font-size: 0.7rem; }
+  .delibot-step-label { font-size: 0.85rem; }
+
+  .delibot-mini-process { grid-template-columns: 1fr; gap: 1rem; }
+  .delibot-mini-card { padding: 1rem; }
+
+  .delibot-specs-tables-grid { gap: 1.25rem; }
+  .delibot-spec-table th,
+  .delibot-spec-table td { padding: 0.7rem 1rem; font-size: 0.82rem; }
+  .delibot-table-header { padding: 1rem 1.25rem; }
+  .delibot-table-title { font-size: 1rem; }
+
+  .delibot-industries-grid { grid-template-columns: 1fr; }
+  .delibot-industries-grid-2x2 { grid-template-columns: 1fr; }
+  .delibot-value-props { grid-template-columns: 1fr; gap: 0.85rem; }
+  .delibot-prop-card { padding: 1.25rem; }
+
+  .delibot-badges-strip { gap: 0.75rem; }
+  .delibot-capability-badge { font-size: 0.78rem; padding: 0.5rem 1rem; }
+
+  .delibot-faq-question { font-size: 0.88rem; padding: 0.85rem 1rem; }
+  .delibot-faq-answer p { font-size: 0.85rem; }
+
+  .delibot-contact-v2-container { gap: 1.5rem; padding: 0 0.5rem; }
+  .delibot-contact-v2-title { font-size: 1.35rem; }
+  .delibot-contact-v2-actions { flex-direction: column; gap: 0.75rem; width: 100%; }
+  .delibot-v2-btn-white, .delibot-v2-btn-outline { width: 100%; justify-content: center; text-align: center; }
+  .delibot-banner-img-wrap { aspect-ratio: 4 / 3; }
+
+  .delibot-sticky-nav__container { padding: 0.65rem 1rem; }
+  .delibot-sticky-nav__logo-badge { font-size: 0.95rem; padding: 0.2rem 0.5rem; }
+  .delibot-sticky-nav__tagline { font-size: 0.7rem; }
+}
+
+/* ===== VERY SMALL PHONES ===== */
+@media (max-width: 400px) {
+  .delibot-hero__headline { font-size: 1.85rem; }
+  .delibot-hero__subheadline { font-size: 1rem; }
+  .delibot-section-title-dark,
+  .delibot-section-title-light { font-size: 1.4rem; }
+  .delibot-hero-chips { padding: 0.6rem; gap: 0.3rem; }
+  .delibot-chip-item { gap: 0.4rem; padding: 0.3rem; }
+  .delibot-chip-label { font-size: 0.72rem; }
+  .delibot-chip-icon { width: 22px; height: 22px; min-width: 22px; }
+}
+
+/* Tablet-only compositions. */
+@media (min-width: 601px) and (max-width: 992px) {
+  .delibot-hero {
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .delibot-hero__container {
+    margin: 0 auto;
+  }
+
+  .delibot-hero__left {
+    padding-top: 0;
+  }
+
+  .delibot-hero-chips {
+    margin: 0 auto;
+  }
+
+  #capabilities .delibot-section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .delibot-radial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "visual visual"
+      "left right";
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .delibot-radial-grid > .delibot-radial-col:first-of-type {
+    grid-area: left;
+  }
+
+  .delibot-radial-grid > .delibot-radial-center {
+    grid-area: visual;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .delibot-radial-grid > .delibot-radial-col:last-of-type {
+    grid-area: right;
+  }
+
+  .delibot-radial-col {
+    gap: 1.25rem;
+  }
+
+  .delibot-capability-card {
+    width: 100%;
+    max-width: none;
+    min-height: 132px;
+    margin: 0;
+    padding: 1.25rem;
+    box-sizing: border-box;
+  }
+
+  .delibot-sec3-img-container {
+    width: min(100%, 520px);
+    min-height: 0;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 3 / 4;
+    background: #FFFFFF;
+    border-radius: 24px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+  }
+
+  .delibot-sec3-img-container.delibot-sec3-focused {
+    transform: none;
+  }
+
+  .delibot-sec3-center-img {
+    object-fit: contain;
+    object-position: center;
+    transform: none !important;
+    filter: brightness(1) !important;
+  }
+}

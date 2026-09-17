@@ -1,0 +1,297 @@
+/* ========================================================================== 
+   STARSHIP-STYLE CONTACT MODAL
+   ========================================================================== */
+
+.starship-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  animation: starshipFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes starshipFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.starship-modal-card {
+  position: relative;
+  background: #1f1f20;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 550px;
+  padding: 42px 50px 40px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 1px rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  animation: starshipPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes starshipPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.starship-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.starship-modal-close {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 200;
+  cursor: pointer;
+  padding: 0;
+  line-height: 0.7;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.starship-modal-close:hover {
+  opacity: 1;
+}
+
+.starship-modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.starship-modal-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 2.8rem;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+}
+
+.starship-modal-description {
+  margin: 0 0 24px;
+  color: #a1a1aa;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.starship-field-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.starship-input {
+  width: 100%;
+  height: 60px;
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 30px;
+  padding: 0 26px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #111111;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.starship-input::placeholder {
+  color: #111111;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.starship-input:focus {
+  border-color: #3b38d8;
+  box-shadow: 0 0 0 3px rgba(59, 56, 216, 0.25);
+}
+
+.starship-input.input-err {
+  border-color: #ff3b30;
+}
+
+.starship-textarea.input-err {
+  border-color: #ff3b30;
+}
+
+.starship-textarea {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 20px;
+  padding: 20px 26px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #111111;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+  min-height: 220px;
+  transition: all 0.2s ease;
+}
+
+.starship-textarea::placeholder {
+  color: #111111;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.starship-textarea:focus {
+  border-color: #3b38d8;
+  box-shadow: 0 0 0 3px rgba(59, 56, 216, 0.25);
+}
+
+.starship-err-text {
+  font-size: 12px;
+  color: #ff6b6b;
+  margin-top: 4px;
+  padding-left: 18px;
+  font-weight: 500;
+}
+
+.starship-submit-error {
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 59, 48, 0.45);
+  border-radius: 12px;
+  background: rgba(255, 59, 48, 0.1);
+  color: #ff9b96;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.starship-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.starship-submit-btn {
+  background: #3b38d8;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(59, 56, 216, 0.4);
+  transition: all 0.2s ease;
+  min-width: 110px;
+}
+
+.starship-submit-btn:hover {
+  background: #312ec0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 56, 216, 0.5);
+}
+
+.starship-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.starship-success-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.starship-success-check {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(59, 56, 216, 0.15);
+  border: 2px solid #3b38d8;
+  color: #3b38d8;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.starship-success-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.starship-success-msg {
+  font-size: 14px;
+  color: #a1a1aa;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.starship-success-actions {
+  margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+  .starship-modal-backdrop {
+    padding: 14px;
+  }
+
+  .starship-modal-card {
+    max-height: calc(100vh - 28px);
+    overflow-y: auto;
+    padding: 28px 22px 26px;
+  }
+
+  .starship-modal-header {
+    margin-bottom: 24px;
+  }
+
+  .starship-modal-title {
+    font-size: 2rem;
+  }
+
+  .starship-modal-close {
+    font-size: 36px;
+  }
+
+  .starship-field-group {
+    margin-bottom: 16px;
+  }
+
+  .starship-input {
+    height: 54px;
+  }
+
+  .starship-textarea {
+    min-height: 150px;
+  }
+}
