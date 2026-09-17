@@ -11,9 +11,9 @@ The small star watermark near the lower-right corner is repaired with FFmpeg's s
 ## Assets and regeneration
 
 - Homepage assets: `src/assets/frame_sequence/home_60fps/frame_0001.webp` through `frame_1212.webp`.
-- Cleaned, silent 60 fps MP4: `../artifacts/homepage/home-clean-60fps.mp4`.
+- The optional cleaned MP4 was removed during video cleanup; the exporter now writes only WebP frames.
 - Sequence metadata: `src/pages/homeSequence.json`.
-- Reproduction: `bash scripts/prepare-home-sequence.sh /path/to/VN20260916_103709.mp4` from the frontend directory. Requires FFmpeg with libwebp and libx264. The script intentionally refuses existing output frames; archive the previous output before regenerating.
+- Reproduction: `bash scripts/prepare-home-sequence.sh /path/to/VN20260916_103709.mp4` from the frontend directory. Requires FFmpeg with libwebp and delogo. The script intentionally refuses existing output frames; archive the previous output before regenerating.
 
 ## Chapter timing
 

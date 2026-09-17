@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import deliheroVideo from '../../assets/images/delibot/lightbackground.mp4';
+import deliheroImage from '../../assets/images/delibot/lightbackground.webp';
 import traditionalBotImg from '../../assets/images/delibot/traditonalbot.jpeg';
 import delibotSec2Img from '../../assets/images/delibot/delibotsec2.webp';
 import delibotSec3Img from '../../assets/images/delibot/delibotsec3.webp';
@@ -252,19 +252,15 @@ export default function DelibotPage() {
         ref={overviewRef}
         className={`delibot-hero delibot-animated-section ${visibleSections['overview'] ? 'delibot-section-visible' : 'delibot-section-exit'}`}
       >
-        {/* Full-bleed hero video background & left text shade overlay */}
+        {/* Full-bleed hero image and left text shade overlay */}
         <div className="delibot-hero-bg-wrapper">
-          <video
-            className="delibot-hero-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
+          <img
+            className="delibot-hero-image"
+            src={deliheroImage}
+            alt=""
+            fetchPriority="high"
             aria-hidden="true"
-          >
-            <source src={deliheroVideo} type="video/mp4" />
-          </video>
+          />
           <div className="delibot-hero-left-shade" aria-hidden="true" />
         </div>
 

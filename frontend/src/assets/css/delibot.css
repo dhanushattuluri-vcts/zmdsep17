@@ -606,7 +606,7 @@
 }
 
 /* Applying Heavy Smooth Entry Animations when Hero Section is Visible */
-.delibot-hero.delibot-section-visible .delibot-hero-video {
+.delibot-hero.delibot-section-visible .delibot-hero-image {
   animation: dlbHeroBgReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -650,7 +650,7 @@
 }
 
 /* Hero Specific Exit Animations */
-.delibot-hero.delibot-section-exit .delibot-hero-video {
+.delibot-hero.delibot-section-exit .delibot-hero-image {
   transform: scale(0.96);
   opacity: 0.3;
   filter: brightness(0.5) blur(6px);
@@ -659,7 +659,7 @@
               filter 0.6s ease;
 }
 
-/* Full-bleed hero background video & controlled left-side gradient overlay */
+/* Full-bleed hero background image & controlled left-side gradient overlay */
 .delibot-hero-bg-wrapper {
   position: absolute;
   inset: 0;
@@ -669,7 +669,7 @@
   overflow: hidden;
 }
 
-.delibot-hero-video {
+.delibot-hero-image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -2709,7 +2709,7 @@
   .delibot-hero__left { padding-top: 20px; max-width: 100%; }
   .delibot-hero__headline { font-size: 3rem; }
   .delibot-hero__subheadline { font-size: 1.4rem; }
-  .delibot-hero-video { object-position: 62% center; }
+  .delibot-hero-image { object-position: 62% center; }
 
   /* Section 2 — comparison */
   .delibot-comparison-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -2785,7 +2785,7 @@
   .delibot-hero__subheadline { font-size: 1.25rem; }
   .delibot-hero__supporting { font-size: 1rem; line-height: 1.55; }
   .delibot-hero__left { padding-top: 10px; max-width: 100%; gap: 1rem; }
-  .delibot-hero-video { object-position: 65% center; }
+  .delibot-hero-image { object-position: 65% center; }
   .delibot-hero-left-shade {
     background: linear-gradient(
       90deg,
@@ -3081,7 +3081,7 @@
   .delibot-hero__subheadline { font-size: 1.3rem; }
   .delibot-hero__supporting { font-size: 1rem; }
   .delibot-hero__left { padding-top: 10px; max-width: 100%; }
-  .delibot-hero-video { object-position: 66% center; }
+  .delibot-hero-image { object-position: 66% center; }
 
   .delibot-section-light,
   .delibot-section-white,
@@ -3133,7 +3133,7 @@
     bottom: auto;
     height: clamp(235px, 66vw, 275px);
   }
-  .delibot-hero-video {
+  .delibot-hero-image {
     object-position: 68% center;
   }
   .delibot-hero-left-shade { display: none; }

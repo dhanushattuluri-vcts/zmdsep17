@@ -9,9 +9,9 @@ The fixed lower-right star watermark is repaired on all four clips using FFmpeg 
 ## Outputs
 
 - Website frames: `src/assets/frame_sequence/nv_hp_60fps/frame_0001.webp` through `frame_1920.webp`.
-- Cleaned silent video: `../artifacts/homepage/nv-hp-clean-60fps.mp4`.
+- The optional cleaned MP4 was removed during video cleanup; the exporter now writes only WebP frames.
 - Timing metadata: `src/pages/homeSequence.json`.
-- Recreate with `bash scripts/prepare-nv-home-sequence.sh /path/to/extracted/nv-hp`. FFmpeg must support libwebp, libx264, and delogo. The script refuses existing output frames to avoid mixing exports.
+- Recreate with `bash scripts/prepare-nv-home-sequence.sh /path/to/extracted/nv-hp`. FFmpeg must support libwebp and delogo. The script refuses existing output frames to avoid mixing exports.
 
 The previous export remains in its original folder, but the homepage imports only `nv_hp_60fps`.
 
