@@ -60,7 +60,7 @@ export default function HomeStory({ controllerRef }) {
           <div className="home-story-current" aria-live="polite" aria-atomic="true"><span>{String(activeChapter + 1).padStart(2, '0')}<span className="home-chapter-total"> / {String(STORY_CHAPTERS.length).padStart(2, '0')}</span></span><strong>{STORY_CHAPTERS[activeChapter].label}</strong></div>
           <div className="home-story-segments">{STORY_CHAPTERS.map((chapter, index) => <button key={chapter.label} type="button" aria-label={`Go to chapter ${index + 1}: ${chapter.label}`} aria-current={index === activeChapter ? 'step' : undefined} onClick={() => select(index)} title={chapter.label}><span className="home-segment-track"><span data-segment-fill /></span></button>)}</div>
         </nav>
-        <span className="home-story-instruction" aria-hidden="true">Scroll to explore <span>↓</span></span>
+        <span className={`home-story-instruction ${activeChapter > 0 ? 'is-hidden' : ''}`} aria-hidden="true">Scroll to explore <span>↓</span></span>
       </div>
     </section>
   );

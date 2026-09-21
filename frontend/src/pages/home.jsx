@@ -53,7 +53,7 @@ export default function HomePage() {
           </div>
 
           <div className="hmpg-closing-visual">
-            <img src={HOME_FRAMES[HOME_FRAMES.length - 1]} alt="ZMD AI surveillance drone and Delibot X1 autonomous robot" />
+            <img src={HOME_FRAMES[HOME_FRAMES.length - 1]} alt="ZMD cameras, sensors, edge systems, AI servers, drone and Delibot X1 together" />
             <div className="hmpg-closing-visual-label">
               <span>One hardware partner</span>
               <strong>Sense · Compute · Act</strong>

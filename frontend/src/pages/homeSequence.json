@@ -4,21 +4,22 @@
     "1.mp4",
     "2.mp4",
     "3.mp4",
-    "4.mp4"
+    "4.mp4",
+    "6.mp4"
   ],
   "sourceFps": 24,
   "fps": 60,
-  "frameCount": 1920,
+  "frameCount": 2340,
   "width": 1920,
   "height": 1080,
-  "durationSeconds": 32,
+  "durationSeconds": 39,
   "chapters": {
     "Physical AI": {
       "start": 0,
       "checkpoint": 0,
       "reveal": [
-        0,
-        0
+        25,
+        130
       ],
       "exit": [
         360,
@@ -57,9 +58,37 @@
         1760
       ],
       "exit": [
-        1940,
-        2000
+        1920,
+        2016
+      ]
+    },
+    "Together": {
+      "start": 2040,
+      "checkpoint": 2280,
+      "reveal": [
+        2070,
+        2160
+      ],
+      "exit": [
+        2400,
+        2460
       ]
     }
+  },
+  "clipBoundaries": [
+    480,
+    960,
+    1440,
+    1920
+  ],
+  "appendedClip": {
+    "source": "6.mp4",
+    "trimStartSeconds": 1,
+    "durationSeconds": 7,
+    "frameCount": 420,
+    "width": 1280,
+    "height": 720,
+    "sourceFps": 24,
+    "startFrame": 1920
   }
 }

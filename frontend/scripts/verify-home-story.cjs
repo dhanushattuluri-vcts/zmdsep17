@@ -31,13 +31,19 @@ function passed(name,data={}) {checks.push({name,...data});console.log('PASS',na
  await home();assert.equal(await wheel(120,{ctrlKey:true}),false);assert.equal(await wheel(10,{deltaX:120}),false);assert.equal((await state()).target,0);passed('Zoom and horizontal gestures are not intercepted');
  await page.evaluate(()=>document.activeElement.blur());await page.keyboard.press('ArrowDown');await settle(64);await page.keyboard.press('PageDown');await settle(128);passed('Keyboard advances and settles');
  await wheel(120);await page.waitForTimeout(90);await seek(430);await page.waitForTimeout(600);assert.equal((await state()).frame,430);passed('External document scroll cancels animation without fighting scrollbar input');
+ if(sequence.appendedClip){
+  const join=sequence.appendedClip.startFrame;
+  await home();await seek(join-10);await wheel(120);await settle(join+54);
+  await wheel(-120);await settle(join-10);
+  passed('A 64-frame gesture crosses the appended clip join in both directions');
+ }
  await seek(lastFrame-31);await page.mouse.move(900,600);await page.mouse.wheel(0,120);await settle(lastFrame);assert.ok(Math.abs((await state()).y-(await state()).end)<=1);await page.waitForTimeout(200);assert.equal((await state()).y,(await state()).end);passed('Final story gesture lands on final frame without entering closing');
  await page.mouse.wheel(0,200);await page.waitForTimeout(300);assert.ok((await state()).y>(await state()).end);await page.mouse.wheel(0,-400);await page.waitForTimeout(450);assert.ok((await state()).frame<lastFrame);passed('Subsequent native scroll enters closing and reverse scroll re-enters story');
  await home();await seek(lastFrame-31);await page.evaluate(async()=>{for(const deltaY of [10,20,45,65,80,65,50,38,29,22,16,12,9,6,4,3,2,1]){document.querySelector('.home-desktop-stage').dispatchEvent(new WheelEvent('wheel',{bubbles:true,cancelable:true,deltaY}));await new Promise(r=>setTimeout(r,45));}});await settle(lastFrame);assert.ok(Math.abs((await state()).y-(await state()).end)<=1);passed('Trackpad momentum after settling cannot spill into closing');
  await page.getByRole('button',{name:closingButton,exact:false}).click();await page.waitForTimeout(320);await home();passed('Chapter selection after closing survives a delayed native scroll event');
  // Inspect the new combined clip's endpoints and
  // both sides of chapter switches at all three requested desktop dimensions.
- const clipBoundaries=sequence.clips ? sequence.clips.slice(1).map((_,i)=>(i+1)*sequence.frameCount/sequence.clips.length) : [];
+ const clipBoundaries=sequence.clipBoundaries || [];
  const frames=[...new Set([0,...[...chapters.slice(1).map(([,c])=>c.start),...clipBoundaries].flatMap(f=>[f-1,f,f+1]),lastFrame])].sort((a,b)=>a-b);
  for(const [width,height] of [[1366,768],[1440,900],[1920,1080]]){
   await page.setViewportSize({width,height});await home();await page.waitForTimeout(200);
@@ -61,7 +67,12 @@ function passed(name,data={}) {checks.push({name,...data});console.log('PASS',na
    assert.equal(await page.locator(`[data-scene-copy="${index}"]`).evaluate(e=>+getComputedStyle(e).opacity),1);
   }
   assert.ok(Math.max(...positions)-Math.min(...positions)>height*.35);
-  passed(`SENSE / COMPUTE / ACT have independent compositions and reversible frame-driven reveals at ${width}`);
+  passed(`Product chapters and finale have independent compositions and reversible frame-driven reveals at ${width}`);
+  const sense=sequence.chapters.Sense;
+  await seek(Math.round((sense.reveal[0]+sense.reveal[1])/2));
+  const captionOpacity=await page.locator('.home-scene-sense .home-scene-caption > *').evaluateAll(nodes=>nodes.map(e=>+getComputedStyle(e).opacity));
+  assert.ok(captionOpacity[0]>captionOpacity[1]&&captionOpacity[1]>captionOpacity[2]);
+  passed(`Caption details reveal in sequence at ${width}`);
   await page.getByRole('button',{name:closingButton,exact:false}).click();await page.waitForTimeout(350);await page.screenshot({path:`${out}/${width}-closing.png`});
   const closing=await page.locator('.hmpg-closing-actions').evaluate(e=>e.getBoundingClientRect().toJSON());assert.ok(closing.bottom<=height);assert.ok(closing.top>=0);assert.ok(await page.locator('.desktop-header').evaluate(e=>e.classList.contains('home-glass')));
   passed(`Visual states, chapter controls, complete closing and 16-frame memory cap at ${width} × ${height}`,{sampledFrames:frames.length});

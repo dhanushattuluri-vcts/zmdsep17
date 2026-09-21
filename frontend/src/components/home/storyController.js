@@ -86,17 +86,18 @@ export function createStoryController({ story, canvas, onChapter, onFailure }) {
       lastDrawAt = now;
     }
     if (syncDocument) scrollToFrame(displayed);
-    updateSceneCopy(story, displayed);
+    const copyMoving = updateSceneCopy(story, displayed, now);
     updateChapter();
     // Nonvisual diagnostics also make production interaction regression checks
     // possible without exposing a debug panel or updating React on every frame.
     story.dataset.displayedFrame = String(displayed);
     story.dataset.targetFrame = String(Math.round(target));
-    story.dataset.moving = String(moving || displayed !== Math.round(target));
+    story.dataset.moving = String(moving || displayed !== Math.round(target) || copyMoving);
+    story.dataset.copyMoving = String(copyMoving);
     story.dataset.decodedFrames = String(renderer.stats.decoded);
     story.dataset.renderAgeMs = String(Math.round(now - lastDrawAt));
     if (!moving && renderer.failedTarget) onFailure();
-    if (moving) wake();
+    if (moving || copyMoving) wake();
     // When settled but awaiting a decode, the loader wakes us on completion.
   }
 

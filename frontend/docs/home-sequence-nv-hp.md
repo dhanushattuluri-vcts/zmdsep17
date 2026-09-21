@@ -1,5 +1,7 @@
 # NV homepage sequence
 
+The original sequence documented here now has a [7-second appended finale](home-finale-2026-09-18.md), bringing the current homepage to 2,340 frames and 39 seconds, with a TOGETHER chapter after ACT.
+
 The homepage uses the four videos supplied in `/home/dhanush/Videos/nv-hp.zip`, in numerical order: `1.mp4`, `2.mp4`, `3.mp4`, `4.mp4`. Each source is 8 seconds, 1920 × 1080, and 24 fps. Source files are unchanged.
 
 The combined sequence lasts 32 seconds and contains 1,920 WebP frames at 60 fps. Resampling repeats source frames; it does not create new intermediate motion. Clip boundaries remain as supplied without adding transitions or trimming footage.

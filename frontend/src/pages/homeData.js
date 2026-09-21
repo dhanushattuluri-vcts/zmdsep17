@@ -12,7 +12,14 @@ const frameModules = import.meta.glob(
   { eager: true, query: '?url', import: 'default' },
 );
 
-export const HOME_FRAMES = orderedUrls(frameModules);
+const finaleModules = import.meta.glob(
+  '../assets/frame_sequence/nv_hp_finale_60fps/frame_*.webp',
+  { eager: true, query: '?url', import: 'default' },
+);
+
+// Each folder is independently numbered. Append after sorting each sequence,
+// preserving every original frame and the exact old-to-new join at frame 1920.
+export const HOME_FRAMES = [...orderedUrls(frameModules), ...orderedUrls(finaleModules)];
 if (HOME_FRAMES.length !== HOME_SEQUENCE.frameCount) {
   throw new Error(`Homepage sequence requires ${HOME_SEQUENCE.frameCount} frames; found ${HOME_FRAMES.length}.`);
 }
@@ -58,6 +65,16 @@ export const HOME_CHAPTERS = [
     tagline: 'Bring intelligence to life.',
     description: 'Autonomous drones and Delibot X1. In the air. On the ground.',
     chips: ['AI drones', 'Autonomous robotics'],
+  },
+  {
+    label: 'Together',
+    scene: 'together',
+    phase: '04',
+    eyebrow: 'SENSE / COMPUTE / ACT',
+    heading: 'TOGETHER',
+    tagline: 'One ecosystem. Endless possibilities.',
+    description: 'From the first signal to the next action. All connected by ZMD.',
+    chips: ['One hardware partner'],
   },
   {
     label: 'Solutions',

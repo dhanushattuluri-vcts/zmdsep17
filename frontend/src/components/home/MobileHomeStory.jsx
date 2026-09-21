@@ -99,7 +99,7 @@ export default function HomeStory() {
   const staticMode = reducedMotion || frameLoadFailed;
 
   useLayoutEffect(() => {
-    if (!staticMode && storyRef.current) updateSceneCopy(storyRef.current, lastRenderedFrameRef.current);
+    if (!staticMode) rendererRef.current?.animateCopy();
   }, [activeChapter, staticMode]);
 
   useEffect(() => {
@@ -125,6 +125,17 @@ export default function HomeStory() {
     const concurrentLoads = window.matchMedia('(max-width: 767px)').matches ? 2 : 4;
     let activeLoads = 0;
     let disposed = false;
+    let copyRaf = 0;
+    const tickCopy = (now) => {
+      copyRaf = 0;
+      if (disposed || !storyRef.current) return;
+      const settling = updateSceneCopy(storyRef.current, lastRenderedFrameRef.current, now);
+      storyRef.current.dataset.copyMoving = String(settling);
+      if (settling) copyRaf = requestAnimationFrame(tickCopy);
+    };
+    const animateCopy = () => {
+      if (!disposed && !copyRaf) copyRaf = requestAnimationFrame(tickCopy);
+    };
     let requestedFrame = 0;
     let lastQueueCenter = 0;
 
@@ -187,7 +198,7 @@ export default function HomeStory() {
       if (!entry) return false;
       drawImage(entry);
       lastRenderedFrameRef.current = index;
-      if (storyRef.current) updateSceneCopy(storyRef.current, index);
+      animateCopy();
       return true;
     };
 
@@ -265,7 +276,7 @@ export default function HomeStory() {
       else showFrame(currentFrameRef.current);
     };
 
-    rendererRef.current = { showFrame, resize };
+    rendererRef.current = { showFrame, resize, animateCopy };
     showFrame(0, 1);
 
     const observer = new ResizeObserver(resize);
@@ -275,6 +286,7 @@ export default function HomeStory() {
 
     return () => {
       disposed = true;
+      cancelAnimationFrame(copyRaf);
       observer.disconnect();
       window.removeEventListener('resize', resize);
       document.removeEventListener('visibilitychange', resize);

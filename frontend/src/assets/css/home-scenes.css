@@ -19,6 +19,27 @@
 .home-phase-period { color: #f33b32; }
 .home-scene-tagline { margin: 0 0 9px; color: #fff; font: 500 clamp(18px, 1.5vw, 27px)/1.25 var(--display); letter-spacing: -.025em; }
 
+/* Supporting text follows the word reveal, instead of appearing all at once.
+   These values are driven by the displayed frame, including on reverse scroll. */
+[data-scene-copy] .home-scene-eyebrow,
+[data-scene-copy] .hmpg-eyebrow {
+  opacity: clamp(0, calc(var(--scene-reveal, 1) * 2), 1);
+  transform: translateY(calc((1 - var(--scene-reveal, 1)) * -12px));
+}
+[data-scene-copy] .home-scene-caption > *,
+.home-mobile-scene > .home-scene-tagline,
+.home-mobile-scene > .hmpg-description,
+.home-mobile-scene > .hmpg-chips {
+  --detail-order: 0;
+  --detail-reveal: clamp(0, calc(var(--scene-reveal, 1) * 1.8 - .4 - var(--detail-order) * .12), 1);
+  opacity: var(--detail-reveal);
+  transform: translateY(calc((1 - var(--detail-reveal)) * 22px));
+}
+[data-scene-copy] .home-scene-caption > :nth-child(2),
+.home-mobile-scene > .hmpg-description { --detail-order: 1; }
+[data-scene-copy] .home-scene-caption > :nth-child(3),
+.home-mobile-scene > .hmpg-chips { --detail-order: 2; }
+
 @media (min-width: 1024px) {
   .home-desktop-stage .home-scene-copy {
     --scene-opacity: 0;
@@ -34,13 +55,14 @@
     pointer-events: none;
   }
   .home-desktop-stage .home-scene-intro {
-    --scene-opacity: 1;
-    --scene-reveal: 1;
+    --scene-opacity: 0;
+    --scene-reveal: 0;
     top: max(108px, 12vh);
     width: min(760px, 48%);
   }
   .home-desktop-stage .home-scene-intro h1 { font-size: clamp(38px, 3.5vw, 66px); line-height: 1.02; }
-  .home-desktop-stage .home-scene-intro .home-scene-caption { max-width: 340px; margin-top: 20px; }
+  .home-desktop-stage .home-scene-intro .home-scene-caption { max-width: none; margin-top: 12px; }
+  .home-desktop-stage .home-scene-intro .home-scene-description { max-width: 100%; }
   .home-desktop-stage .home-scene-eyebrow { gap: 14px; margin-bottom: 14px; font-size: 10px; letter-spacing: .16em; }
   .home-desktop-stage .home-scene-eyebrow > span { color: #ff5146; }
   .home-desktop-stage .home-scene-description { margin: 0; max-width: 330px; font-size: clamp(13px, 1vw, 17px); line-height: 1.55; color: #d8d9d5; }
@@ -70,6 +92,22 @@
   .home-scene-act .home-scene-tagline { font-size: clamp(18px, 1.4vw, 25px); }
   .home-scene-act .home-scene-chips { display: none; }
 
+  /* The final pullback reunites the products. Keep the closing wordmark on
+     the open foreground floor, below all three product platforms. */
+  .home-desktop-stage .home-scene-together {
+    bottom: 12%;
+    display: grid;
+    grid-template-columns: auto minmax(220px, 330px);
+    justify-content: space-between;
+    align-items: end;
+    column-gap: 4vw;
+    transform: translate3d(0, calc(var(--scene-travel) * -.65), 0);
+  }
+  .home-scene-together .home-scene-eyebrow { grid-column: 1 / -1; letter-spacing: .26em; }
+  .home-desktop-stage .home-scene-together .home-phase-title { font-size: clamp(80px, 8.4vw, 160px); }
+  .home-scene-together .home-scene-caption { border-left: 1px solid #ffffff55; padding-left: 24px; margin-bottom: 10px; }
+  .home-scene-together .home-scene-tagline { font-size: clamp(18px, 1.4vw, 26px); }
+
   .home-story-controls { width: min(460px, 43vw); }
   .home-story-segments { gap: 10px; }
   .home-static-story .home-phase-title { font-size: clamp(84px, 12vw, 200px); }
@@ -84,6 +122,7 @@
   .home-desktop-stage .home-scene-compute, .home-desktop-stage .home-scene-act { top: 94px; }
   .home-desktop-stage .home-scene-compute .home-phase-title { font-size: 13vh; }
   .home-desktop-stage .home-scene-act .home-phase-title { font-size: 17vh; }
+  .home-desktop-stage .home-scene-together .home-phase-title { font-size: clamp(72px, 14vh, 128px); }
   .home-scene-compute .home-scene-caption { max-width: 250px; margin-top: 8px; }
   .home-scene-compute .home-scene-chips { display: none; }
 }
@@ -98,6 +137,8 @@
   .home-mobile-scene .hmpg-chips span { padding-left: 0; border: 0; background: none; }
   .home-mobile-scene .hmpg-chips span::before { content: '•'; margin-right: 7px; color: #f33b32; }
   .hmpg-static-copy .home-scene-tagline { margin-top: 15px; }
+  .hmpg-home-page .home-mobile-scene h2.home-phase-title[data-phase='together'],
+  .hmpg-home-page .hmpg-static-copy h2.home-phase-title[data-phase='together'] { font-size: clamp(42px, 13vw, 125px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
