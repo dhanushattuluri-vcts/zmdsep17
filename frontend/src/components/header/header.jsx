@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import zmdLogo from '../../assets/images/zmd-logo-tm-white.png';
 import zmdLogoWebp from './zmd_logo.webp';
@@ -7,13 +7,15 @@ import './header.css';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isPastStory, setIsPastStory] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('camera');
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === '/';
-  const logoSrc = isHome ? zmdLogoWebp : zmdLogo;
+  const useGlass = isHome && !isPastStory;
+  const logoSrc = useGlass ? zmdLogoWebp : zmdLogo;
 
   const solutionsList = [
     { id: 'airports', num: '01', title: 'Airports', tag: 'Aviation', desc: 'Predictive Queue SLA & Flight Operations' },
@@ -27,13 +29,33 @@ export default function Header() {
     { id: 'education', num: '09', title: 'Education', tag: 'Academic', desc: 'Lecture Capture & Course TA' }
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
+  useLayoutEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
       setIsScrolled(window.scrollY > 10);
+      const closing = isHome && document.getElementById('home-solutions');
+      const bar = document.querySelector(window.matchMedia('(max-width: 992px)').matches
+        ? '.mobile-top-bar' : '.header-top-bar');
+      // Switch as the light section reaches the fixed navigation, including
+      // chapter jumps, restored scroll positions and reverse scrolling.
+      setIsPastStory(Boolean(closing && bar
+        && closing.getBoundingClientRect().top <= bar.getBoundingClientRect().bottom));
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const observer = new ResizeObserver(schedule);
+    const home = isHome && document.getElementById('home');
+    if (home) observer.observe(home);
+    update();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
+  }, [isHome, location.key]);
 
   useEffect(() => {
     setProductsOpen(false);
@@ -80,11 +102,11 @@ export default function Header() {
   return (
     <>
       {/* Separate Mobile Header for devices under 992px */}
-      <MobileHeader />
+      <MobileHeader useGlass={useGlass} />
 
       {/* Desktop Header for screens 992px and wider */}
       <header 
-        className={`zmd-header desktop-header ${isHome ? 'home-glass' : ''} ${isScrolled ? 'scrolled' : ''}`}
+        className={`zmd-header desktop-header ${isHome ? 'home-header' : ''} ${useGlass ? 'home-glass' : ''} ${isScrolled ? 'scrolled' : ''}`}
         onMouseLeave={() => {
           setProductsOpen(false);
           setSolutionsOpen(false);

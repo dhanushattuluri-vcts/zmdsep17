@@ -43,6 +43,8 @@ export function updateSceneCopy(root, frame, now = performance.now()) {
       if (Math.abs(difference) <= (key === 'travel' ? .02 : .0005)) motion[key] = target[key];
       else { motion[key] += difference * blend; settling = true; }
     }
+    // Interactive products become available only after their caption is readable.
+    element.inert = motion.opacity < .85 || motion.reveal < .9 || element.getAttribute('aria-hidden') === 'true';
     element.style.setProperty('--scene-opacity', motion.opacity.toFixed(4));
     element.style.setProperty('--scene-reveal', motion.reveal.toFixed(4));
     element.style.setProperty('--scene-exit', motion.exit.toFixed(4));

@@ -105,9 +105,10 @@
   }
 
   .mobile-logo-img {
-    height: 54px;
+    height: 64px;
     width: auto;
     object-fit: contain;
+    margin: -6px 0;
   }
 
   /* Hamburger Toggle Button */

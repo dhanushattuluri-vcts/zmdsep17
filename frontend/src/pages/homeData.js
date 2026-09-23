@@ -44,7 +44,8 @@ export const HOME_CHAPTERS = [
     heading: 'SENSE',
     tagline: 'See more. Understand more.',
     description: 'AI cameras, spatial sensing and connected IoT.',
-    chips: ['AI cameras', 'Smart sensors'],
+    chips: [],
+    actions: [{ label: 'AI cameras', to: '/products/cam' }, { label: 'Smart sensors', to: '/products/sensors' }],
   },
   {
     label: 'Compute',
@@ -54,7 +55,8 @@ export const HOME_CHAPTERS = [
     heading: 'COMPUTE',
     tagline: 'Intelligence, at every scale.',
     description: 'Zevric edge systems. Powerful AI servers. One connected compute layer.',
-    chips: ['Edge AI', 'Datacenter servers'],
+    chips: [],
+    actions: [{ label: 'Zevric Edge Box', to: '/products/edge-box' }, { label: 'AI servers', to: '/products/server' }],
   },
   {
     label: 'Act',
@@ -64,7 +66,8 @@ export const HOME_CHAPTERS = [
     heading: 'ACT',
     tagline: 'Bring intelligence to life.',
     description: 'Autonomous drones and Delibot X1. In the air. On the ground.',
-    chips: ['AI drones', 'Autonomous robotics'],
+    chips: [],
+    actions: [{ label: 'AI drones', to: '/products/drone' }, { label: 'Delibot X1', to: '/products/delibot' }],
   },
   {
     label: 'Together',

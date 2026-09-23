@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import HomeHeadline from '../components/home/HomeHeadline';
 import HomeStory from '../components/home/HomeStory';
 import MobileHomeStory from '../components/home/MobileHomeStory';
 import { HOME_CHAPTERS, HOME_FRAMES } from './homeData';
@@ -37,7 +38,7 @@ export default function HomePage() {
           <div className="hmpg-closing-copy">
             <span className="hmpg-closing-number">{solutions.number}</span>
             <p className="hmpg-closing-eyebrow">{solutions.eyebrow}</p>
-            <h2 id="home-solutions-title">{solutions.heading}</h2>
+            <h2 id="home-solutions-title"><HomeHeadline chapter={solutions} /></h2>
             <p>{solutions.description}</p>
 
             <div className="hmpg-closing-actions">

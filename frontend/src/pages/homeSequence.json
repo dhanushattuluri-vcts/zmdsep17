@@ -1,11 +1,11 @@
 {
-  "source": "nv-hp.zip",
+  "source": "dh-hp replacement clips (existing ACT transition retained)",
   "clips": [
-    "1.mp4",
-    "2.mp4",
-    "3.mp4",
-    "4.mp4",
-    "6.mp4"
+    "hme1.mp4",
+    "hme2.mp4",
+    "hme3.mp4",
+    "4.mp4 (retained ACT transition)",
+    "hme5.mp4"
   ],
   "sourceFps": 24,
   "fps": 60,
@@ -82,12 +82,12 @@
     1920
   ],
   "appendedClip": {
-    "source": "6.mp4",
+    "source": "hme5.mp4",
     "trimStartSeconds": 1,
     "durationSeconds": 7,
     "frameCount": 420,
-    "width": 1280,
-    "height": 720,
+    "width": 1920,
+    "height": 1080,
     "sourceFps": 24,
     "startFrame": 1920
   }

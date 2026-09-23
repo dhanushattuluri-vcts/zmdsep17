@@ -4,15 +4,14 @@ import zmdLogo from '../../assets/images/zmd-logo-tm-white.png';
 import zmdLogoWebp from './zmd_logo.webp';
 import './mobile_header.css';
 
-export default function MobileHeader() {
+export default function MobileHeader({ useGlass = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [productsExpanded, setProductsExpanded] = useState(false);
   const [solutionsExpanded, setSolutionsExpanded] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const isHome = location.pathname === '/';
-  const logoSrc = isHome ? zmdLogoWebp : zmdLogo;
+  const logoSrc = useGlass ? zmdLogoWebp : zmdLogo;
 
   const solutionsList = [
     { id: 'airports', num: '01', title: 'Airports', tag: 'Aviation', desc: 'Predictive Queue SLA & Flight Operations' },
@@ -185,7 +184,7 @@ export default function MobileHeader() {
   ];
 
   return (
-    <div className={`mobile-header-root ${isHome ? 'home-glass' : ''} ${isScrolled ? 'scrolled' : ''}`}>
+    <div className={`mobile-header-root ${useGlass ? 'home-glass' : ''} ${isScrolled ? 'scrolled' : ''}`}>
       {/* Mobile Top Bar */}
       <div className="mobile-top-bar">
         <Link 

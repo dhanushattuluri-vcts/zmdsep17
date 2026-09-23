@@ -74,7 +74,7 @@ function passed(name,data={}) {checks.push({name,...data});console.log('PASS',na
   assert.ok(captionOpacity[0]>captionOpacity[1]&&captionOpacity[1]>captionOpacity[2]);
   passed(`Caption details reveal in sequence at ${width}`);
   await page.getByRole('button',{name:closingButton,exact:false}).click();await page.waitForTimeout(350);await page.screenshot({path:`${out}/${width}-closing.png`});
-  const closing=await page.locator('.hmpg-closing-actions').evaluate(e=>e.getBoundingClientRect().toJSON());assert.ok(closing.bottom<=height);assert.ok(closing.top>=0);assert.ok(await page.locator('.desktop-header').evaluate(e=>e.classList.contains('home-glass')));
+  const closing=await page.locator('.hmpg-closing-actions').evaluate(e=>e.getBoundingClientRect().toJSON());assert.ok(closing.bottom<=height);assert.ok(closing.top>=0);assert.equal(await page.locator('.desktop-header').evaluate(e=>e.classList.contains('home-glass')),false);assert.equal(await page.locator('.desktop-header').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(255, 255, 255)');assert.equal(await page.locator('.desktop-header').evaluate(e=>getComputedStyle(e).position),'fixed');
   passed(`Visual states, chapter controls, complete closing and 16-frame memory cap at ${width} × ${height}`,{sampledFrames:frames.length});
  }
  await page.evaluate(()=>scrollTo({top:document.body.scrollHeight,behavior:'instant'}));await page.waitForTimeout(300);assert.ok(await page.locator('footer').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight+1));passed('Original footer remains reachable in document flow');

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HomeHeadline from './HomeHeadline';
 import PhaseTitle from './PhaseTitle';
+import SceneLinks from './SceneLinks';
 import { HOME_FRAMES, STORY_CHAPTER_COUNT } from '../../pages/homeData';
 import { STORY_CHAPTERS, STORY_CONFIG } from './storyConfig';
 import { createStoryController } from './storyController';
@@ -8,13 +9,14 @@ import { createStoryController } from './storyController';
 function ChapterCopy({ chapter, index, active = true, staticMode = false }) {
   const Heading = index === 0 ? 'h1' : 'h2';
   return (
-    <article className={`home-scene-copy home-scene-${chapter.scene} ${active ? 'is-active' : ''}`} data-chapter={index} data-scene-copy={staticMode ? undefined : index} aria-hidden={!active}
+    <article className={`home-scene-copy home-scene-${chapter.scene} ${active ? 'is-active' : ''}`} data-chapter={index} data-scene-copy={staticMode ? undefined : index} aria-hidden={!active} inert={!staticMode}
       style={{ '--copy-x': chapter.x, '--copy-width': chapter.width, '--copy-align': chapter.align, '--copy-enter-x': chapter.enterX }}>
       <p className="home-scene-eyebrow"><span aria-hidden="true">{chapter.phase || 'ZMD'}</span>{chapter.eyebrow}</p>
       {chapter.phase ? <PhaseTitle chapter={chapter} /> : <Heading><HomeHeadline chapter={chapter} /></Heading>}
       <div className="home-scene-caption">
         {chapter.tagline && <p className="home-scene-tagline">{chapter.tagline}</p>}
         <p className="home-scene-description">{chapter.description}</p>
+        <SceneLinks chapter={chapter} />
         {chapter.chips.length > 0 && <div className="home-scene-chips" aria-label={`${chapter.label} capabilities`}>{chapter.chips.map((chip) => <span key={chip}>{chip}</span>)}</div>}
       </div>
       {staticMode && <img className="home-static-image" src={HOME_FRAMES[chapter.checkpoint]} alt={`${chapter.label} hardware in the ZMD ecosystem`} loading={index === 0 ? 'eager' : 'lazy'} />}

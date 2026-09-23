@@ -4,6 +4,7 @@ import React from 'react';
 // Split the original string so wording, punctuation and selectable text survive.
 const CHAPTER_EMPHASIS = {
   'Physical AI': 'Physical AI',
+  Solutions: 'ZMD',
   Cameras: 'Cameras',
   'Zevric Edge': 'Zevric',
   'Datacenter Servers': 'Servers',

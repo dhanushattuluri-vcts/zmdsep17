@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import HomeHeadline from './HomeHeadline';
 import PhaseTitle from './PhaseTitle';
+import SceneLinks from './SceneLinks';
 import { updateSceneCopy } from './sceneMotion';
 import {
   HOME_CHAPTERS,
@@ -67,6 +68,7 @@ function StaticStory({ onChapterSelect }) {
               {chapter.phase ? <PhaseTitle chapter={chapter} /> : <Heading><HomeHeadline chapter={chapter} /></Heading>}
               {chapter.tagline && <p className="home-scene-tagline">{chapter.tagline}</p>}
               <p className="hmpg-description">{chapter.description}</p>
+              <SceneLinks chapter={chapter} />
               {chapter.chips.length > 0 && (
                 <div className="hmpg-chips" aria-label={`${chapter.label} capabilities`}>
                   {chapter.chips.map((chip) => <span key={chip}>{chip}</span>)}
@@ -620,12 +622,13 @@ export default function HomeStory() {
           ))}
         </nav>
 
-        <div className={`hmpg-story-copy home-mobile-scene home-scene-${chapter.scene}`} data-scene-copy={Math.min(activeChapter, STORY_CHAPTER_COUNT - 1)} key={chapter.number} aria-live="polite">
+        <div className={`hmpg-story-copy home-mobile-scene home-scene-${chapter.scene}`} data-scene-copy={Math.min(activeChapter, STORY_CHAPTER_COUNT - 1)} key={chapter.number} aria-live="polite" inert>
           <span className="hmpg-chapter-number">{chapter.number}</span>
           <p className="hmpg-eyebrow">{chapter.eyebrow}</p>
           {chapter.phase ? <PhaseTitle chapter={chapter} /> : <Heading><HomeHeadline chapter={chapter} /></Heading>}
           {chapter.tagline && <p className="home-scene-tagline">{chapter.tagline}</p>}
           <p className="hmpg-description">{chapter.description}</p>
+          <SceneLinks chapter={chapter} />
           {chapter.chips.length > 0 && (
             <div className="hmpg-chips" aria-label={`${chapter.label} capabilities`}>
               {chapter.chips.map((chip) => <span key={chip}>{chip}</span>)}
