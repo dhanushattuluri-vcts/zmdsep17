@@ -14,7 +14,7 @@
   overflow: hidden;
   background: var(--edgebox-bg);
   color: var(--edgebox-ink);
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -35,7 +35,7 @@
 .edgebox-page h2,
 .edgebox-page h3 {
   color: var(--edgebox-ink);
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -137,7 +137,7 @@
   gap: 10px;
   margin-bottom: 18px !important;
   color: var(--edgebox-red);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 11.5px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -161,7 +161,7 @@
   display: block;
   margin-top: 14px;
   color: var(--edgebox-ink-faint);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: clamp(0.9rem, 1.6vw, 1.25rem);
   font-weight: 500;
   line-height: 1.45;
@@ -196,7 +196,7 @@
   border-radius: 999px;
   background: var(--edgebox-surface);
   color: var(--edgebox-ink-soft);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 11px;
 }
 
@@ -221,7 +221,7 @@
   padding: 11px 20px;
   border: 1px solid transparent;
   border-radius: 2px;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.03em;
@@ -270,7 +270,7 @@
   gap: 16px;
   margin-bottom: 20px;
   color: var(--edgebox-ink-faint);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -331,7 +331,7 @@
   padding-top: 14px;
   border-top: 1px dashed var(--edgebox-line-strong);
   color: var(--edgebox-ink-faint);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 9px;
 }
 
@@ -392,7 +392,7 @@
 .edgebox-hero h1 .edgebox-title-secondary {
   display: block;
   color: #0f172a;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-weight: 700;
 }
 
@@ -415,7 +415,7 @@
   max-width: 590px;
   margin-top: clamp(1.35rem, 1.8vw, 1.8rem);
   color: #475569;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: clamp(1.08rem, 1.3vw, 1.35rem);
   font-weight: 500;
   line-height: 1.5;
@@ -451,7 +451,7 @@
   min-height: 52px;
   padding: 0.75rem 1.75rem;
   border-radius: 999px;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -592,7 +592,7 @@
   background: #ffffff;
   color: #475569;
   box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04);
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: clamp(0.92rem, 1.05vw, 1.05rem);
   font-weight: 600;
   transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
@@ -617,7 +617,7 @@
 
 .edgebox-hero .edgebox-chip strong {
   color: var(--edgebox-red);
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 1.45em;
 }
 
@@ -873,7 +873,7 @@
   align-items: center;
   padding: 13px 30px;
   border-right: 1px solid rgba(255, 255, 255, 0.14);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.03em;
 }
@@ -943,7 +943,7 @@
 
 .edgebox-overview-copy p:first-child {
   color: var(--edgebox-ink);
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 19px;
   font-weight: 500;
   line-height: 1.5;
@@ -967,7 +967,7 @@
 .edgebox-stat strong {
   display: block;
   color: var(--edgebox-red);
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 28px;
   line-height: 1;
 }
@@ -976,7 +976,7 @@
   display: block;
   margin-top: 8px;
   color: var(--edgebox-ink-soft);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -1343,7 +1343,7 @@
   border-right: 1px solid var(--edgebox-line);
   background: var(--edgebox-surface-alt);
   color: var(--edgebox-ink);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 13.5px;
   font-weight: 500;
 }
@@ -1371,7 +1371,7 @@
 .edgebox-spec-note {
   padding: 16px 24px;
   color: var(--edgebox-ink-faint);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 11.75px;
   font-style: italic;
 }
@@ -1403,7 +1403,7 @@
 
 .edgebox-io-item span {
   color: var(--edgebox-ink-soft);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 12.25px;
 }
 
@@ -1626,7 +1626,7 @@
 
 .edgebox-advantage-tag {
   color: var(--edgebox-ink-faint);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.06em;
   text-align: right;
@@ -1884,7 +1884,7 @@
 
 .edgebox-use-case-top span {
   color: var(--edgebox-red);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.05em;
 }
@@ -2106,7 +2106,7 @@
   gap: 8px;
   padding: 9px 16px;
   border: 1px solid rgba(255, 255, 255, 0.22);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 12px;
 }
 
@@ -2247,7 +2247,7 @@
   gap: 12px;
   margin-bottom: 18px;
   color: var(--edgebox-red);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -2332,7 +2332,7 @@
   border-radius: 999px;
   background: #fff7f7;
   color: var(--edgebox-red);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -2346,7 +2346,7 @@
   display: block;
   margin-bottom: 3px;
   color: var(--edgebox-red);
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.09em;

@@ -689,7 +689,7 @@
 }
 
 .sol-col-num {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.95rem;
   font-weight: 800;
   color: #dc2626;

@@ -3,8 +3,6 @@
    Flagship Enterprise AI Design - Inspired by Tesla AI, Palantir, Apple
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-
 .zmd-sol-page {
   --paper: #FFFFFF;
   --card: #FFFFFF;
@@ -24,7 +22,7 @@
 
   background-color: var(--paper);
   color: var(--ink);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-site);
   line-height: 1.6;
   font-size: 16px;
   width: 100%;
@@ -293,7 +291,7 @@
 }
 
 .zmd-sol-divider-badge {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 11px;
   letter-spacing: 0.1em;
   color: var(--faint);
@@ -310,7 +308,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 13px;
   letter-spacing: 0.14em;
   color: var(--accent-ink);
@@ -367,7 +365,7 @@
 }
 
 .zmd-sol-display {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-weight: 700;
   font-size: clamp(48px, 6.5vw, 84px);
   line-height: 1.05;
@@ -407,7 +405,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -450,7 +448,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 13px;
   letter-spacing: 0.12em;
   color: var(--faint);
@@ -480,7 +478,7 @@
   position: relative;
   padding: 14px 20px;
   border-bottom: 1px solid var(--line-soft);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 13.5px;
   color: var(--muted);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -610,7 +608,7 @@
 }
 
 .zmd-sol-h-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-weight: 700;
   font-size: clamp(32px, 3.8vw, 48px);
   line-height: 1.08;
@@ -736,7 +734,7 @@
   padding: 5px 10px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 9.5px;
   font-weight: 700;
   color: #FFFFFF;
@@ -759,7 +757,7 @@
   padding: 10px 14px;
   background: var(--card);
   border-top: 1px solid var(--line-soft);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 10.5px;
   color: var(--faint);
   flex-wrap: wrap;
@@ -824,7 +822,7 @@
 }
 
 .zmd-sol-h-expand b {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 10px;
   letter-spacing: 0.08em;
   color: var(--accent-ink);
@@ -847,7 +845,7 @@
 }
 
 .zmd-sol-h-trust .tag {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 10px;
   letter-spacing: 0.08em;
   color: var(--accent);
@@ -904,7 +902,7 @@
 }
 
 .zmd-sol-m-val {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 11px;
   color: var(--accent);
   font-weight: 700;
@@ -994,7 +992,7 @@
 }
 
 .zmd-sol-hw-kicker {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--accent);
@@ -1007,7 +1005,7 @@
 }
 
 .zmd-sol-hw-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-size: 20px;
   font-weight: 700;
   color: var(--ink);
@@ -1072,7 +1070,7 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 9px;
   font-weight: 700;
   color: var(--muted);
@@ -1099,21 +1097,21 @@
 }
 
 .zmd-sol-hw-name {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-size: 14.5px;
   font-weight: 700;
   color: var(--ink);
 }
 
 .zmd-sol-hw-spec {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 11px;
   color: var(--faint);
   line-height: 1.4;
 }
 
 .zmd-sol-hw-cta {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 10.5px;
   font-weight: 700;
   color: var(--muted);
@@ -1278,7 +1276,7 @@
 }
 
 .zmd-sol-master-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-size: clamp(34px, 4.5vw, 56px);
   font-weight: 700;
   color: var(--ink);
@@ -1331,7 +1329,7 @@
 }
 
 .zmd-sol-prefooter-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-weight: 700;
   font-size: clamp(36px, 5vw, 60px);
   line-height: 1.1;
@@ -1368,14 +1366,14 @@
 }
 
 .zmd-sol-pstat .v {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-size: 32px;
   font-weight: 700;
   color: #FFFFFF;
 }
 
 .zmd-sol-pstat .k {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 11.5px;
   letter-spacing: 0.08em;
   color: #94A3B8;
@@ -1399,7 +1397,7 @@
 }
 
 .zmd-sol-foot-brand {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-site);
   font-weight: 700;
   font-size: 26px;
   color: #FFFFFF;
@@ -1407,7 +1405,7 @@
 }
 
 .zmd-sol-foot-line {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 11px;
   color: #A1A1AA;
   letter-spacing: 0.06em;
@@ -1415,7 +1413,7 @@
 }
 
 .zmd-sol-foot-right {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--font-site);
   font-size: 11px;
   color: #EF4444;
   text-align: right;

@@ -1,0 +1,297 @@
+.physical-ai-stack {
+  position: relative;
+  isolation: isolate;
+  padding-top: 78px;
+  background: #eef4f8;
+  color: #0a1727;
+  scroll-margin-top: 0;
+}
+.stack-board {
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  max-width: 1920px;
+  aspect-ratio: 1672 / 800;
+  margin: 0 auto;
+  isolation: isolate;
+}
+.stack-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+}
+.stack-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #f2f7fc00, #f2f7fcf5 22%, #f2f7fc 30%, #f2f7fc 70%, #f2f7fcf5 78%, #f2f7fc00);
+}
+.stack-intro { position: absolute; z-index: 3; top: 4%; left: 28%; width: 44%; text-align: center; }
+.stack-eyebrow { margin: 0 0 1cqw; color: #e10600; font-size: clamp(10px, .72cqw, 14px); font-weight: 700; letter-spacing: .21em; text-transform: uppercase; }
+.hmpg-home-page .stack-intro h2 { margin: 0; color: #091624; font: 700 3cqw/1.03 var(--body); letter-spacing: -.055em; text-wrap: balance; }
+.stack-heading-rule { display: block; width: 3.3cqw; height: 3px; margin: 1.15cqw auto .85cqw; background: #f20d17; }
+.stack-lede { margin: 0; color: #34445b; font-size: clamp(13px, .98cqw, 19px); line-height: 1.5; letter-spacing: -.035em; }
+
+.stack-hub { position: absolute; inset: 0; }
+/* White-background artwork blends into the pale surface; its CSS shadow moves independently. */
+.stack-hub-float { position: absolute; left: 30%; top: 35%; width: 40%; height: 45%; perspective: 1000px; mix-blend-mode: multiply; }
+.stack-hub-art { display: block; width: 100%; height: 100%; object-fit: contain; }
+.stack-hub::before { content: ''; position: absolute; left: 34%; top: 74%; width: 32%; height: 7%; border-radius: 50%; background: #56708233; filter: blur(18px); }
+.stack-hub::after { content: ''; position: absolute; z-index: -1; left: 29%; top: 38%; width: 42%; height: 46%; border: 1px solid #a7bfc63b; border-radius: 50%; box-shadow: 0 0 0 18px #ffffff45, 0 0 0 19px #becbd326; transform: rotate(-5deg); }
+.stack-heading-line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.stack-heading-line > span { display: block; }
+.stack-node {
+  position: absolute; z-index: 3;
+  display: inline-flex; align-items: center; justify-content: center; gap: .65cqw;
+  min-height: 44px; padding: .7cqw 1.1cqw;
+  border: 1px solid #c9d5e2; border-radius: 5px;
+  background: linear-gradient(140deg, #fff, #f4f8fce8);
+  box-shadow: 0 7px 16px #3b546015, inset 0 0 0 3px #ffffff80;
+  color: #101c2d; text-decoration: none; text-transform: uppercase;
+  font-size: clamp(9px, .64cqw, 13px); font-weight: 650; line-height: 1.4;
+  transform: translate(-50%, -50%);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+.stack-node svg { flex: none; width: 1.35cqw; height: 1.35cqw; }
+.stack-node-sense { left: 38.3%; top: 48%; }
+.stack-node-applications { left: 61%; top: 48%; }
+.stack-node-datacenter { left: 40.5%; top: 70%; }
+.stack-node-operations { left: 60%; top: 70%; }
+.stack-node:hover { border-color: #ed222b; box-shadow: 0 6px 20px #e1060018; }
+.stack-hub-caption { position: absolute; top: 84%; left: 33%; width: 34%; margin: 0; text-align: center; font: 500 clamp(9px, .6cqw, 12px)/1.85 var(--mono); letter-spacing: .24em; text-transform: uppercase; color: #36485d; }
+/* Four responsive CSS paths: two rounded border segments and endpoint dots.
+   No connector image or SVG is used. Mirroring keeps the same corner geometry. */
+.stack-connectors { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.stack-wire { position: absolute; width: 7%; height: 15%; color: #f42132; filter: drop-shadow(0 0 3px #ff34484d); }
+.stack-wire::before, .stack-wire::after { content: ''; position: absolute; width: calc(50% + 1px); height: calc(50% + 1px); border: 0 solid currentColor; }
+.stack-wire::before { left: 0; top: 0; border-top-width: 1.5px; border-right-width: 1.5px; border-top-right-radius: 24px; }
+.stack-wire::after { right: 0; bottom: 0; border-bottom-width: 1.5px; border-left-width: 1.5px; border-bottom-left-radius: 24px; }
+.stack-wire i { position: absolute; z-index: 1; width: 8px; height: 8px; border: 2px solid currentColor; border-radius: 50%; background: #fff; }
+.stack-wire-start { left: -4px; top: -4px; }
+.stack-wire-end { right: -4px; bottom: -4px; }
+.stack-wire-sense { left: 28.9%; top: 33%; }
+.stack-wire-edge { right: 28.9%; top: 33%; transform: scaleX(-1); }
+.stack-wire-datacenter { left: 28.9%; top: 70%; width: 8.5%; height: 5%; transform: scaleY(-1); }
+.stack-wire-applications { right: 28.9%; top: 70%; width: 8.5%; height: 5%; transform: scale(-1); }
+
+.stack-cards { display: contents; }
+.stack-card {
+  --card-cut: polygon(5% 0, 96% 0, 100% 8%, 100% 92%, 95% 100%, 4% 100%, 0 92%, 0 8%);
+  position: absolute; z-index: 2; width: 26.5%; height: 34%;
+  filter: drop-shadow(0 16px 18px #304f6a24);
+}
+.stack-card-sense { left: 2.4%; top: 18%; }
+.stack-card-edge { right: 2.4%; top: 18%; }
+.stack-card-datacenter { left: 2.4%; top: 56%; }
+.stack-card-applications { right: 2.4%; top: 56%; }
+.stack-card-motion { height: 100%; }
+.stack-card-shell { height: 100%; padding: 1px; background: #b9cbd9; clip-path: var(--card-cut); }
+.stack-card-inner { height: 100%; position: relative; padding: 1.7cqw 1.9cqw 1.4cqw; background: #f6faff; clip-path: var(--card-cut); }
+.stack-card-inner::after { content: ''; position: absolute; inset: 6px; border: 1px solid #ffffffb3; clip-path: var(--card-cut); pointer-events: none; z-index: 2; }
+.stack-card-image { position: absolute; right: 0; top: 0; width: 66%; height: 100%; object-fit: cover; object-position: center; transition: transform 600ms cubic-bezier(.2,.7,.2,1); }
+.stack-card-inner::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, #f7fbff 0%, #f7fbfff5 32%, #f7fbffdf 44%, #f7fbff15 68%, transparent 83%); }
+.stack-card-copy { position: relative; z-index: 3; width: 48%; height: 100%; display: flex; flex-direction: column; align-items: flex-start; }
+.stack-card-number { display: flex; align-items: center; gap: .85cqw; color: #ec0914; font-size: 1.22cqw; font-weight: 600; line-height: 1; margin-bottom: .55cqw; }
+.stack-card-number i { width: 3.3cqw; height: 1px; background: currentColor; }
+.hmpg-home-page .stack-card h3 { margin: 0 0 .9cqw; color: #0a1727; font: 650 1.3cqw/1.12 var(--body); letter-spacing: -.055em; white-space: nowrap; }
+.stack-card-copy > p { margin: 0 0 .6cqw; color: #33445b; font-size: clamp(12px, .87cqw, 17px); line-height: 1.43; letter-spacing: -.025em; }
+.stack-card-link {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: .6cqw;
+  margin-top: auto; width: max-content; min-width: 100%; max-width: 100%; min-height: 44px; flex-shrink: 0;
+  padding: .6cqw .85cqw; border: 1px solid #c3d2e0; border-radius: 4px;
+  background: #f9fcffe8; color: #0a1727; text-decoration: none;
+  font-size: clamp(10px, .73cqw, 14px); font-weight: 650; white-space: normal;
+  box-shadow: inset 0 1px 0 #fff;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+}
+.stack-card-link svg { flex: none; color: #ed1720; }
+.stack-card-link:hover { color: #c9000c; border-color: #ed1720; background: #fff; }
+.stack-card:focus-within { filter: drop-shadow(0 12px 20px #df17292e); }
+.physical-ai-stack a:focus-visible { outline: 2px solid #e10600; outline-offset: 3px; }
+.stack-card-sense .stack-card-image { object-position: center 22%; }
+.stack-card-datacenter .stack-card-image { width: 73%; object-position: 68% center; }
+.stack-card-applications .stack-card-image { right: auto; left: 0; width: 68%; object-position: 38% center; }
+.stack-card-applications .stack-card-inner::before { background: linear-gradient(270deg, #f7fbff 0%, #f7fbfff5 32%, #f7fbffcf 44%, transparent 66%); }
+.stack-card-applications .stack-card-copy { margin-left: auto; width: 45%; }
+.hmpg-home-page .stack-card-applications h3 { font-size: 1.08cqw; white-space: normal; }
+
+.stack-principles { position: absolute; right: 5.4%; bottom: 3%; display: flex; gap: 1cqw; padding: 0 0 0 1cqw; margin: 0; border-left: 2px solid #ef1922; color: #33455c; font: 400 .65cqw/1.3 var(--mono); letter-spacing: .36em; text-transform: uppercase; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Observe stationary containers; animate their children so movement cannot
+     retrigger the viewport observer. Hover uses a separate inner layer. */
+  .stack-card { --card-travel: 24px; --card-turn: -4deg; --hover-turn: -1deg; transition: filter 350ms ease; }
+  .stack-card-edge, .stack-card-applications { --card-travel: -24px; --card-turn: 4deg; --hover-turn: 1deg; }
+  .stack-card-shell { transition: transform 450ms cubic-bezier(.2,.8,.2,1), background-color 350ms ease; }
+  .stack-card-link svg { transition: transform 350ms ease; }
+  .stack-card:focus-within .stack-card-shell { transform: perspective(900px) translateY(-6px) rotateX(1.5deg) rotateY(var(--hover-turn)); background: #ee6b74; }
+  .stack-card:focus-within .stack-card-image { transform: scale(1.045); }
+  .stack-card:focus-within .stack-card-link svg { transform: translateX(3px); }
+  @media (hover: hover) and (pointer: fine) {
+    .stack-card:hover { filter: drop-shadow(0 22px 24px #304f6a38); }
+    .stack-card:hover .stack-card-shell { transform: perspective(900px) translateY(-6px) rotateX(1.5deg) rotateY(var(--hover-turn)); background: #ee6b74; }
+    .stack-card:hover .stack-card-image { transform: scale(1.045); }
+    .stack-card:hover .stack-card-link svg { transform: translateX(3px); }
+  }
+
+  .stack-intro:not(.has-entered) .stack-eyebrow,
+  .stack-intro:not(.has-entered) .stack-lede,
+  .stack-intro:not(.has-entered) .stack-heading-line > span,
+  .stack-intro:not(.has-entered) .stack-heading-rule,
+  .stack-card:not(.has-entered) .stack-card-motion,
+  .stack-hub:not(.has-entered) .stack-hub-float,
+  .stack-hub-float:not(.is-ready),
+  .stack-hub:not(.has-entered) .stack-node,
+  .stack-hub:not(.has-entered) .stack-hub-caption,
+  .physical-ai-stack:not(.has-entered) .stack-wire,
+  .stack-principles:not(.has-entered) { opacity: 0; }
+
+  /* Headings unfold from their baseline, then fold upward on departure. */
+  .stack-heading-line { perspective: 700px; }
+  .stack-heading-line > span { transform-origin: center bottom; }
+  .stack-intro.is-entered .stack-eyebrow { animation: stack-copy-enter 600ms both; }
+  .stack-intro.is-entered .stack-heading-line > span { animation: stack-heading-enter 900ms cubic-bezier(.16,1,.3,1) 90ms both; }
+  .stack-intro.is-entered .stack-heading-line:nth-child(2) > span { animation-delay: 200ms; }
+  .stack-intro.is-entered .stack-lede { animation: stack-copy-enter 750ms 300ms both; }
+  .stack-intro.is-entered .stack-heading-rule { animation: stack-rule-enter 750ms 200ms both; }
+  .stack-intro.is-exiting .stack-heading-line > span { animation: stack-heading-exit 420ms cubic-bezier(.4,0,1,1) both; }
+  .stack-intro.is-exiting .stack-heading-line:nth-child(2) > span { animation-delay: 60ms; }
+  .stack-intro.is-exiting .stack-eyebrow,
+  .stack-intro.is-exiting .stack-lede { animation: stack-copy-exit 300ms both; }
+  .stack-intro.is-exiting .stack-heading-rule { animation: stack-rule-exit 350ms both; }
+
+  /* Cards assemble toward their resting positions and tuck back toward the hub. */
+  .stack-card.is-entered .stack-card-motion { animation: stack-card-enter 900ms cubic-bezier(.16,1,.3,1) both; animation-delay: calc(70ms + var(--card-order) * 75ms); }
+  .stack-card.is-entered .stack-card-copy > * { animation: stack-copy-enter 650ms both; animation-delay: calc(180ms + var(--card-order) * 75ms); }
+  .stack-card.is-entered .stack-card-copy > p { animation-delay: calc(250ms + var(--card-order) * 75ms); }
+  .stack-card.is-entered .stack-card-link { animation-delay: calc(320ms + var(--card-order) * 75ms); }
+  .stack-card.is-exiting .stack-card-motion { animation: stack-card-exit 440ms cubic-bezier(.4,0,.8,.3) both; animation-delay: calc(var(--card-order) * 30ms); }
+
+  /* The central platform rises into place while its labels spread outward. */
+  .stack-hub.is-entered .stack-hub-float.is-ready { animation: stack-platform-enter 1200ms cubic-bezier(.16,1,.3,1) 120ms both; }
+  .stack-hub.is-entered .stack-hub-art { animation: stack-platform-float 6500ms ease-in-out 1400ms infinite; }
+  .stack-hub.is-exiting .stack-hub-float.is-ready { animation: stack-platform-exit 550ms cubic-bezier(.4,0,.8,.3) both; }
+  .stack-hub.is-exiting .stack-hub-art { animation-play-state: paused; }
+  .stack-hub::before, .stack-hub::after { opacity: 0; scale: .85; transition: opacity 600ms ease, scale 900ms cubic-bezier(.16,1,.3,1); }
+  .stack-hub.is-entered::before, .stack-hub.is-entered::after { opacity: 1; scale: 1; }
+  .stack-node-sense { --node-x: 22px; --node-y: 8px; --node-order: 0; }
+  .stack-node-applications { --node-x: -22px; --node-y: 8px; --node-order: 1; }
+  .stack-node-datacenter { --node-x: 16px; --node-y: -14px; --node-order: 2; }
+  .stack-node-operations { --node-x: -16px; --node-y: -14px; --node-order: 3; }
+  .stack-hub.is-entered .stack-node { animation: stack-node-enter 750ms cubic-bezier(.16,1,.3,1) both; animation-delay: calc(380ms + var(--node-order) * 80ms); }
+  .stack-hub.is-exiting .stack-node { animation: stack-node-exit 330ms both; animation-delay: calc(var(--node-order) * 35ms); }
+  .stack-hub.is-entered .stack-hub-caption { animation: stack-copy-enter 700ms 600ms both; }
+  .stack-hub.is-exiting .stack-hub-caption { animation: stack-copy-exit 300ms both; }
+
+  .physical-ai-stack.is-entered .stack-wire { animation: stack-wire-enter 1000ms cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(420ms + var(--wire-order) * 100ms); }
+  .physical-ai-stack.is-exiting .stack-wire { animation: stack-wire-exit 400ms ease-in both; animation-delay: calc(var(--wire-order) * 35ms); }
+  .stack-principles.is-entered { animation: stack-copy-enter 750ms 180ms both; }
+  .stack-principles.is-exiting { animation: stack-copy-exit 300ms both; }
+
+  @keyframes stack-heading-enter {
+    from { opacity: 0; transform: translateY(100%) rotateX(-55deg); }
+    to { opacity: 1; transform: translateY(0) rotateX(0); }
+  }
+  @keyframes stack-heading-exit {
+    from { opacity: 1; transform: translateY(0) rotateX(0); }
+    to { opacity: 0; transform: translateY(-95%) rotateX(35deg); }
+  }
+  @keyframes stack-copy-enter { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+  @keyframes stack-copy-exit { from { opacity: 1; translate: 0 0; } to { opacity: 0; translate: 0 -10px; } }
+  @keyframes stack-rule-enter { from { opacity: 0; scale: 0 1; } to { opacity: 1; scale: 1 1; } }
+  @keyframes stack-rule-exit { from { opacity: 1; scale: 1 1; } to { opacity: 0; scale: 0 1; } }
+  @keyframes stack-card-enter {
+    from { opacity: 0; transform: perspective(900px) translate3d(var(--card-travel), 28px, 0) rotateY(var(--card-turn)) scale(.95); }
+    to { opacity: 1; transform: perspective(900px) translate3d(0, 0, 0) rotateY(0) scale(1); }
+  }
+  @keyframes stack-card-exit {
+    from { opacity: 1; transform: perspective(900px) translate3d(0, 0, 0) rotateX(0) scale(1); }
+    to { opacity: 0; transform: perspective(900px) translate3d(var(--card-travel), -18px, 0) rotateX(8deg) scale(.94); }
+  }
+  @keyframes stack-platform-enter {
+    from { opacity: 0; transform: perspective(1000px) translateY(54px) rotateX(16deg) rotateZ(-3deg) scale(.86); }
+    to { opacity: 1; transform: perspective(1000px) translateY(0) rotateX(0) rotateZ(0) scale(1); }
+  }
+  @keyframes stack-platform-exit {
+    from { opacity: 1; transform: perspective(1000px) translateY(0) rotateX(0) scale(1); }
+    to { opacity: 0; transform: perspective(1000px) translateY(30px) rotateX(-12deg) scale(.9); }
+  }
+  @keyframes stack-platform-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @keyframes stack-node-enter {
+    from { opacity: 0; translate: var(--node-x) var(--node-y); scale: .9; }
+    to { opacity: 1; translate: 0 0; scale: 1; }
+  }
+  @keyframes stack-node-exit {
+    from { opacity: 1; translate: 0 0; scale: 1; }
+    to { opacity: 0; translate: var(--node-x) var(--node-y); scale: .9; }
+  }
+  @keyframes stack-wire-enter { from { opacity: 0; clip-path: inset(-8px 100% -8px -8px); } to { opacity: 1; clip-path: inset(-8px); } }
+  @keyframes stack-wire-exit { from { opacity: 1; clip-path: inset(-8px); } to { opacity: 0; clip-path: inset(-8px -8px -8px 100%); } }
+}
+
+@media (max-width: 1199px) {
+  .physical-ai-stack { padding: 90px 24px 48px; }
+  .stack-board { aspect-ratio: auto; max-width: 920px; }
+  .stack-backdrop { inset: -90px -24px -48px; background-size: auto 900px; background-repeat: no-repeat; background-position: center top; opacity: .6; }
+  .stack-backdrop::after { background: linear-gradient(#f2f7fce8, #f2f7fc 700px); }
+  .stack-intro { position: relative; top: auto; left: auto; width: 100%; padding: 28px 0 0; }
+  .stack-eyebrow { font-size: 11px; margin-bottom: 16px; }
+  .hmpg-home-page .stack-intro h2 { font-size: clamp(32px, 5.2vw, 52px); }
+  .stack-heading-rule { width: 48px; margin: 22px auto 16px; }
+  .stack-lede { max-width: 620px; margin: 0 auto; font-size: 15px; letter-spacing: -.025em; }
+  .stack-wide-break { display: none; }
+  .stack-hub { position: relative; width: 100%; height: auto; aspect-ratio: 1.8; margin: 0 auto 30px; }
+  .stack-hub-float { width: 82%; height: 78%; left: 9%; top: 9%; }
+  .stack-hub::before { left: 20%; top: 78%; width: 60%; height: 10%; }
+  .stack-hub::after { left: 8%; top: 20%; width: 84%; height: 70%; }
+  .stack-node { font-size: 9px; gap: 8px; min-height: 38px; padding: 8px 10px; }
+  .stack-node svg { width: 20px; height: 20px; }
+  .stack-node-sense { left: 22%; top: 44%; }
+  .stack-node-datacenter { left: 30%; top: 74%; }
+  .stack-node-applications { left: 78%; top: 44%; }
+  .stack-node-operations { left: 73%; top: 74%; }
+  .stack-hub-caption { top: auto; bottom: 0; width: 100%; left: 0; font-size: 9px; }
+  .stack-connectors { display: none; }
+  .stack-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .stack-card { position: relative; inset: auto; width: 100%; height: 300px; }
+  .stack-card-inner { padding: 25px; }
+  .stack-card-copy { width: 54%; }
+  .stack-card-number { font-size: 19px; gap: 12px; margin-bottom: 12px; }
+  .stack-card-number i { width: 40px; }
+  .hmpg-home-page .stack-card h3 { font-size: 21px; margin-bottom: 14px; white-space: normal; }
+  .stack-card-copy > p { font-size: 14px; margin-bottom: 16px; }
+  .stack-card-link { font-size: 11px; min-height: 44px; padding: 10px 12px; gap: 12px; }
+  .stack-principles { position: relative; right: auto; bottom: auto; justify-content: center; margin-top: 32px; font-size: 9px; padding: 0; border: 0; gap: 20px; }
+}
+@media (max-width: 800px) {
+  .physical-ai-stack { padding: 70px 18px 36px; }
+  .stack-intro { padding-top: 26px; }
+  .stack-eyebrow { font-size: 9px; letter-spacing: .18em; }
+  .hmpg-home-page .stack-intro h2 { font-size: clamp(27px, 7.7vw, 42px); line-height: 1.07; }
+  .stack-lede { font-size: 13px; line-height: 1.65; }
+  .stack-hub { margin: 14px auto 26px; aspect-ratio: 1.25; }
+  .stack-hub-float { width: 100%; height: 74%; left: 0; top: 14%; }
+  .stack-node { font-size: 7px; gap: 5px; min-height: 34px; padding: 6px; }
+  .stack-node svg { width: 16px; height: 16px; }
+  .stack-node-sense { left: 14%; top: 44%; }
+  .stack-node-applications { left: 86%; top: 44%; }
+  .stack-node-datacenter { left: 23%; top: 70%; }
+  .stack-node-operations { left: 79%; top: 70%; }
+  .stack-hub-caption { font-size: 8px; letter-spacing: .14em; }
+  .stack-cards { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .stack-card { height: 300px; grid-column: auto; }
+  .stack-card-inner { padding: 24px 20px; }
+  .stack-card-copy { width: 58%; }
+  .stack-card-applications .stack-card-copy { width: 54%; }
+  .hmpg-home-page .stack-card h3, .hmpg-home-page .stack-card-applications h3 { font-size: 20px; }
+  .stack-card-copy > p { font-size: 13px; }
+  .stack-card-link { padding: 10px; gap: 9px; font-size: 10px; max-width: 100%; }
+  .stack-principles { font-size: 7px; letter-spacing: .12em; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .physical-ai-stack *, .physical-ai-stack *::before, .physical-ai-stack *::after { animation: none !important; transition: none !important; }
+}
+
+@media (min-width: 801px) and (max-width: 1199px) { .stack-card-applications .stack-card-copy { width: 54%; } .hmpg-home-page .stack-card-applications h3 { font-size: 21px; } }

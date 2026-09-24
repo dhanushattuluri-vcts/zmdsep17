@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
 *,
 *::before,
 *::after {
@@ -7,13 +5,14 @@
 }
 
 :root {
-  /* Three core typography definitions */
-  --display: 'Space Grotesk', sans-serif;
-  --body: 'Inter', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  /* Single site font, taken from the camera-page heading reference. */
+  --font-site: 'Space Grotesk', Arial, sans-serif;
+  --display: var(--font-site);
+  --body: var(--font-site);
+  --mono: var(--font-site);
 
-  /* Global fallbacks */
-  --sans: var(--body);
+  /* Existing page tokens share the same family. */
+  --sans: var(--font-site);
 }
 
 html {
@@ -49,18 +48,33 @@ body {
   flex-direction: column;
 }
 
+/* Include native controls and technical text in the shared typography. */
+button,
+input,
+select,
+textarea,
+optgroup,
+option,
+code,
+pre,
+kbd,
+samp,
+::file-selector-button {
+  font-family: var(--font-site);
+}
+
 /* -------------------------------------------------------------
    Typography Utility Classes
    ------------------------------------------------------------- */
 
-/* Body & Paragraph Copy (--body -> Inter) */
+/* Body and paragraph typography. */
 .techpg-page,
 .techpg-lede,
 .techpg-sec-lede {
   font-family: var(--body);
 }
 
-/* Headings & Stat Numbers (--display -> Space Grotesk) */
+/* Heading and statistic typography. */
 .techpg-display,
 .techpg-sec-title,
 .techpg-hero-meta dt,
@@ -69,7 +83,7 @@ body {
   font-family: var(--display);
 }
 
-/* Badges, Tags & Technical Accents (--mono -> JetBrains Mono) */
+/* Labels and technical accents use the same site font. */
 .techpg-eyebrow,
 .techpg-hero-meta dd,
 .techpg-marquee,

@@ -342,21 +342,21 @@ function DeviceSchematic() {
           <circle cx="440" cy="180" r="2" />
         </g>
 
-        <g fontFamily="JetBrains Mono, monospace" fontSize="10.5" fill="#5B6270">
+        <g fontFamily="var(--font-site)" fontSize="10.5" fill="#5B6270">
           <text x="60" y="36">SYSTEM POWER</text>
           <text x="8" y="150">USB-A</text>
           <text x="8" y="220">USB-C</text>
           <text x="404" y="48">VENTILATED</text>
           <text x="444" y="177">SMALL FORM</text>
         </g>
-        <g fontFamily="JetBrains Mono, monospace" fontSize="9.5" fill="#8A909C">
+        <g fontFamily="var(--font-site)" fontSize="9.5" fill="#8A909C">
           <text x="8" y="163">3.2 GEN PORT</text>
           <text x="8" y="233">DATA / THUNDERBOLT</text>
           <text x="404" y="61">CHASSIS</text>
           <text x="444" y="190">FACTOR CHASSIS</text>
         </g>
         <line x1="150" y1="300" x2="370" y2="300" stroke="#D9DCE1" />
-        <text x="150" y="316" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#8A909C">SCALE — INDICATIVE, NOT TO SPEC</text>
+        <text x="150" y="316" fontFamily="var(--font-site)" fontSize="9" fill="#8A909C">SCALE — INDICATIVE, NOT TO SPEC</text>
       </svg>
 
       <div className="edgebox-schematic-foot">

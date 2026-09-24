@@ -1,7 +1,7 @@
 :root {
-  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-  --display: 'Space Grotesk', sans-serif;
-  --body: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  --mono: var(--font-site);
+  --display: var(--font-site);
+  --body: var(--font-site);
 }
 
 .server-hero {
@@ -876,7 +876,7 @@
 }
 
 .tilt-spec-card__index {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -886,7 +886,7 @@
 }
 
 .tilt-spec-card__tag {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -908,7 +908,7 @@
 .tilt-spec-card__stat {
   margin: 0 0 1rem 0;
   color: #0B0B0C;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(1.55rem, 2.1vw, 2.1rem);
   font-weight: 700;
   line-height: 1.15;
@@ -924,7 +924,7 @@
 .tilt-spec-card__description {
   margin: 0;
   color: #52525b;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: clamp(0.88rem, 0.95vw, 0.95rem);
   font-weight: 400;
   line-height: 1.5;
@@ -969,7 +969,7 @@
 
 .server-overview__eyebrow {
   margin: 0 0 0.85rem 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -980,7 +980,7 @@
 .server-overview__title {
   margin: 0;
   color: #0f172a;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2rem, 3.2vw, 3.2rem);
   font-weight: 700;
   line-height: 1.1;
@@ -997,7 +997,7 @@
 .server-overview__header-right p {
   margin: 0;
   color: #475569;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: clamp(0.95rem, 1.05vw, 1.05rem);
   font-weight: 400;
   line-height: 1.6;
@@ -1025,7 +1025,7 @@
 }
 
 .server-overview__stat-val {
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2.4rem, 3.5vw, 3.5rem);
   font-weight: 700;
   line-height: 1;
@@ -1035,7 +1035,7 @@
 }
 
 .server-overview__stat-label {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1082,7 +1082,7 @@
 }
 
 .server-overview__feature-num {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.7rem;
   font-weight: 700;
   color: #dc2626;
@@ -1092,7 +1092,7 @@
 .server-overview__feature-title {
   margin: 0 0 0.4rem 0;
   color: #0B0B0C;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(0.95rem, 1.05vw, 1.08rem);
   font-weight: 700;
   line-height: 1.25;
@@ -1102,7 +1102,7 @@
 .server-overview__feature-desc {
   margin: 0;
   color: #52525b;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: clamp(0.78rem, 0.83vw, 0.85rem);
   font-weight: 400;
   line-height: 1.45;
@@ -1196,7 +1196,7 @@
 
 .server-specs__eyebrow {
   margin: 0 0 0.75rem 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1207,7 +1207,7 @@
 .server-specs__title {
   margin: 0 0 0.85rem 0;
   color: #000000;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(1.9rem, 2.75vw, 2.75rem);
   font-weight: 700;
   line-height: 1.15;
@@ -1219,7 +1219,7 @@
 .server-specs__subtitle {
   margin: 0;
   color: #666666;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: clamp(0.9rem, 0.98vw, 0.98rem);
   font-weight: 400;
   line-height: 1.55;
@@ -1247,7 +1247,7 @@
   border: none;
   border-bottom: 2px solid transparent;
   padding: 0.85rem 0.75rem;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 0.95rem;
   font-weight: 600;
   color: #666666;
@@ -1322,7 +1322,7 @@
 }
 
 .server-specs__visual-title {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.78rem;
   font-weight: 700;
   color: #dc2626;
@@ -1401,7 +1401,7 @@
 }
 
 .server-specs__card-title {
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 0.95rem;
   font-weight: 700;
   color: #000000;
@@ -1410,7 +1410,7 @@
 }
 
 .server-specs__card-count {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1453,7 +1453,7 @@
 }
 
 .server-specs__param-key {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1470,7 +1470,7 @@
 }
 
 .server-specs__param-val {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.86rem;
   font-weight: 500;
   color: #111111;
@@ -1549,7 +1549,7 @@
 
 .server-arch__eyebrow {
   margin: 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1560,7 +1560,7 @@
 .server-arch__title {
   margin: 0 0 1rem 0;
   color: #0F172A;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 700;
   line-height: 1.15;
@@ -1575,7 +1575,7 @@
 .server-arch__subtitle {
   margin: 0 auto;
   max-width: 600px;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.92rem;
   color: #475569;
   line-height: 1.55;
@@ -1656,7 +1656,7 @@
 
 .server-arch__card-h3 {
   margin: 0;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 0.95rem;
   font-weight: 700;
   color: #0F172A;
@@ -1665,7 +1665,7 @@
 
 .server-arch__card-tag {
   margin: 0.2rem 0 0 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.68rem;
   font-weight: 700;
   color: #dc2626;
@@ -1675,7 +1675,7 @@
 
 .server-arch__card-body {
   margin: 0;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.8rem;
   color: #475569;
   line-height: 1.5;
@@ -1713,7 +1713,7 @@
   background: #ef2b2d;
   color: #fff;
   box-shadow: 0 2px 7px rgba(127, 29, 29, 0.3);
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 0.8rem;
   font-weight: 800;
   line-height: 1;
@@ -1789,7 +1789,7 @@
 
 .server-blueprint__eyebrow {
   margin: 0 0 0.75rem 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1800,7 +1800,7 @@
 .server-blueprint__title {
   margin: 0;
   color: #ffffff;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 700;
   line-height: 1.15;
@@ -1836,7 +1836,7 @@
   border: none;
   border-radius: 6px;
   padding: 0.45rem 1.25rem;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.82rem;
   font-weight: 600;
   color: #7E859B;
@@ -1859,7 +1859,7 @@
 }
 
 .server-blueprint__subheader {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -1967,7 +1967,7 @@
   background-color: rgba(10, 12, 18, 0.85);
   border: 1.5px solid #dc2626;
   color: #ffffff;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 700;
   display: flex;
@@ -2021,7 +2021,7 @@
 }
 
 .server-blueprint__hotspots-title {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -2077,7 +2077,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 600;
   color: #7E859B;
@@ -2099,7 +2099,7 @@
 }
 
 .server-blueprint__spot-label {
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.9rem;
   font-weight: 500;
   color: #CBD5E1;
@@ -2164,7 +2164,7 @@
 
 .server-configurator__eyebrow {
   margin: 0 0 0.75rem 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -2175,7 +2175,7 @@
 .server-configurator__title {
   margin: 0;
   color: #0F172A;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 700;
   line-height: 1.15;
@@ -2226,7 +2226,7 @@
 }
 
 .server-configurator__option-num {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.7rem;
   font-weight: 700;
   color: #94A3B8;
@@ -2240,7 +2240,7 @@
 }
 
 .server-configurator__option-name {
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 1rem;
   font-weight: 700;
   color: #0F172A;
@@ -2271,7 +2271,7 @@
 }
 
 .server-configurator__subhead {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -2280,7 +2280,7 @@
 }
 
 .server-configurator__detail-title {
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 1.45rem;
   font-weight: 700;
   color: #0F172A;
@@ -2289,7 +2289,7 @@
 }
 
 .server-configurator__detail-desc {
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.92rem;
   color: #475569;
   margin: 0;
@@ -2343,7 +2343,7 @@
 }
 
 .server-configurator__spec-label {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.65rem;
   font-weight: 700;
   color: #94A3B8;
@@ -2352,7 +2352,7 @@
 }
 
 .server-configurator__spec-value {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.85rem;
   font-weight: 700;
   color: #0F172A;
@@ -2406,7 +2406,7 @@
 
 .server-apps__eyebrow {
   margin: 0 0 0.75rem 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -2417,7 +2417,7 @@
 .server-apps__title {
   margin: 0 0 1rem 0;
   color: #0F172A;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 700;
   line-height: 1.18;
@@ -2425,7 +2425,7 @@
 }
 
 .server-apps__desc {
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.95rem;
   color: #475569;
   line-height: 1.6;
@@ -2452,7 +2452,7 @@
 }
 
 .server-apps__item-num {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   color: #dc2626;
@@ -2467,7 +2467,7 @@
 }
 
 .server-apps__item-title {
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 1.05rem;
   font-weight: 700;
   color: #0F172A;
@@ -2475,14 +2475,14 @@
 }
 
 .server-apps__item-subtext {
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.85rem;
   color: #64748B;
   margin: 0;
 }
 
 .server-apps__item-badge {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.68rem;
   font-weight: 700;
   color: #94A3B8;
@@ -2513,7 +2513,7 @@
 }
 
 .server-apps__env-label {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.7rem;
   font-weight: 700;
   color: #64748B;
@@ -2522,7 +2522,7 @@
 }
 
 .server-apps__env-value {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.88rem;
   font-weight: 600;
   color: #0F172A;
@@ -2572,7 +2572,7 @@
 
 .server-resources__eyebrow {
   margin: 0 0 0.75rem 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -2583,7 +2583,7 @@
 .server-resources__title {
   margin: 0;
   color: #0F172A;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 700;
   line-height: 1.18;
@@ -2660,7 +2660,7 @@
 }
 
 .server-resources__item-title {
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 1.05rem;
   font-weight: 700;
   color: #0F172A;
@@ -2668,7 +2668,7 @@
 }
 
 .server-resources__item-desc {
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.82rem;
   line-height: 1.45;
   color: #64748B;
@@ -2725,7 +2725,7 @@
 
 .server-ordering__eyebrow {
   margin: 0 0 0.75rem 0;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -2736,7 +2736,7 @@
 .server-ordering__title {
   margin: 0 0 1rem 0;
   color: #0F172A;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 700;
   line-height: 1.18;
@@ -2744,7 +2744,7 @@
 }
 
 .server-ordering__desc {
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.95rem;
   color: #475569;
   line-height: 1.6;
@@ -2765,7 +2765,7 @@
   justify-content: center;
   background: #dc2626;
   color: #FFFFFF;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.9rem;
   font-weight: 600;
   padding: 0.8rem 1.75rem;
@@ -2789,7 +2789,7 @@
   background: #FFFFFF;
   border: 1px solid #CBD5E1;
   color: #0F172A;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.9rem;
   font-weight: 600;
   padding: 0.8rem 1.5rem;
@@ -2822,7 +2822,7 @@
 }
 
 .server-ordering__sheet-title {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.7rem;
   font-weight: 700;
   color: #64748B;
@@ -2834,7 +2834,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.7rem;
   font-weight: 800;
   color: #dc2626;
@@ -2884,7 +2884,7 @@
 }
 
 .server-ordering__label {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.7rem;
   font-weight: 700;
   color: #64748B;
@@ -2893,7 +2893,7 @@
 }
 
 .server-ordering__value {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.88rem;
   font-weight: 600;
   color: #0F172A;
@@ -3431,7 +3431,7 @@
 }
 
 .server-models__eyebrow {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.78rem;
   font-weight: 700;
   color: #dc2626;
@@ -3441,7 +3441,7 @@
 
 .server-models__title {
   margin: 0 0 1rem 0;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: clamp(2.2rem, 3.5vw, 3.2rem);
   font-weight: 700;
   color: #0F172A;
@@ -3455,7 +3455,7 @@
 
 .server-models__subtitle {
   margin: 0;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.98rem;
   font-weight: 400;
   color: #64748B;
@@ -3525,7 +3525,7 @@
 
 .server-models__card-title {
   margin: 0;
-  font-family: var(--display, 'Space Grotesk', sans-serif);
+  font-family: var(--display);
   font-size: 1.08rem;
   font-weight: 700;
   color: #0F172A;
@@ -3540,7 +3540,7 @@
 
 .server-models__card-desc {
   margin: 0 0 0.85rem 0;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.85rem;
   color: #475569;
   line-height: 1.48;
@@ -3603,7 +3603,7 @@
   border: 1px solid #E2E8F0;
   border-radius: 24px;
   padding: 0.65rem 1.6rem;
-  font-family: var(--body, 'Inter', sans-serif);
+  font-family: var(--body);
   font-size: 0.88rem;
   font-weight: 600;
   color: #1E293B;
@@ -3638,7 +3638,7 @@
 }
 
 .server-models__coming-soon-badge {
-  font-family: var(--mono, 'JetBrains Mono', monospace);
+  font-family: var(--mono);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -4168,7 +4168,7 @@
     border-radius: 50%;
     background: #ef2b2d;
     color: #fff;
-    font-family: var(--display, 'Space Grotesk', sans-serif);
+    font-family: var(--display);
     font-size: 0.85rem;
     font-weight: 800;
   }

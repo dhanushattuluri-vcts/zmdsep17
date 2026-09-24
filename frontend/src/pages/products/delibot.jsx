@@ -583,7 +583,7 @@ export default function DelibotPage() {
                       fill="#FFFFFF"
                       fontSize="9"
                       fontWeight="800"
-                      fontFamily="monospace"
+                      fontFamily="var(--font-site)"
                       letterSpacing="0.05em"
                     >
                       {labelText}
